@@ -126,7 +126,7 @@ $ sudo systemctl enable redis.service
 $ sudo firewall-cmd --permanent --add-service=http
 $ sudo firewall-cmd --permanent --add-service=https
 $ sudo firewall-cmd --reload
-$ setsebool -P httpd_can_network_connect 1
+$ sudo setsebool -P httpd_can_network_connect 1
 ```
 
 ```
@@ -162,14 +162,34 @@ $ sudo systemctl restart nginx
 ```
 $ sudo dnf install epel-release
 $ sudo dnf install certbot python3-certbot-nginx
+$ sudo certbot --nginx -d stock.wsd.sh
 ```
 
 ```
+# npm install pm2 -g
 # cd /srv
 # git clone git clone https://github.com/WebServiceDevelopment/StockTaking.git
 # cd /srv/StockTaking/Deploy
 # npm install
-# npm install pm2 -g
+# pm2 start StockTaking.js
+
+PM2] Spawning PM2 daemon with pm2_home=/root/.pm2
+[PM2] PM2 Successfully daemonized
+[PM2] Starting /srv/StockTaking/Deploy/StockTaking.js in fork_mode (1 instance)
+[PM2] Done.
+┌────┬────────────────────┬──────────┬──────┬───────────┬──────────┬──────────┐
+│ id │ name               │ mode     │ ↺    │ status    │ cpu      │ memory   │
+├────┼────────────────────┼──────────┼──────┼───────────┼──────────┼──────────┤
+│ 0  │ StockTaking        │ fork     │ 0    │ online    │ 0%       │ 31.3mb   │
+└────┴────────────────────┴──────────┴──────┴───────────┴──────────┴──────────┘
+```
+
+(Optional) Automatically start StockStaking service on start up in case server
+needs to power down or reboot.
+
+```
+# pm2 startup
+# pm2 save
 ```
 
 ## Walkthrough
