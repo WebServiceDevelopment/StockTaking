@@ -28,13 +28,13 @@
 
 @font-face {
     font-family: NotoSerifJP;
-    src: url("/lib/font/NotoSerifJP-Regular.otf") format("opentype");
+    src: url("../lib/font/NotoSerifJP-Regular.otf") format("opentype");
 }
 
 @font-face {
     font-family: NotoSerifJP;
     font-weight: bold;
-    src: url("/lib/font/NotoSerifJP-Bold.otf") format("opentype");
+    src: url("../lib/font/NotoSerifJP-Bold.otf") format("opentype");
 }
 
 html {
