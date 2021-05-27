@@ -1,0 +1,331 @@
+<!--
+
+ MIT License
+ Copyright 2020 Web Service Development Inc.
+
+ Permission is hereby granted, free of charge, to any person obtaining a copy
+ of this software and associated documentation files (the "Software"), to deal
+ in the Software without restriction, including without limitation the rights
+ to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ copies of the Software, and to permit persons to whom the Software is
+ furnished to do so, subject to the following conditions:
+
+ The above copyright notice and this permission notice shall be included in all
+ copies or substantial portions of the Software.
+ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+ SOFTWARE.
+
+ Author: Benjamin Collins (collins.wsd.co.jp)
+
+-->
+
+<!doctype html>
+<html>
+
+	<head>
+		
+		<title>棚卸システム | Client</title>
+
+		<meta charset='utf-8'/>
+		<meta name='viewport' content='initial-scale=1.0, user-scalable=no' />
+		
+		<link href='https://fonts.googleapis.com/css2?family=Mukta' rel='stylesheet' />
+		<link rel='shortcut icon' type='image/png' href='/lib/img/Blueprint.png'/>
+		<link href='/lib/Font-Awesome/css/all.css' rel='stylesheet' />
+		<link rel='stylesheet' type='text/css' href='css/layout.css'/>
+
+	</head>
+
+	<body>
+	
+		<main id='Keypad.body.home'>
+
+			<header>
+
+				<div class='decor'></div>
+
+				<div class='contain'>
+					<table>
+						<tr>
+							<td class='icon'>
+								<img src='/lib/img/inventory_icon.png'/>
+							</td>
+							<td>
+								<h1>ロケーション別棚卸表</h1>
+							</td>
+							<td class='tab active' id='TableManager.tabs.inventory'>
+								<span>在庫</span>
+							</td>
+							<td class='tab' id='TableManager.tabs.stock'>
+								<span>貯蔵品</span>
+							</td>
+							<td class='exit'>
+								<div class='area' id='TableManager.session.exit'>終了</div>
+							</td>
+						</tr>
+					</table>
+				</div>
+
+			</header>
+
+			<div id='TableManager.report.shade' class='shade hide'></div>
+
+			<section>
+
+				<div class='table-widget'>
+					<div class='thead'>
+						<table>
+							<tr>
+								<th class='a'></th>
+								<th class='b'>場所</th>
+								<th class='c'>棚卸資産<br>の種類</th>
+								<th class='d'>品種 / <br>次工程</th>
+								<th class='e'>品名</th>
+								<th class='f'>正味重量</th>
+								<th class='g'>単位</th>
+								<th class='h'>フレコン<br>数量</th>
+								<th class='i'>備考</th>
+							</tr>
+						</table>
+					</div>
+					<div class='tbody' id='TableManager.report.view'>
+						<table id='TableManager.report.tbody'>
+
+							<!--
+							<tr>
+								<td class='a'>01</td>
+								<td class='b'>
+									<select>
+										<option>場所 01</option>
+										<option>場所 02</option>
+										<option>場所 03</option>
+									</select>
+								</td>
+								<td class='c'>
+									<select>
+										<option>AAA</option>
+									</select>
+								</td>
+								<td class='d'>
+									<select>
+										<option>AAA</option>
+									</select>
+								</td>
+								<td class='e'>
+									<select>
+										<option>AAA</option>
+									</select>
+								</td>
+								<td class='f'>
+									<div class="rel">
+										<input type='text'/>
+									</div>
+								</td>
+								<td class='g'>
+									<select>
+										<option>AAA</option>
+									</select>
+								</td>
+								<td class='h'>
+									<div class="rel">
+										<input type='text'/>
+									</div>
+								</td>
+								<td class='i'>
+									<input type='text' class='note'/>
+								</td>
+							</tr>
+							-->
+
+						</table>
+					</div>
+				</div>
+				<div class='button-widget'>
+					<table>
+						<tr>
+							<td>
+								<span id='TableManager.report.rowCount'>15</span> Rows
+							</td>
+							<td class='save-btn'>
+								<div class='save' id='TableManager.report.saveRow'>
+									<i class="fas fa-save"></i> Save
+								</div>
+							</td>
+							<td class='mat-btn'>
+								<button id='TableManager.report.delRow'>
+									- Del Row
+								</button>
+							</td>
+							<td class='mat-btn'>
+								<button id='TableManager.report.addRow'>
+									+ Add Row
+								</button>
+							</td>
+						</tr>
+					</table>
+				</div>
+
+			</section>
+								
+			<!-- START KEYPAD -->
+				<div id='Keypad.body.arrow' class='keypad'>
+					<div class="padding">
+						<table>
+							<tr>
+								<td>
+									<button id='Keypad.key.7'>7</button>
+								</td>
+								<td>
+									<button id='Keypad.key.8'>8</button>
+								</td>
+								<td>
+									<button id='Keypad.key.9'>9</button>
+								</td>
+								<td class='action'>
+									<button id='Keypad.key.bs'>Backspace</button>
+								</td>
+							</tr>
+							<tr>
+								<td>
+									<button id='Keypad.key.4'>4</button>
+								</td>
+								<td>
+									<button id='Keypad.key.5'>5</button>
+								</td>
+								<td>
+									<button id='Keypad.key.6'>6</button>
+								</td>
+								<td class='action'>
+									<button id='Keypad.key.clear'>Clear</button>
+								</td>
+							</tr>
+							<tr>
+								<td>
+									<button id='Keypad.key.1'>1</button>
+								</td>
+								<td>
+									<button id='Keypad.key.2'>2</button>
+								</td>
+								<td>
+									<button id='Keypad.key.3'>3</button>
+								</td>
+								<td class='action' rowspan='2'>
+									<button class='enter' id='Keypad.key.enter'>Confirm</button>
+								</td>
+							</tr>
+							<tr>
+								<td colspan='2'>
+									<button id='Keypad.key.0'>0</button>
+								</td>
+								<td>
+									<button id='Keypad.key.dot'>.</button>
+								</td>
+							</tr>
+						</table>
+					</div>
+				</div>
+			<!-- END KEYPAD -->
+
+			<footer>
+
+			</footer>
+
+			<div class="map-widget">
+				<div class='flex' id='TableManager.map.preview'></div>
+				<div class='toggle' id='TableManager.map.toggle'></div>
+			</div>
+
+			<div class="submit-widget" id='TableManager.report.submit'>
+
+				<div class="slide" id='TableManager.report.slide'>
+					<div id='TableManager.report.thumb' class="thumb"></div>
+					承認依頼を送信
+				</div>
+
+				<div class="info" id='TableManager.report.meta'>
+					<table>	
+						<tr>
+							<td class='label'>棚卸年月</td>
+							<td class='value' id='TableManager.status.report_month'></td>
+						</tr>
+						<tr>
+							<td class='label'>担当者</td>
+							<td class='value' id='TableManager.status.assigned_to'></td>
+						</tr>
+						<tr>
+							<td class='label'>実施日</td>
+							<td class='value' id='TableManager.status.report_date'></td>
+						</tr>
+						<tr>
+							<td class='label'>ロケーション</td>
+							<td class='value' id='TableManager.status.location'></td>
+						</tr>
+						<tr>
+							<td class='label'>在庫合計重量</td>
+							<td class='value' id='TableManager.status.calc_weight'></td>
+						</tr>
+					</table>
+				</div>
+
+				<div class='options hide' id='TableManager.report.options'>
+					<table>
+						<tr>
+							<td>
+								<button id='TableManager.report.yes' class='yes'>Yes</button>
+							</td>
+							<td class='space'></td>
+							<td>
+								<button id='TableManager.report.no'>No</button>
+							</td>
+						</tr>
+					</table>
+				</div>
+
+				<div class="prompt hide" id='TableManager.report.prompt'>
+					
+					<p>
+					<b>Submit for Review</b><br>
+					Would you like to submit this report for review?
+					You will not be able to make any changes after submitting
+					the report.
+
+					</p>
+
+					<li>
+						<table>
+							<tr>
+								<td class='label'>承認者１:</td>
+								<td class='value' id='TableManager.status.auth1'></td>
+							</tr>
+						</table>
+					</li>
+
+					<li>
+						<table>
+							<tr>
+								<td class='label'>承認者２:</td>
+								<td class='value' id='TableManager.status.auth2'></td>
+							</tr>
+						</table>
+					</li>
+
+				</div>
+
+			</div>
+
+		</main>
+
+		<script type='text/javascript' src='/lib/ScrollWidth.js'></script>
+
+		<script type='text/javascript' src='js/WebSocket.js'></script>
+		<script type='text/javascript' src='js/Keypad.js'></script>
+		<script type='text/javascript' src='js/TableManager.js'></script>
+
+	</body>
+
+</html>

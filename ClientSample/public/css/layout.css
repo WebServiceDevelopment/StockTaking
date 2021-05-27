@@ -1,0 +1,1732 @@
+/**
+
+ MIT License
+ Copyright 2020 Web Service Development Inc.
+
+ Permission is hereby granted, free of charge, to any person obtaining a copy
+ of this software and associated documentation files (the "Software"), to deal
+ in the Software without restriction, including without limitation the rights
+ to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ copies of the Software, and to permit persons to whom the Software is
+ furnished to do so, subject to the following conditions:
+
+ The above copyright notice and this permission notice shall be included in all
+ copies or substantial portions of the Software.
+ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+ SOFTWARE.
+
+ Author(s): 
+	Benjamin Collins (collins@wsd.co.jp)
+	Ogawa Kousei (kogawa@wsd.co.jp)
+
+**/
+
+@font-face {
+    font-family: NotoSerifJP;
+    src: url("/lib/font/NotoSerifJP-Regular.otf") format("opentype");
+}
+
+@font-face {
+    font-family: NotoSerifJP;
+    font-weight: bold;
+    src: url("/lib/font/NotoSerifJP-Bold.otf") format("opentype");
+}
+
+html {
+
+	height : 100%;
+	padding: 0;
+	margin: 0;
+
+}
+
+body {
+
+	height: 100%;
+	padding: 0;
+	margin: 0;
+	overflow-x: hidden;
+
+}
+
+/*
+* iPadの場合 browser のuserAgentが2種類ある
+* OS　versionが同一であってもブラウザは異なる場合がある
+* 判定:core.js
+*  ua:(ipad)
+*   --slide-bar: 10px;
+*  ua:(macintosh)
+*   --slide-bar: 0px;
+*
+* document.documentElementに識別のためのclassNameを追加
+* ipad or macintosh
+* layout.cssで--slide-barを切り替える
+*/
+.macintosh {
+	--slide-bar: 0px;
+}
+.ipad {
+	--slide-bar: 10px;
+}
+
+
+main {
+
+	height: 100%;
+
+	--slim-slide-bar: 6px;
+
+
+	--tenkey-arrow : 26px;
+	--under-tenkey-string-top : 44px;
+
+	--TabManager-content-a : "棚卸資産";
+	--TabManager-content-b : "貯蔵品";
+
+	--TabManager-top-position : 4px;
+	--TabManager-space-width : 8px;
+}
+
+main.paper {
+
+	--header-height: 44px;
+
+}
+
+main.paper header {
+
+    height: var(--header-height);
+
+    background-color: #175599;
+
+    width: 100%;
+    box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+    position: fixed;
+    left: 0;
+    top: 0;
+    z-index: 100;
+
+}
+
+main.paper header div.decor {
+
+    width: 250px;
+    height: 100%;
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    background-color: rgba(255, 255, 255, 0.15);
+
+}
+
+main.paper header div.decor:after {
+
+    content: "";
+    display: block;
+    position: absolute;
+    top: 0px;
+    left: 100%;
+    width: 0px;
+    height: 0px;
+    border-style: solid;
+    border-width: var(--header-height) 0 0 60px;
+    border-color: transparent transparent transparent rgba(255, 255, 255, 0.15);
+
+}
+
+main.paper header div.holder {
+
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 110;
+
+}
+
+main.paper header table {
+
+	width: 100%;
+	height: 100%;
+	table-layout: fixed;
+	border-collapse: collapse;
+	font-family: 'NotoSerifJP';
+	color: #fff;
+	font-size: 17px;
+
+}
+
+main.paper header table td.space {
+
+	width: var(--TabManager-space-width);
+
+}
+
+main.paper header table td.tab {
+
+	width: 120px;
+	text-align: center;
+	letter-spacing: 1px;
+	vertical-align: bottom;
+
+}
+
+main.paper header table td.tab div.d {
+
+	top: var( --TabManager-top-position);
+	width: 100%;
+	border-top: 5px solid rgba(255, 255, 255, 0.2);
+	position: relative;
+	/*
+	border-top-right-radius: 5px;
+	border-top-left-radius: 5px;
+	*/
+	border-radius: 5px;
+	margin-bottom: 0px;
+
+}
+
+main.paper header table td.tab div.d.active {
+
+	top: var( --TabManager-top-position);
+	color: #fff;
+	border-top-color: #e7e7ff;
+
+}
+
+main.paper header table td.tab div.d:before {
+
+	width: 100%;
+	text-align: center;
+	left: 0;
+	bottom: 10px;
+	text-align: center;
+	display: block;
+	position: absolute;
+	font-size: 15px;
+
+}
+
+main.paper header table td.tab div.d.a:before {
+
+	content: var( --TabManager-content-a);
+
+}
+
+main.paper header table td.tab div.d.b:before {
+
+	content: var( --TabManager-content-b);
+
+}
+
+main.paper header table h1 {
+
+	padding: 0;
+	margin: 0;
+	font-size: 17px;
+	font-weight: 400;
+	text-indent: 14px;
+	letter-spacing: 1px;
+
+}
+
+main.paper header table td.txt{
+
+	width: 80px;
+	text-align: right;
+	padding-right: 10px;
+
+}
+
+main.paper header table td.date {
+
+	width: 40px;
+
+}
+
+main.paper header table td.date img {
+
+	display: block;
+	margin: auto;
+
+}
+
+main.paper header table td.logout {
+
+	width: 90px;
+
+}
+
+main.paper header table td.logout div.oval {
+
+	position: relative;
+	top: 2px;
+	width: calc(100% - 16px);
+	padding: 4px 0;
+	display: block;
+	margin: auto;
+	border-radius: 8px;
+	background-color: rgba(255, 255, 255, 0);
+	font-size: 15px;
+	color: #fff;
+	text-indent: 10px;
+
+	background-image: url('/lib/img/exit_to_app-white-24dp.svg');
+	background-repeat: no-repeat;
+	background-position: 90% center;
+	background-size: 25px 25px;
+
+}
+
+main.paper header table td.logout div.oval:hover {
+
+	cursor: pointer;
+	background-color: rgba(255, 255, 255, 0.4);
+
+
+}
+
+main.paper header table td.date img {
+
+	width: 28px;
+	height: 28px;
+	margin-top: 8px;
+
+}
+
+main.paper header table td.label {
+
+	width: 80px;
+
+}
+
+main.paper div.block-1 {
+
+	height: calc(var(--header-height) + 10px);
+
+}
+
+main.paper section {
+
+	width: calc(100% - 12px);
+	height: calc(60% + 7px);
+	display: block;
+	margin-left: 6px;
+	position: relative;
+	border: 1px solid #333;
+
+}
+
+main.paper section div.flip  {
+
+	position: relative;
+	left: 0;
+	top: 0;
+	width: 100%;
+	height: 100%;
+	
+	backface-visibility: hidden;
+	-webkit-backface-visibility: hidden;
+
+	transform-style: preserve-3d;
+	transition: transform 0.6s;
+
+}
+
+main.paper section div.flip.over div.page.inner {
+
+	opacity: 0;
+	pointer-events: none;
+	z-index:90;
+
+}
+
+main.paper section div.flip.over div.page.outer {
+
+	opacity: 1;
+	pointer-events: all;
+	z-index:100;
+
+}
+
+main.paper section div.page {
+
+	position: absolute;
+	left: 0;
+	top: 0;
+	width: 100%;
+	height: 100%;
+
+	background-color: #fff;
+	transition: opacity 240ms;
+
+}
+
+main.paper section div.page.inner {
+
+	opacity: 1;
+	pointer-events: all;
+	z-index:100;
+
+}
+
+main.paper section div.page.outer {
+
+	opacity: 0;
+	pointer-events: none;
+	z-index:90;
+
+}
+
+main.paper div.pagination {
+
+	height: 44px;
+	width: calc(100% - 20px);
+	display: block;
+	margin: auto;
+
+}
+
+main.paper footer {
+
+	width: calc(100% - 20px);
+	height: 230px;
+	display: block;
+	margin: auto;
+	margin-top: 54px;
+	position: relative;
+
+}
+
+main.paper footer div.info {
+
+	position: absolute;
+	left: 0;
+	top: 0;
+	width: 25%;
+	height: 100%;
+	background-color: rgba(0,0,0,0.1);
+
+}
+
+main.paper footer div.sign {
+
+	position: absolute;
+	right: 0;
+	top: 0;
+	width: 40%;
+
+}
+
+main.paper footer div.confirm {
+
+	position: absolute;
+	z-index: 10;
+	width: calc(34% - 2px);
+	background-color: #fff;
+	height: 70%;
+	top: 0;
+	right: 0;
+	border: 1px solid #dadada;
+	box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+	transition: opacity 350ms, transform 350ms;
+
+}
+
+main.paper footer div.confirm.close {
+
+	transform: translateY(10px);
+	opacity: 0;
+	pointer-events: none;
+
+}
+
+main.paper footer div.confirm div.msg {
+
+	height: calc(100% - 60px);
+
+}
+
+main.paper footer div.confirm div.msg p {
+
+	margin: 0 auto;
+	padding-top: 20px;
+	font-size: 15px;
+	line-height: 27px;
+	color: #222;
+	width: 88%;
+
+}
+
+main.paper footer div.confirm div.act {
+
+	height: 60px;
+
+}
+
+main.paper footer div.confirm div.act table {
+
+	width: 100%;
+	height: 100%;
+	table-layout: fixed;
+	border-collapse: collapse;
+
+}
+
+main.paper footer div.confirm div.act table button {
+
+	width: 90%;
+	padding: 4px 0;
+	border-radius: 10px;
+	font-size: 16px;
+	letter-spacing: 2px;
+	display: block;
+	margin: auto;
+
+}
+
+main.paper footer div.confirm div.act table button.cancel {
+
+	border: 2px solid #007aff;
+	color: #007aff;
+	background-color: transparent;
+
+}
+
+main.paper footer div.confirm div.act table button.confirm {
+
+	border: 2px solid #006abf;
+	color: #fff;
+	background-color: #006abf;
+
+}
+
+main.paper section div.thead {
+
+	width: calc(100% - var(--slide-bar));
+	height: 39px;
+	border-bottom: 1px solid #333;
+
+}
+
+main.paper section div.thead table {
+
+	width: 100%;
+	height: 100%;
+	table-layout: fixed;
+	border-collapse: collapse;
+	font-size: 12px;
+	text-align: center;
+
+}
+
+main.paper section div.tbody {
+
+	width: 100%;
+	height: calc(100% - 39px);
+	position: relative;
+	overflow-y: scroll;
+	background-color: #fff;
+
+}
+
+main.paper section div.tbody::-webkit-scrollbar {
+	width: var(--slide-bar);
+}
+
+main.paper section div.tbody::-webkit-scrollbar-track {
+	-webkit-box-shadow: inset 0 0 6px     rgba(0,0,0,0.3); 
+	border-radius: calc(var(--slide-bar) - 2px);
+}
+
+main.paper section div.tbody::-webkit-scrollbar-thumb {
+	  background:#ccc;
+
+	border-radius: calc(var(--slide-bar) - 2px);
+	-webkit-box-shadow: inset 0 0 6px     rgba(0,0,0,0.5); 
+}
+
+main.paper section div.thead table td {
+
+	border-right: 1px solid #333;
+
+}
+
+main.paper section div.thead table tr td:last-child {
+
+	border-right: none;
+
+}
+
+main.paper section div.thead table td.a,
+main.paper section div.tbody table td.a,
+main.paper section div.thead table td._a,
+main.paper section div.tbody table td._a
+{
+
+	width: 30px;
+	text-align: center;
+
+}
+
+main.paper section div.thead table td.b,
+main.paper section div.tbody table td.b, 
+main.paper section div.thead table td._b,
+main.paper section div.tbody table td._b 
+{
+
+	width: 55px;
+	text-align: center;
+
+}
+
+main.paper section div.thead table td.c,
+main.paper section div.tbody table td.c,
+main.paper section div.thead table td._c,
+main.paper section div.tbody table td._c
+{
+
+	width: 65px;
+	text-align: center;
+
+}
+
+main.paper section div.thead table td.d,
+main.paper section div.tbody table td.d,
+main.paper section div.thead table td._d,
+main.paper section div.tbody table td._d 
+{
+
+	width: 65px;
+	text-align: center;
+
+}
+
+main.paper section div.thead table td.e,
+main.paper section div.tbody table td.e,
+main.paper section div.thead table td._e,
+main.paper section div.tbody table td._e 
+{
+
+	width: 210px;
+	text-align: center;
+
+}
+
+main.paper section div.thead table td.f,
+main.paper section div.tbody table td.f,
+main.paper section div.thead table td._f,
+main.paper section div.tbody table td._f 
+{
+
+	width: 62px;
+	text-align: center;
+
+}
+
+main.paper section div.thead table td.g,
+main.paper section div.tbody table td.g,
+main.paper section div.thead table td._g,
+main.paper section div.tbody table td._g 
+{
+
+	width: 40px;
+	text-align: center;
+
+}
+
+main.paper section div.tbody table td.g select,
+main.paper section div.tbody table td._g select 
+{
+
+	text-align: center;
+
+}
+
+main.paper section div.thead table td.h,
+main.paper section div.tbody table td.h,
+main.paper section div.thead table td._h,
+main.paper section div.tbody table td._h 
+{
+
+	width: 54px;
+	text-align: center;
+
+}
+
+main.paper section div.tbody div.tpage {
+
+	width: 100%;
+
+}
+
+main.paper section div.tbody div.tpage li {
+
+	list-style: none;
+	height: 36px;
+	display: block;
+	width: 100%;
+
+}
+
+main.paper section div.tbody div.tpage.last li:last-child table td {
+
+	border-bottom: none;
+
+}
+
+main.paper section div.tbody div.tpage li table {
+
+	width: 100%;
+	height: 100%;
+	table-layout: fixed;
+	border-collapse: collapse;
+
+}
+
+main.paper section div.tbody div.tpage li table td {
+
+	border-right: 1px solid #333;
+	border-bottom: 1px solid #333;
+	font-size: 16px;
+	padding-top: 0;
+	padding-bottom: 0;
+	text-align: center;
+
+}
+
+main.paper section div.tbody div.tpage li table tr td:last-child {
+
+	border-right: none;
+
+}
+
+main.paper section div.tbody div.tpage li table td select {
+
+	border: none;
+	width: 100%;
+	padding: 0px 0;
+	font-size: 16px;
+	background-color: transparent;
+	text-align: center;
+	padding:0px;
+	text-indent: 5px;
+
+	touch-action: manipulation;
+
+}
+
+main.paper section div.tbody div.tpage li table td input[type='text'] {
+
+	border: none;
+	padding: 0px 0;
+	width: 100%;
+	touch-action: manipulation;
+
+}
+
+main.paper section div.tbody div.tpage li table td input[type='number'] {
+
+	border: none;
+	padding: 7px 0;
+	width: 94%;
+	text-align: right;
+	font-size: 16px;
+	padding:0px;
+	touch-action: manipulation;
+	-moz-appearance: textfield;
+
+}
+
+main.paper section div.tbody div.tpage li table td input[type='number']::-webkit-outer-spin-button,
+main.paper section div.tbody div.tpage li table td input[type='number']::-webkit-inner-spin-button {
+
+	-webkit-appearance: none;
+	margin: 0;
+
+}
+
+main.paper section div.tbody div.tpage li table td input[type='number'].active {
+
+	border-width: 2px;
+	border-style: solid;
+	border-color: #49E;
+}
+
+main.paper footer div.buttons {
+
+	position: absolute;
+	right : 0;
+	bottom: 0;
+	width: 40%;
+	height: 50px;
+
+}
+
+main.paper footer div.buttons table {
+
+	width: 100%;
+	height: 100%;
+	table-layout: fixed;
+	border-collapse: collapse;
+
+}
+
+main.paper footer div.buttons table td {
+
+	text-align: right;
+
+}
+
+main.paper footer div.buttons table button {
+
+	width: 90%;
+	padding: 4px 0;
+	border-radius: 6px;
+	font-size: 16px;
+	letter-spacing: 2px;
+
+}
+
+main.paper footer div.buttons table button.save {
+
+	border: 2px solid #007aff;
+	color: #007aff;
+	background-color: transparent;
+	
+}
+
+main.paper footer div.buttons table button.conf {
+
+	border: 2px solid #007aff;
+	color: #fff;
+	background-color: #007aff;
+	
+}
+
+main.paper footer div.buttons table button.conf:disabled {
+
+	opacity: 0.4;
+
+}
+
+main.paper footer div.sign table {
+
+	width: 100%;
+	table-layout: fixed;
+	border-collapse: collapse;
+	font-size: 16px;
+
+	opacity: 0.9;
+}
+
+main.paper footer div.sign table td {
+
+	padding-top: 3px;
+	padding-bottom: 3px;
+
+}
+
+
+main.paper footer div.sign table td.label {
+
+	width: 120px;
+	text-indent: 10px;
+
+}
+
+main.paper footer div.sign table td.value {
+
+	text-align: right;
+	padding-right: 10px;
+
+}
+
+main.paper div.pagination table {
+
+	width: 96%;
+	height: 100%;
+	border-collapse: collapse;
+	table-layout: fixed;
+
+}
+
+main.paper div.pagination table tr.inventory_button{
+}
+
+main.paper div.pagination table tr.stock_button{
+
+	display:none;
+
+}
+
+main.paper div.pagination table td.button {
+
+	width: 40px;
+	text-align: right;
+
+}
+
+main.paper div.pagination table td.text {
+
+	width: 140px;
+	font-size: 20px;
+	color: #8a8a8a;
+	white-space:nowrap;
+
+}
+
+main.paper div.pagination table td.button button {
+
+	background-color: #fff;
+	border: none;
+	color: #006abb;
+	padding: 8px 0;
+	width: 80%;
+	font-size: 16px;
+
+}
+
+main.paper div.pagination table td.button button:disabled {
+
+	opacity: 0.4;
+
+}
+
+main.paper div.pagination table td.chevron {
+
+	width: 40px;
+
+}
+
+main.paper div.pagination table td.chevron button {
+
+	width: 40px;
+	height: 40px;
+	background-color: #fff;
+	border: none;
+	border-radius: 5px;
+	display: block;
+	margin: auto;
+	background-size: 70%;
+	background-position: center;
+	background-repeat: no-repeat;
+
+}
+
+main.paper div.pagination table td.chevron button.left {
+
+	background-image: url('/lib/img/keyboard_arrow_left-black-24dp.svg');
+
+}
+
+main.paper div.pagination table td.chevron button.right {
+
+	background-image: url('/lib/img/keyboard_arrow_right-black-24dp.svg');
+
+}
+
+main.paper div.pagination table td.list {
+
+
+}
+
+main.paper div.pagination table td.list div.flex {
+
+	display: flex;
+	justify-content: center;
+
+}
+
+main.paper div.pagination table td.list div.dot {
+
+	width: 8px;
+	height: 8px;
+	border-radius: 100%;
+	background-color: #bababa;
+	display: block;
+	margin-left: 20px;
+	margin-right: 20px;
+	transition: transform 200ms, background-color 200ms;
+
+}
+
+main.paper div.pagination table td.list div.dot.active {
+
+	transform: scale(1.1, 1.1);
+	background-color: #007aff;
+
+}
+
+main.paper footer div.map {
+
+	position: absolute;
+	left: 0%;
+	top: 0;
+	width: calc(60% - 2px);
+	height: calc(100% - 2px);
+	border: 1px solid #e2e2e2;
+	border-radius: 4px;
+
+	background-image: url('/lib/img/factory_map.png');
+	background-size: contain;
+	background-position: center;
+	background-repeat: no-repeat;
+	display: none;
+
+}
+
+
+main.paper footer div.slide {
+
+	position: absolute;
+	right : 0;
+	bottom: 0px;
+	width: calc(33% - 2px);
+	margin-right: 0.5%;
+	margin-left: 0%;
+	height: 40px;
+	border: 1px solid #9a9a9a;
+	border-radius: 20px;
+	background-color: rgba(0,0,0,0.08);
+
+}
+
+main.paper footer div.slide div.thumb {
+
+	position: absolute;
+	left: 1px;
+	top: 2px;
+	height: calc(100% - 4px);
+	width: 60px;
+	border-radius: 20px;
+	//background: linear-gradient(169deg, rgba(205,204,204,1) 0%, rgba(126,126,130,1) 95%);
+	//background: linear-gradient(169deg, rgba(205,204,244,1) 0%, rgba(126,126,180,1) 95%);
+	background: linear-gradient(169deg, rgba(175,204,244,1) 0%, rgba(126,126,180,1) 95%);
+	box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+	z-index: 10;
+	transition: transform 100ms;
+
+}
+
+main.paper footer div.slide div.thumb.complete {
+
+	//background: #888;
+	background: linear-gradient(169deg, rgba(205,204,204,1) 0%, rgba(126,126,130,1) 95%);
+
+}
+
+main.paper footer div.slide div.thumb:hover {
+
+	cursor: pointer;
+
+}
+
+main.paper footer div.slide div.thumb img {
+
+	display: block;
+	margin: auto;
+	height: 32px;
+	padding-top: 2px;
+	opacity: 0.7;
+	pointer-events: none;
+
+}
+
+main.paper footer div.slide div.text {
+
+	position: absolute;
+	height: 100%;
+	width: calc(100% - 80px);
+	left: 68px;
+	top: 0;
+	line-height: 40px;
+	letter-spacing: 1px;
+	font-size: 15px;
+	pointer-events: none;
+
+}
+
+div.modal-outline {
+
+	position: fixed;
+	z-index: 50;
+	width: 100%;
+	height: 100%;
+	left: 0;
+	top: 0;
+	background-color: rgba(0,0,0,0.4);
+	opacity: 0;
+	pointer-events: none;
+	transition: opacity 350ms;
+
+}
+
+div.modal-outline.open {
+
+	opacity: 1;
+	pointer-events: all;
+
+}
+
+div.modal-outline div.modal {
+
+	width: 400px;
+	min-height: 200px;
+	background-color: #fff;
+	border-radius: 5px;
+	box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+	display: block;
+	margin: auto;
+	transition: transform 350ms;
+
+}
+
+div.modal-outline.open div.modal {
+
+	transform: translateY(140px);
+
+}
+
+div.modal-outline.open div.modal div.header {
+
+	position: relative;
+
+}
+
+div.modal-outline.open div.modal div.header h2 {
+
+	padding: 14px 0;
+	margin: 0;
+	color: #2a2a2a;
+	text-align: center;
+	font-size: 24px;
+
+}
+
+div.modal-outline.open div.modal div.body p {
+
+	padding: 0;
+	margin: 20px auto;
+	display: block;
+	width: 80%;
+	color: #333;
+	line-height: 24px;
+	font-size: 15px;
+
+}
+
+div.modal-outline.open div.modal div.footer {
+
+	margin-top: 30px;
+	border-top: 1px solid #9a9a9a;
+	height: 60px;
+
+}
+
+div.modal-outline.open div.modal div.footer table {
+
+	width: 100%;
+	height: 100%;
+	table-layout: fixed;
+	border-collapse: collapse;
+
+}
+
+div.modal-outline.open div.modal div.footer table td.line {
+
+	border-right: 1px solid #9a9a9a;
+
+}
+
+div.modal-outline.open div.modal div.footer table td {
+
+	color: #4f7aa4;
+	font-size: 20px;
+	text-align: center;
+	font-weight: bold;
+
+}
+
+div.map-widget {
+
+	position: absolute;
+	z-index: 20;
+
+	height: calc(100% - 62px);
+	width: calc(100% - 16px);
+
+	left: 5px;
+	padding-left: 5px;
+	border: 1px solid #e2e2e2;
+	border-radius: 4px;
+	background-color: #fff;
+	bottom: 10px;
+
+	background-image: url('/lib/img/factory_map.png');
+	background-size: contain;
+	background-position: center;
+	background-repeat: no-repeat;
+	transition: width 350ms, height 350ms;
+	box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+
+}
+
+div.map-widget.small {
+
+	height: 254px;
+	width: calc(50% - 12px);
+
+}
+
+div.map-widget div.expand {
+
+	position: absolute;
+	right: -7px;
+	top: -7px;
+	width: 40px;
+	height: 40px;
+	background-image: url('/lib/img/open_in_new-black-24dp.svg');
+	background-size: 80%;
+	background-position: center;
+	background-repeat: no-repeat;
+	opacity: 0.7;
+	transition: transform 350ms;
+	transform: rotate(180deg);
+
+}
+
+div.map-widget.small div.expand {
+
+	transform: rotate(0deg);
+	top: -33px;
+
+}
+
+/*
+* tenkey
+*/
+div.tenkey.open {
+
+	opacity: 1;
+	pointer-events: all;
+
+}
+
+div.tenkey {
+
+	position: absolute;
+	left: 0;
+	top: 0;
+	width: 100%;
+	height: 100%;
+	background-color: rgba(0,0,0,0.4);
+	background-size: 80%;
+	background-position: center;
+	background-repeat: no-repeat;
+	opacity: 0;
+	z-index:100;
+	pointer-events: none;
+	transition: opacity 250ms;
+
+}
+
+div.tenkey div span.tenkey_column_str {
+
+	position: absolute;
+	top: 10px;
+	left: 20px;
+	font-size:24px;
+	color: #333;
+	width : calc(100% - 40px);
+	text-align: center;
+}
+
+div.tenkey div span.tenkey_str {
+
+	font-size:32px;
+	color: #333;
+	white-space:pre;
+
+}
+
+div.tenkey div span.tenkey_str_1 {
+
+	margin-left: 40px;
+
+}
+
+div.tenkey div span.tenkey_str_value {
+
+	font-size:24px;
+	background-color: #FFF;
+	position: relative;
+	width:240px;
+	height: 28px;;
+	color: #333;
+}
+
+div.tenkey div span.dli-close {
+
+	display: inline-block;
+	vertical-align: middle;
+	color: #333;
+	line-height: 1;
+	width: 2.0em;
+	height: 0.1em;
+	background: currentColor;
+	border-radius: 0.1em;
+	position: absolute;
+	transform: rotate(45deg);
+	top: 25px;
+	right: 20px;
+}
+
+div.tenkey div span.dli-close::before {
+
+	content: '';
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background: inherit;
+	border-radius: inherit;
+	transform: rotate(90deg);
+}
+
+div.tenkey div {
+
+	background-color: #fff;
+	margin-top: 10%;
+	margin-left: 12%;
+	padding-top: 5%;
+	padding-left: 0%;
+	padding-bottom: 5%;
+	width: 75%;
+	height:56%;
+	border-width:1px;
+	border-style:solid;
+	border-color:#777;
+	border-radius: 15px;
+	box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+	transition: transform 500ms;
+	transform: translateY(30px);
+	opacity: 0.96;
+
+}
+
+div.tenkey.open div {
+
+	transform: translateY(0px);
+
+}
+
+div.tenkey div table {
+
+	padding-left: 5%;
+	padding-top: 0%;
+	width:80%
+
+}
+
+div.tenkey div.calc-box {
+
+	position:absolute;
+	top:112px;
+	left:30px;
+	width: calc(70% - 20px);
+	height: 40%;
+	border-style: solid;
+	border-width: 1px;
+	border-color: #999 ;
+	background-color : transparent;
+	box-shadow: 0 2px 4px rgba(0,0,0,0.16), 0 2px 4px rgba(0,0,0,0.23);
+}
+
+div.tenkey div table tr td input[type="text"]{
+
+	font-size:28px;
+	text-align:right;
+	width : 240px;
+	margin-bottom: 10px;
+	margin-right: 10px;
+	margin-left: 10px;
+
+}
+
+div.tenkey div table tr td span.input_up{
+
+	position:relative;
+	top:-34px;
+	width: 0;
+	height: 0;
+	border-style: solid;
+	border-width: 0 var(--tenkey-arrow) calc(var(--tenkey-arrow)*1.5)  var(--tenkey-arrow);
+	border-color: transparent transparent #bbb transparent;
+
+	border-radius: 5px;
+	margin-left:20px;
+}
+
+div.tenkey div table tr td span.input_down{
+
+	position:relative;
+	top:22px;
+	width: 0;
+	height: 0;
+	border-style: solid;
+	border-width: calc(var(--tenkey-arrow)*1.5) var(--tenkey-arrow) 0 var(--tenkey-arrow);
+	border-color: #bbb transparent transparent transparent;
+
+	border-radius: 5px;
+	margin-left:20px;
+}
+
+div.tenkey div table tr td input[type="button"]{
+
+	touch-action: manipulation;
+	width:120px;
+	height:60px;
+	margin:10px;
+	font-size:24px;
+
+}
+
+/*
+* under_tenkey
+*/
+div.under_tenkey.open {
+
+	opacity: 1;
+	pointer-events: all;
+
+}
+
+div.under_tenkey {
+
+	position: absolute;
+	left: 0;
+	top: 0;
+	width: 100%;
+	height: 100%;
+	background-color: rgba(0,0,0,0.4);
+	background-size: 80%;
+	background-position: center;
+	background-repeat: no-repeat;
+	opacity: 0;
+	z-index:100;
+	pointer-events: none;
+	transition: opacity 250ms;
+
+}
+
+div.under_tenkey div span.under_tenkey_column_str {
+
+	position: absolute;
+	top: 10px;
+	left: 30px;
+	font-size:24px;
+	color: #333;
+	width : calc(40% - 40px);
+	text-align: center;
+}
+
+div.under_tenkey div span.under_tenkey_str {
+
+	font-size:18px;
+	color: #333;
+	white-space:pre;
+	position: relative;
+	top:var(--under-tenkey-string-top);
+
+}
+
+div.under_tenkey div span.under_tenkey_str_1 {
+
+	margin-left: 15px;
+
+}
+
+div.under_tenkey div span.under_tenkey_str_value {
+
+	font-size:24px;
+	background-color: #FFF;
+	position: relative;
+	top:var(--under-tenkey-string-top);
+	width:240px;
+	height: 28px;;
+	color: #333;
+}
+
+div.under_tenkey div span.dli-close {
+
+	display: inline-block;
+	vertical-align: middle;
+	color:#777;
+	line-height: 1;
+	width: 2.0em;
+	height: 0.2em;
+	background: currentColor;
+	border-radius: 0.1em;
+	position: absolute;
+	transform: rotate(45deg);
+	top: 25px;
+	right: 15px;
+}
+
+div.under_tenkey div span.dli-close::before {
+
+	content: '';
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background: inherit;
+	border-radius: inherit;
+	transform: rotate(90deg);
+}
+
+div.under_tenkey div {
+
+	background-color: #fff;
+	margin-top: 630px;
+	margin-left: 2%;
+	padding-top: 0px;
+	padding-left: 0%;
+	padding-bottom: 5%;
+	width: 96%;
+	height:280px;
+	border-width:1px;
+	border-style:solid;
+	border-color:#777;
+	border-radius: 15px;
+	box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+	transition: transform 500ms;
+	transform: translateY(30px);
+	opacity: 0.96;
+
+}
+
+div.under_tenkey.open div {
+
+	transform: translateY(0px);
+
+}
+
+div.under_tenkey div table {
+
+	padding-left: 3%;
+	padding-top: 0%;
+	width:50%
+
+}
+
+div.under_tenkey div.under_calc-box {
+
+	touch-action: manipulation;
+	position:absolute;
+	top:12px;
+	left:46%;
+	width: calc(45% - 20px);
+	height: 260px;
+	border-style: solid;
+	border-width: 1px;
+	border-color: #999 ;
+	background-color : transparent;
+	box-shadow: 0 2px 4px rgba(0,0,0,0.16), 0 2px 4px rgba(0,0,0,0.23);
+}
+
+div.under_tenkey div table tr td input[type="text"]{
+
+	font-size:18px;
+	text-align:right;
+	width : 120px;
+	margin-bottom: 10px;
+	margin-right: 10px;
+	margin-left: 10px;
+
+}
+
+div.under_tenkey div table tr td arrow {
+
+	touch-action: manipulation;
+	position:relative;
+	top:0px;
+	left:10px;
+	z-index:100;
+
+} 
+
+div.under_tenkey div table tr td input[type="button"]{
+
+	touch-action: manipulation;
+	width:80px;
+	height:40px;
+	margin:9px;
+	font-size:18px;
+
+}
+
+/*
+*a selectionBoard
+*/
+div.selectionBoard.open {
+
+	opacity: 1;
+	pointer-events: all;
+
+}
+
+div.selectionBoard {
+
+	position: fixed;
+	left: 0;
+	top: 0;
+	width: 100%;
+	height: 100%;
+	background-color: rgba(0,0,0,0.4);
+	background-size: 80%;
+	background-position: center;
+	background-repeat: no-repeat;
+	opacity: 0;
+	z-index: 80;
+	pointer-events: none;
+	transition: opacity 250ms;
+
+}
+
+div.selectionBoard div.card {
+
+	background-color: #fff;
+	padding-top: 10px;
+	padding-bottom: 10px;
+	padding-left: 5px;
+	padding-right: 5px;
+	width: calc(98% - 5px);
+	border-width: 1px;
+	border-style: solid;
+	border-color: #777;
+	border-radius: 15px;
+	box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+	transition: transform 500ms;
+	opacity: 0.96;
+	transform: translateY(0px);
+	height: calc(100% - 80px);
+	display: block;
+	margin: auto;
+
+}
+
+div.selectionBoard div.matline {
+
+	height: calc(100% - 110px);
+	overflow-y: scroll;
+	padding-right: 40px;
+
+}
+
+div.selectionBoard.open div.card {
+	
+	transform: translateY(50px);
+
+}
+
+div.selectionBoard div table {
+
+	width:99%;
+	border-top-width:1px;
+	border-top-style:solid;
+	border-top-color:#ccc;
+
+}
+
+div.selectionBoard div table.material_list tr td{
+
+        padding-top: 9px;
+        padding-bottom: 9px;
+        padding-left: 9px;
+	border-bottom-width:1px;
+	border-bottom-style:dashed;
+	border-bottom-color:#777;
+
+}
+
+div.selectionBoard div table.material_list tr td:hover{
+
+	background-color: #f3f3f3;
+	border-radius: 5px;
+	border-bottom-width:0px;
+
+}
+
+div.selectionBoard div table tr td input[type="text"]{
+
+	margin-left:30px;
+	font-size:18px;
+	text-align:left;
+	width:230px;
+
+}
+
+div.selectionBoard div td input[type="button"]{
+
+	width:100px;
+	height:30px;
+	margin-top:30px;
+	margin-bottom:30px;
+	margin-left:20px;
+	margin-right:20px;
+	font-size:18px;
+
+}
+
+div.selectionBoard div div.matline::-webkit-scrollbar {
+
+        width: var(--slim-slide-bar);
+
+}
+
+div.selectionBoard div div.matline::-webkit-scrollbar-track {
+
+        -webkit-box-shadow: inset 0 0 6px     rgba(100,100,100,0.3);
+        border-radius: calc(var(--slim-slide-bar) - 2px);
+}
+
+div.selectionBoard div div.matline::-webkit-scrollbar-thumb {
+
+        background:#ddd;
+
+        -webkit-box-shadow: inset 0 0 6px     rgba(100,100,100,0.5);
+        border-radius: calc(var(--slim-slide-bar) - 2px);
+}
+
+div.cover {
+
+	position: fixed;
+	left: 0px;
+	top: 0px;
+	width: 100%;
+	height: 100%;
+	background-color: rgba(0,0,0,0.4);
+	opacity: 0;
+	z-index: 80;
+	pointer-events: none;
+	transition: opacity 250ms;
+
+}
+
+div.cover.open {
+
+    opacity: 0.8;
+    pointer-events: all;
+
+}
+

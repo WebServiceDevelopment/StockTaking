@@ -1,0 +1,291 @@
+<!--
+
+ MIT License
+ Copyright 2020 Web Service Development Inc.
+
+ Permission is hereby granted, free of charge, to any person obtaining a copy
+ of this software and associated documentation files (the "Software"), to deal
+ in the Software without restriction, including without limitation the rights
+ to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ copies of the Software, and to permit persons to whom the Software is
+ furnished to do so, subject to the following conditions:
+
+ The above copyright notice and this permission notice shall be included in all
+ copies or substantial portions of the Software.
+ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+ SOFTWARE.
+
+ Author(s): 
+	Benjamin Collins (collins@wsd.co.jp)
+	Kousei Ogawa (kogawa@wsd.co.jp)
+
+-->
+
+<!doctype html>
+<html>
+
+	<head>
+		
+		<title>棚卸システム</title>
+
+		<meta charset='utf-8'/>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+
+		<link rel='shortcut icon' type='image/png' href='/lib/img/Blueprint.png'/>
+		<link rel='stylesheet' type='text/css' href='css/layout.css'/>
+
+	</head>
+
+	<body >
+
+		<div class='modal-outline' id='modal1'>
+
+			<div class='modal'>
+
+				<div class="header">
+					<h2>Confirmation Required</h2>
+				</div>
+
+				<div class="body">
+
+					<p>
+					This action will submit this report to your supervisor for
+					confirmation. Any further changes to this document after submission
+					will require confirmation. Are you sure you would like to submit 
+					this document?
+					</p>
+
+				</div>
+
+				<div class="footer">
+					<table>
+						<tr>
+							<td class='line' id='modal1_cancel'>Cancel</td>
+							<td id='modal1_confirm'>Confirm</td>
+						</tr>
+					</table>
+				</div>
+
+			</div>
+
+		</div>
+
+		<main class='paper'>
+
+			<header>
+				<div class='decor'></div>
+
+				<div class='hold'>
+				<table>
+					<tr>
+						<td>
+							<h1>ロケーション別棚卸表</h1>
+						</td>
+						<td class="tab">
+							<div id='TabManager.a' class='d a'></div>
+						</td>
+						<td class='space'></td>
+						<td class="tab">
+							<div id='TabManager.b' class='d b'></div>
+						</td>
+						<td class='space'></td>
+						<td class='date' id='save'>
+							<img src='/lib/img/content-save-w.png'/>
+						</td>
+						<td class='logout'>
+							<div class='oval' id='logout'>
+								終了
+							</div>
+						</div>
+					</tr>
+				</table>
+				</div>
+
+			</header>
+			
+			<div class="block-1"></div>
+
+			<section>
+				
+				<div class='flip' id='TabManager.card'>
+
+					<!-- Start : TANAOROSHI -->
+	
+					<div class='page inner'>
+
+						<div class='thead' id='thead1'>
+						</div>
+
+						<div class='tbody' id='tbody1'>
+						</div>
+
+						<div class="pagination">
+						<table id ="inventory_button" class="inventory_button">
+							<tr>
+								<td class='text'>
+									<span id='dot_count_1'>15</span>行
+								</td>
+		
+								<td class='button'>
+									<button disabled='disabled' id='min_btn_1'> １行削除</button>
+								</td>
+								<td class='button'>
+									<button id='add_btn_1'> １行追加</button>
+								</td>
+							</tr>
+						</table>
+						</div>
+
+					</div>
+
+					<!-- End : TANAOROSHI -->
+
+					<!-- Start : CHOZOUHIN -->
+
+					<div class='page outer'>
+
+						<div class='thead' id='thead2'>
+						</div>
+
+						<div class='tbody' id='tbody2'>
+						</div>
+
+						<div class="pagination">
+						<table id ="stock_button" class="stock_button">
+							<tr>
+								<td class='text'>
+									<span id='dot_count_2'>15</span>行
+								</td>
+
+								<td class='button'>
+									<button disabled='disabled' id='min_btn_2'> １行削除</button>
+								</td>
+								<td class='button'>
+									<button id='add_btn_2'> １行追加</button>
+								</td>
+							</tr>
+						</table>
+						</div>
+
+					</div>
+
+					<!-- End : CHOZOUHIN -->
+
+				</div>
+
+			</section>
+
+
+			<footer ontouchmove="event.preventDefault()">
+				
+				<div class='map'>
+					<div class='expand'></div>
+				</div>
+
+				<div class='sign'>
+					<table border='1'>
+						<tr>
+							<td class='label'>棚卸月</td>
+							<td class='value' id='sales_month'>
+							</td>
+						</tr>
+						<tr>
+							<td class='label'>担当者</td>
+							<td class='value' id='person_in_charge'>
+							</td>
+						</tr>
+						<tr>
+							<td class='label'>棚卸実施日</td>
+							<td class='value' id='inventory_date_of_treatment'>
+							</td>
+						</tr>
+						<tr>
+							<td class='label'>ロケーション</td>
+							<td class='value' id='location'>
+							</td>
+						</tr>
+						<tr>
+							<td class='label'>承認者</td>
+							<td class='value' id='inventory_line'>
+							</td>
+						</tr>
+						<tr>
+							<td class='label'>在庫合計重量</td>
+							<td class='value' id='total_weight'>
+							</td>
+						</tr>
+					</table>
+				</div>
+
+				<div class='slide' id='track'>
+
+					<div class='thumb' id='thumb'>
+						<img src='/lib/img/arrow_forward-black-24dp.svg'/>
+					</div>
+					<div class='text'>
+						承認依頼の提出
+					</div>
+
+				</div>
+
+				<div id='conf' class="confirm close">
+
+					<div class="msg">
+
+						<p>
+							承認依頼を提出すると、以降の変更は出来ません。<br>
+							承認者に提出しますか？
+						</p>
+
+					</div>
+
+					<div class="act">
+						<table>
+							<tr>
+								<td>
+									<button id='conf_cancel' class='cancel'>キャンセル</button>
+								</td>
+								<td>
+									<button id='conf_submit' class='confirm'>承認依頼</button>
+								</td>
+							</tr>
+						</table>
+					</div>
+				
+				</div>
+
+			</footer>
+
+			<div id='map_widget' class="map-widget small">
+				<div id='map_toggle' class='expand'></div>
+			</div>
+			<div id='tenkey' class='tenkey' >
+			</div>
+			<div id='under_tenkey' class='under_tenkey' >
+			</div>
+			<div id='selectionBoard' class='selectionBoard' >
+			</div>
+			<div id='cover' class='cover' >
+			</div>
+
+		</main>
+
+		<script type='text/javascript' src='js/selectionBoard.js'></script>
+		<script type='text/javascript' src='js/header.js'></script>
+		<script type='text/javascript' src='js/inventory.js'></script>
+		<script type='text/javascript' src='js/stock.js'></script>
+		<script type='text/javascript' src='js/tenkey.js'></script>
+		<script type='text/javascript' src='js/core.js'></script>
+
+		<script type='text/javascript' src='js/TabManager.js'></script>
+		<script type='text/javascript' src='js/DataManager.js'></script>
+		<script type='text/javascript' src='js/Arrow.js'></script>
+
+	</body>
+
+</html>

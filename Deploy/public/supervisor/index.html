@@ -1,0 +1,571 @@
+<!--
+
+ MIT License
+ Copyright 2020 Web Service Development Inc.
+
+ Permission is hereby granted, free of charge, to any person obtaining a copy
+ of this software and associated documentation files (the "Software"), to deal
+ in the Software without restriction, including without limitation the rights
+ to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ copies of the Software, and to permit persons to whom the Software is
+ furnished to do so, subject to the following conditions:
+
+ The above copyright notice and this permission notice shall be included in all
+ copies or substantial portions of the Software.
+ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+ SOFTWARE.
+
+ Author: Benjamin Collins (collins.wsd.co.jp)
+
+-->
+
+<!doctype html>
+<html>
+
+	<head>
+		
+		<title>棚卸システム | Panel</title>
+		
+		<meta charset='utf-8'/>
+		<meta name='viewport' content='initial-scale=1.0, user-scalable=no' />
+		
+		<link href='https://fonts.googleapis.com/css2?family=Mukta' rel='stylesheet'>
+		<link rel='shortcut icon' type='image/png' href='/lib/img/Blueprint.png'/>
+		<link rel='stylesheet' type='text/css' href='css/layout.css'/>
+		<link href="/lib/Font-Awesome/css/all.css" rel="stylesheet">
+
+	</head>
+
+	<body>
+
+		<main>
+
+			<header>
+
+				<div class='decor'></div>
+
+				<div class='contain'>
+
+					<table>
+						<tr>
+							<td class='icon'>
+								<img src='/lib/img/inventory_icon.png'/>
+							</td>
+							<td>
+								<h1>ロケーション別棚卸表</h1>
+							</td>
+
+							<td class='spacing'></td>
+
+							<td class='session' id='TabManager.session.username'>
+							</td>
+
+							<td class='exit'>
+								<div class='area' id='TabManager.session.logout'>終了</div>
+							</td>
+						</tr>
+					</table>
+
+				</div>
+
+			</header>
+
+			<nav>
+
+				<ul>
+					<li id='TabManager.tabs.panel'>
+
+						<i class="fas fa-calendar-day"></i>
+
+						<span>棚卸一覧</span>
+
+					</li>
+
+					<li id='TabManager.tabs.staff'>
+
+						<i class="fas fa-user"></i>
+
+						<span>スタッフ</span>
+
+					</li>
+
+					<li class='one-off' id='TabManager.tabs.table'>
+
+						<i class="fas fa-file-alt"></i>
+
+						<span>棚卸表</span>
+
+					</li>
+
+				</ul>
+
+			</nav>
+
+			<section>
+
+				<article class='table' id='TabManager.article.staff'>
+
+					<div class="toolbar">
+						<table>
+							<tr>
+								<td>
+									<h2>スタッフ</h2>
+								</td>
+							</tr>
+						</table>
+					</div>
+
+					<div class='outline staff'>
+
+						<div class='thead'>
+							<table>
+								<tr>
+									<th class='no'>No.</th> 
+									<th class='sa'>Staff Position</th> 
+									<th class='sb'>Staff Name</th> 
+									<th classs='sc'>Staff Login</th> 
+									<th classs='sd'>Staff Email</th> 
+									<th class='se'>Last Active</th> 
+									<th class='sf'>Locations</th> 
+									<th class='sg'>Locked</th> 
+									<th class='edit'>Edit</th> 
+									<th class='edit'>Remove</th>
+								</tr>
+							</table>
+						</div>
+
+						<div class='tbody'>
+							<table id='StaffManager.table.body'>
+
+							</table>
+						</div>
+					
+					</div>
+
+					<div class='staff'>
+
+						<h3>スタッフ
+							<span id='StaffManager.form.label'>追加</span>
+						</h3>
+
+						<form>
+
+							<li class='label'>
+								Staff Position
+							</li>
+
+							<li class='value'>
+								<select id='StaffManager.form.staff_position'>
+									<option value=''>Select Position</option>
+									<option value='担当'>担当</option>
+								</select>
+							</li>
+
+							<li class='label'>
+								スタッフ名
+							</li>
+
+							<li class='value'>
+								<input type='text' id='StaffManager.form.staff_name' placeholder='Staff Name'/>
+							</li>
+
+							<li class='label'>
+								スタッフログインID
+							</li>
+
+							<li class='value'>
+								<input type='text' id='StaffManager.form.staff_login' placeholder='Staff Login'/>
+							</li>
+
+							<li class='label'>
+								スタッフメール
+							</li>
+
+							<li class='value'>
+								<input type='text' id='StaffManager.form.staff_email' placeholder='Staff Email'/>
+							</li>
+
+							<li class='label'>
+								スタッフパスワード
+							</li>
+
+							<li class='value'>
+								<input type='text' id='StaffManager.form.staff_password' placeholder='Staff Password'/>
+							</li>
+
+							<li class='label'>
+								スタッフロケーション
+							</li>
+
+						</form>
+
+						<div class='location' id='StaffManager.form.staff_location'>
+
+						</div>
+
+						<div class='actions'>
+							<table>
+								<tr>
+									<td>
+										<button id='StaffManager.form.cancel' class='cancel'>Cancel</button>
+									</td>
+									<td></td>
+									<td>
+										<button id='StaffManager.form.submit' class='submit'>Submit</button>
+									</td>
+								</tr>
+							</table>
+						</div>
+
+					</div>
+				
+				</article>
+
+				<article id='TabManager.article.panel' class='table'>
+
+					<div class="toolbar">
+						<table>
+							<tr>
+								<td>
+									<h2>棚卸一覧</h2>
+								</td>
+								<!--
+								<td class='tab'>
+									<span>All</span>
+								</td>
+								<td class='tab'>
+									<span>Pending</span>
+								</td>
+								<td class='tab'>
+									<span>Complete</span>
+								</td>
+								-->
+							</tr>
+						</table>
+
+					</div>
+
+					<div class='outline'>
+
+						<div class='thead'>
+							<table>
+								<tr>
+									<th class='no'>No.</th> 
+									<th>ロケーション名</th> 
+									<th class='year'>棚卸年</th>
+									<th class='month'>棚卸月</th> 
+									<th class='person-in-charge'>担当者</th> 
+									<th class='date'>実施日</th> 
+									<th class='time'>現場入力</th> 
+									<th class='authorizer'>承認者１</th> 
+									<th class='datetime'>承認１　時間</th> 
+									<th class='authorizer'>承認者２</th> 
+									<th class='datetime'>承認２　時間</th> 
+									<th class='display'>編集</th> 
+									<th class='display'>保存</th> 
+									<th class='display'>表示</th> 
+								</tr>
+							</table>
+						</div>
+
+						<div class='tbody'>
+							<table id='PanelManager.tbody'>
+								<!-- 
+								<tr>
+									<td class='no'>No.</td>
+									<td class='location'>ロケーション名</td>
+									<td class='year'>YYYY</td>
+									<td class='month'>MM</td>
+									<td>
+										<select>
+											<option>担当選択</option>
+										</select>
+									</td>
+									<td class='date'>YYYY-MM-DD</td>
+									<td class='time'>hh:mm:ss</td>
+									<td>
+										<select>
+											<option>承認者１選択</option>
+										</select>
+									</td>
+									<td class='datetime'>1 day ago</td>
+									<td>
+										<select>
+											<option>承認者２選択</option>
+										</select>
+									</td>
+									<td class='datetime'>2 days ago</td>
+									<td class='display'>表示</td>
+								</tr>
+								-->
+							</table>
+						</div>
+
+						<div class='tfoot'></div>
+
+					</div>
+
+				</article>
+
+				<article class='table' id='TabManager.article.table'>
+
+					<div class="toolbar">
+						<table>
+							<tr>
+								<td>
+									<h2>棚卸表</h2>
+								</td>
+								<td class='tab'>
+									<span id='TableManager.rows.inventory'>棚卸</span>
+								</td>
+								<td class='tab'>
+									<span id='TableManager.rows.stock'>貯蔵品</span>
+								</td>
+							</tr>
+						</table>
+					</div>
+
+					<div class='table-widget'>
+						<div class='thead'>
+							<table>
+								<tr>
+									<th class='a' rowspan='2'>No.</th>
+									<th class='b' rowspan='2'>場所</th>
+									<th class='c' rowspan='2'>棚卸資産<br>の種類</th>
+									<th class='d' rowspan='2'>品種</th>
+									<th class='e' rowspan='2'>品名</th>
+									<th class='f' rowspan='2'>次工程</th>
+
+									<th class='g' colspan='4'>正味重量</th>
+
+									<th class='h' rowspan='2'>単位</th>
+
+									<th class='i' colspan='4'>フレコン数量</th>
+
+									<th class='j' rowspan='2'>換数量</th>
+									<th class='k' rowspan='2'>備考</th>
+								</tr>
+								<tr>
+									<td>担当</td>
+									<td>承認１</td>
+									<td>承認２</td>
+									<td>修正</td>
+
+									<td>担当</td>
+									<td>承認１</td>
+									<td>承認２</td>
+									<td>修正</td>
+								</tr>
+							</table>
+						</div>
+
+						<div class='tbody'>
+
+							<table id='TableManager.tbody'>
+								<tr>
+									<td class='a'>
+										001
+									</td>
+									<td class='b'>
+										<select>
+											<option>No. 01</option>
+											<option>No. 02</option>
+											<option>No. 03</option>
+											<option>No. 04</option>
+											<option>No. 05</option>
+										</select>
+									</td>
+									<td class='c'>
+										<select>
+											<option></option>
+											<option>原在料</option>
+											<option>仕掛品</option>
+											<option>製品</option>
+											<option>ダスト</option>
+										</select>
+									</td>
+									<td class='d'>
+										<select>
+											<option></option>
+											<option>品集1</option>
+											<option>品集2</option>
+											<option>品集3</option>
+											<option>品集4</option>
+											<option>品集5</option>
+											<option>品集6</option>
+										</select>
+									</td>
+									<td class='e'>
+										<select>
+											<option></option>
+											<option>RPF</option>
+											<option>H</option>
+											<option>PR</option>
+											<option>R2</option>
+											<option>S1</option>
+										</select>
+									</td>
+									<td class='f'>
+										<select>
+											<option></option>
+											<option>品名1</option>
+											<option>品名2</option>
+											<option>品名3</option>
+											<option>品名4</option>
+											<option>品名5</option>
+											<option>品名6</option>
+										</select>
+									</td>
+									<td class='g'>
+										<div class='flex'>
+											<input type='number'/>
+											<input type='number'/>
+											<input type='number'/>
+											<input type='number'/>
+										</div>
+									</td>
+									<td class='h'>
+										<select>
+											<option></option>
+											<option>kg</option>
+										</select>
+									</td>
+									<td class='i'>
+										<div class='flex'>
+											<input type='number'/>
+											<input type='number'/>
+											<input type='number'/>
+											<input type='number'/>
+										</div>
+									</td>
+									<td class='j'>
+										<input type='number'/>
+									</td>
+									<td class='k'>
+										<input type='text'/>
+									</td>
+								</tr>
+							</table>
+
+						</div>
+
+						<div class='tfoot'>
+							<table>
+								<tr>
+									<td class="button">
+										<div class='save' id='TableManager.rows.save'>Save</div>
+									</td>
+
+									<td></td>
+
+									<td class="button">
+										<span id='TableManager.rows.add'>一行追加</span>
+									</td>
+									<td class="button">
+										<span id='TableManager.rows.remove' class='disabled'>一行削除</span>
+									</td>
+								</tr>
+							</table>
+						</div>
+
+					</div>
+
+					<div class='map' id='TableManager.map.div'>
+						<div class='flex'>
+							<img id='TableManager.map.image' src='/lib/img/material_line.jpg'/>
+						</div>
+						<div id='TableManager.map.zoom' class="magnify"></div>
+					</div>
+
+					<div class='float-widget'>
+
+						<div class='info'>
+							<table>
+								<tr>
+									<td class='label'>棚卸年月</td>
+									<td class='value' id='TableManager.status.date'></td>
+								</tr>
+								<tr>
+									<td class='label'>担当者</td>
+									<td class='value' id='TableManager.status.position'></td>
+								</tr>
+								<tr>
+									<td class='label'>実施日</td>
+									<td class='value' id='TableManager.status.execute'></td>
+								</tr>
+								<tr>
+									<td class='label'>ロケーション</td>
+									<td class='value' id='TableManager.status.location'></td>
+								</tr>
+								<tr>
+									<td class='label'>在庫合計重量</td>
+									<td class='value' id='TableManager.status.weight'></td>
+								</tr>
+							</table>
+						</div>
+
+						<div class='controls'>
+							<div class='notes' id='TableManager.status.notes'>
+								<textarea id='TableManager.status.textarea' readonly='readonly'></textarea>
+							</div>
+						</div>
+
+						<div class='stamp'>
+
+							<div class='head'>
+								<table>
+									<tr>
+										<td>承認１</td>
+										<td>承認２</td>
+										<td>財務</td>
+									</tr>
+								</table>
+							</div>
+
+							<div class='body'>
+								<table>
+									<tr>
+										<td>
+											<canvas width="120" height="120" id='auth1'></canvas>
+										</td>
+										<td>
+											<canvas width="120" height="120" id='auth2'></canvas>
+										</td>
+										<td>
+											<canvas width="120" height="120" id='auth3'></canvas>
+										</td>
+									</tr>
+								</table>
+							</div>
+
+						</div>
+
+					</div>
+
+				</article>
+
+			</section>
+
+		</main>
+
+		<!-- Libraries -->
+
+		<script type='text/javascript' src='/lib/ScrollWidth.js'></script>
+
+		<!-- Modules -->
+
+		<script type='text/javascript' src='js/TabManager.js'></script>
+		<script type='text/javascript' src='js/PanelManager.js'></script>
+		<script type='text/javascript' src='js/TableManager.js'></script>
+		<script type='text/javascript' src='js/StampManager.js'></script>
+		<script type='text/javascript' src='js/StaffManager.js'></script>
+		<script type='text/javascript' src='js/WebSocket.js'></script>
+
+	</body>
+
+</html>

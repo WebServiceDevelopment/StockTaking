@@ -1,0 +1,1466 @@
+<!--
+
+ MIT License
+ Copyright 2020 Web Service Development Inc.
+
+ Permission is hereby granted, free of charge, to any person obtaining a copy
+ of this software and associated documentation files (the "Software"), to deal
+ in the Software without restriction, including without limitation the rights
+ to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ copies of the Software, and to permit persons to whom the Software is
+ furnished to do so, subject to the following conditions:
+
+ The above copyright notice and this permission notice shall be included in all
+ copies or substantial portions of the Software.
+ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+ SOFTWARE.
+
+ Author: Benjamin Collins (collins@wsd.co.jp)
+
+-->
+
+<!doctype html>
+<html>
+
+	<head>
+
+		<title>棚卸システム | Panel</title>
+
+		<meta charset='utf-8'/>
+	
+		<link rel='shortcut icon' type='image/png' href='/lib/img/Blueprint.png'/>
+		<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP&family=Montserrat" rel="stylesheet"> 
+		<link rel='stylesheet' type='text/css' href='css/layout.css'/>
+		<link href="/lib/Font-Awesome/css/all.css" rel="stylesheet">
+
+	</head>
+
+	<body>
+
+		<main>
+
+			<header>
+
+				<div class='decor'></div>
+
+				<div class='fill'>
+					<table>
+						<tr>
+							<td class='icon'>
+								<img src='/lib/img/inventory_icon.png'/>
+							</td>
+							<td class='title'>
+								<h1>棚卸システム</h1>
+							</td>
+							<td class="lang" id="Panel.username"></td>
+							<td class='exit'>
+								<div class="area" id="Panel.logout">終了</div>
+							</td>
+						</tr>
+					</table>
+				</div>
+
+			</header>
+
+			<nav>
+
+				<h3>Tools Menu</h3>
+
+				<ul id='Panel.ul1'>
+
+					<li id='Panel.nav.products'>
+						<a>
+							<img src='/lib/img/cube-outline.png'/>
+							品名管理
+						</a>
+					</li>
+
+					<li id='Panel.nav.location2'>
+						<a>
+							<img src='/lib/img/crosshairs-gps.png'/>
+							ロケーション管理
+						</a>
+					</li>
+
+					<li id='Panel.nav.location' style='display: none;'>
+						<a>
+							<img src='/lib/img/crosshairs-gps.png'/>
+							ロケーション管理
+						</a>
+					</li>
+
+					<li id='Panel.nav.staff'>
+						<a>
+							<img src='/lib/img/account-multiple.png'/>
+							スタッフ管理
+						</a>
+					</li>
+
+					<li id='Panel.nav.aggregate'>
+						<a>
+							<img src='/lib/img/ungroup.png'/>
+							集計種別
+						</a>
+					</li>
+
+				</ul>
+
+				<h3>Paper Menu</h3>
+
+				<ul id='Panel.ul2'>
+
+					<li id='Panel.nav.status'>
+						<a>
+							<img src='/lib/img/account-details.png'/>
+							棚卸表・ステータス
+						</a>
+					</li>
+
+					<li id='Panel.nav.review'>
+						<a>
+							<img src='/lib/img/clipboard-check.png'/>
+							棚卸表・レビュー
+						</a>
+					</li>
+
+					<li id='Panel.nav.report'>
+						<a>
+							<img src='/lib/img/file-table-outline.png'/>
+							棚卸表・アーカイブ
+						</a>
+					</li>
+
+				</ul>
+				
+				<h3>Log Records</h3>
+
+				<ul id='Panel.ul3'>
+
+					<li id='Panel.nav.logins'>
+						<a>
+							<img src='/lib/img/lock-check-outline.png'/>
+							ログイン記録
+						</a>
+					</li>
+
+				</ul>
+
+
+
+			</nav>
+
+			<section>
+				
+				<article class='factory' id='Panel.article.products'>
+
+					<div class='mat-header'>
+						<table>
+							<tr>
+								<td class='crumb'>
+									<div class='bread'>
+										<h3>品名管理</h3>
+									</div>
+								</td>
+								<td></td>
+								<!--
+								<td class='tool'>
+									<span>
+										CSV Import
+										<i class="fas fa-file-upload"></i>
+									</span>
+								</td>
+								<td class='tool'>
+									<span>
+										CSV Export 
+										<i class="fas fa-file-download"></i>
+									</span>
+								</td>
+								-->
+							</tr>
+						</table>
+					</div>
+
+
+					<div class='mat-section'>
+
+						<div class='add-staff product'>
+
+							<h3>
+								品名<span id='ProductManager.form.label'>　追加</span>
+							</h3>
+
+							<form>
+
+								<li class='label'>
+									種類
+								</li>
+
+								<li class='value'>
+									<select id='ProductManager.form.type'>
+										<option></option>
+										<option value='原材料'>原材料</option>
+										<option value='仕掛品'>仕掛品</option>
+										<option value='製品'>製品</option>
+										<option value='貯蔵品'>貯蔵品</option>
+										<option value='ダスト'>ダスト</option>
+									</select>
+								</li>
+
+								<li class='label'>
+									品種
+								</li>
+
+								<li class='value'>
+									<input type='text' placeholder='Part Variety' id='ProductManager.form.variety'/>
+								</li>
+
+								<li class='label'>
+									品名
+								</li>
+
+								<li class='value'>
+									<input type='text' placeholder='Name of Part' id='ProductManager.form.name'/>
+								</li>
+
+								<li class='label'>
+									次工程
+								</li>
+
+								<li class='value'>
+									<input type='text' placeholder='Next Process' id='ProductManager.form.next_process'/>
+								</li>
+
+								<li class='label'>
+									単位
+								</li>
+
+								<li class='value'>
+									<select id='ProductManager.form.unit'>
+										<option>kg</option>
+										<option>枚</option>
+										<option>式</option>
+										<option>個</option>
+										<option>缶</option>
+										<option>台</option>
+										<option>本</option>
+									</select>
+								</li>
+
+							</form>
+
+							<div class='actions'>
+								<table>
+									<tr>
+										<td>
+											<button class='cancel' id='ProductManager.form.cancel'>Cancel</button>
+										</td>
+										<td class='space'></td>
+										<td>
+											<button class='submit' id='ProductManager.form.submit'>Submit</button>
+										</td>
+									</tr>
+								</table>
+							</div>
+
+						</div>
+
+						<div class='staff-table'>
+
+							<div class='thead'>
+								<table>
+									<tr>
+										<th class='no'></th>
+										<th class='no'>No.</th>
+										<th class='type'>種類</th>
+										<th class='var'>品種</th>
+										<th>品名</th>
+										<th class='next'>次工程</th>
+										<th class='unit'>単位</th>
+
+										<th class='edit'>編集</th>
+										<th class='edit'>削除</th>
+									</tr>
+								</table>
+							</div>
+
+							<div class='tbody' id='ProductManager.table.body'>
+
+								<!--
+								<label>
+								<table id=''>
+									<tr>
+										<td class='no'>
+											<input type='checkbox'/>
+										</td>
+										<td class='no'>No.</td>
+										<td>Staff Position</td>
+										<td>Staff Login</td>
+										<td>Staff Email</td>
+										<td>Last Active</td>
+										<td class='edit'>編集</td>
+										<td class='edit'>削除</td>
+									</tr>
+								</table>
+								</label>
+								-->
+
+							</div>
+
+							<div class='tfoot'>
+								<table>
+									<tr>
+										<td class='sel_a'>
+											<span id='ProductManager.form.select_all' class='btn'>Select All</span>
+										</td>
+										<td class='sel_b'>
+											<span id='ProductManager.form.deselect_all' class='btn'>Deselect All</span>
+										</td>
+										<td class='sel_c'>
+											<span  id='ProductManager.table.all'>0</span> of <span id='ProductManager.table.count'>0</span> Selected
+										</td>
+										<td class='sel_d'>
+											<span class='btn' id='ProductManager.table.file'>Export JSON File</span>
+										</td>
+										<td class='sel_e'>
+											<span class='btn' id='ProductManager.table.copy'>Copy JSON to Clipboard</span>
+										</td>
+									</tr>
+								</table>
+							</div>
+
+						</div>
+
+					</div>
+
+				</article>
+				
+				<article class='factory' id='Panel.article.aggregate'>
+
+					<div class='mat-header'>
+						<table>
+							<tr>
+								<td class='crumb'>
+									<div class='bread'>
+										<h3>集計種別</h3>
+									</div>
+								</td>
+								<td></td>
+							</tr>
+						</table>
+					</div>
+
+					<div class='mat-section'>
+
+						<div class='add-staff product'>
+
+							<h3>
+								集計種別<span id='AggregateManager.form.label'>　追加</span>
+							</h3>
+
+							<form>
+
+								<li class='label'>
+									種類
+								</li>
+
+								<li class='value'>
+									<select id='AggregateManager.form.select'>
+										<option></option>
+										<option value='group_1'>種別１</option>
+										<option value='group_2'>種別２</option>
+									</select>
+								</li>
+
+								<li class='label'>
+									種別名
+								</li>
+
+								<li class='value'>
+									<input type='text' placeholder='Aggregate Name' id='AggregateManager.form.name'/>
+								</li>
+
+							</form>
+
+							<div class='actions'>
+								<table>
+									<tr>
+										<td>
+											<button class='cancel' id='AggregateManager.form.cancel'>Cancel</button>
+										</td>
+										<td class='space'></td>
+										<td>
+											<button class='submit' id='AggregateManager.form.submit'>Submit</button>
+										</td>
+									</tr>
+								</table>
+							</div>
+
+						</div>
+
+						<div class='staff-table split'>
+
+							<div class="page left">
+
+								<div class='thead'>
+									<table>
+										<tr>
+											<th class='no'>No.</th>
+											<th>種別１</th>
+											<th class='edit_2'>編集</th>
+											<th class='edit_2'>削除</th>
+										</tr>
+									</table>
+								</div>
+
+								<div class='tbody'>
+									<label>
+									<table id='AggregateManager.form.group_1'>
+										<tr>
+											<td class='no'>No.</td>
+											<td>Last Active</td>
+											<td class='edit_2'>Edit</td>
+											<td class='edit_2'>Remove</td>
+										</tr>
+									</table>
+									</label>
+								</div>
+
+								<div class='tfoot'>
+
+								</div>
+
+							</div>
+
+							<div class="page right">
+
+								<div class='thead'>
+									<table>
+										<tr>
+											<th class='no'>No.</th>
+
+											<th>種別２</th>
+
+											<th class='edit_2'>編集</th>
+											<th class='edit_2'>削除</th>
+										</tr>
+									</table>
+								</div>
+
+								<div class='tbody'>
+									<label>
+									<table id='AggregateManager.form.group_2'>
+										<tr>
+											<td class='no'>No.</td>
+											<td>Last Active</td>
+											<td class='edit_2'>Edit</td>
+											<td class='edit_2'>Remove</td>
+										</tr>
+									</table>
+									</label>
+								</div>
+
+								<div class='tfoot'>
+
+								</div>
+
+							</div>
+
+
+						</div>
+
+					</div>
+
+				</article>
+				
+				<article class='factory' id='Panel.article.location2'>
+
+					<div class='mat-header'>
+						<table>
+							<tr>
+								<td class='crumb'>
+									<div class='bread'>
+										<h3>ロケーション管理</h3>
+									</div>
+								</td>
+								<td></td>
+							</tr>
+						</table>
+					</div>
+
+					<div class='mat-section'>
+
+						<div class='add-staff'>
+
+							<h3>
+								ロケーション<span id='LocationManager2.form.label'>　追加</span>
+							</h3>
+
+							<form>
+
+								<li class='label'>
+									ロケーション名
+								</li>
+
+								<li class='value'>
+									<input type='text' placeholder='Location Name' id='LocationManager2.form.name'/>
+								</li>
+
+								<li class='label'>
+									ロケーションマップ
+								</li>
+
+								<li class='value'>
+									<div class='drop-area' id='LocationManager2.form.map_div'>
+										<input type='file' id='LocationManager2.form.map_file' accept="image/*"/>
+
+										<div class="dash"></div>
+										<div class="msg">
+											ファイルをドラッグ・アンド・ドロップ
+										</div>
+										<img src='/lib/img/upload.png'/>
+										<div class="cover"></div>
+										<div class="preview" id='LocationManager2.form.preview'></div>
+
+									</div>
+								</li>
+
+								<li class='label'>
+									場所文字
+								</li>
+
+								<li class='value'>
+									<input type='text' placeholder='JSON Array' id='LocationManager2.form.area'/>
+								</li>
+
+								<li class='label'>
+									ロケーション品名
+								</li>
+
+							</form>
+
+							<div class="json-area">
+								<textarea id='LocationManager2.form.json' placeholder='Product JSON'></textarea>
+							</div>
+
+							<div class='actions'>
+								<table>
+									<tr>
+										<td>
+											<button class='cancel' id='LocationManager2.form.cancel'>Cancel</button>
+										</td>
+										<td class='space'></td>
+										<td>
+											<button class='submit' id='LocationManager2.form.submit'>Submit</button>
+										</td>
+									</tr>
+								</table>
+							</div>
+
+						</div>
+
+						<div class='staff-table'>
+
+							<div class='thead'>
+								<table>
+									<tr>
+										<th class='no'>No.</th>
+
+										<th class='la'>ロケーション名</th>
+										<th class='lb'>場所文字</th>
+										<th class='lc'>ロケーションマップ</th>
+										<th class='ld'>ロケーション品名</th>
+
+										<th class='edit'>編集</th>
+										<th class='edit'>削除</th>
+									</tr>
+								</table>
+							</div>
+
+							<div class='tbody'>
+								<label>
+								<table id='LocationManager2.table.body'>
+									<tr>
+										<td class='no'>No.</td>
+										<td>Kライン</td>
+										<td>1, 10, 9, 8, 7</td>
+										<td>Map</td>
+										<td>JSON</td>
+										<td class='edit'>Edit</td>
+										<td class='edit'>Remove</td>
+									</tr>
+								</table>
+								</label>
+							</div>
+
+							<div class='tfoot'>
+
+							</div>
+
+						</div>
+
+					</div>
+
+
+
+				</article>
+
+				<article class='factory' id='Panel.article.review'>
+
+					<div class='mat-header'>
+						<table>
+							<tr>
+								<td class='crumb'>
+									<div class='bread'>
+										<h3>棚卸表・レビュー</h3>
+									</div>
+								</td>
+
+								<td>
+									<h3 id='ReviewReports.summary.location'></h3>
+								</td>
+
+								<td class='tool'>
+									<label id='ReviewReports.option.reject_label'>
+									<span>
+									<input id='ReviewReports.option.reject_radio' type='radio' name='action'/>
+									在庫</span>
+									</label>
+								</td>
+								<td class='tool'>
+									<label id='ReviewReports.option.accept_label'>
+									<span>
+									<input id='ReviewReports.option.accept_radio' type='radio' name='action'/>
+									貯蔵品</span>
+									</label>
+								</td>
+							</tr>
+						</table>
+					</div>
+
+					<div class='mat-section'>
+
+						<div class="mat-hopper">
+
+							<div class="head">
+
+								<table>
+									<tr>
+										<td>
+											棚卸一覧
+										</td>
+									</tr>
+
+								</table>
+
+								<div class='cnt'>
+									<span id='ReviewReports.count.num'></span> 
+									/ 
+									<span id='ReviewReports.count.all'></span>
+								</div>
+
+							</div>
+
+							<div class="body" id='ReviewReports.hopper'>
+
+								<!--
+
+								<li>
+									<table>
+										<tr>
+											<td>ロケーション</td>
+											<td>Kライン</td>
+										</tr>
+										<tr>
+											<td>売上月</td>
+											<td>2020年11月</td>
+										</tr>
+										<tr>
+											<td>実施日</td>
+											<td>yyyy-mm-dd</td>
+										</tr>
+										<tr>
+											<td>承認１</td>
+											<td>A</td>
+										</tr>
+										<tr>
+											<td>承認２</td>
+											<td>B</td>
+										</tr>
+									</table>
+								</li>
+
+								<li>
+									<table>
+										<tr>
+											<td>ロケーション</td>
+											<td>Hライン</td>
+										</tr>
+										<tr>
+											<td>実施日</td>
+											<td>yyyy-mm-dd</td>
+										</tr>
+										<tr>
+											<td>承認１</td>
+											<td>A</td>
+										</tr>
+										<tr>
+											<td>承認２</td>
+											<td>B</td>
+										</tr>
+									</table>
+								</li>
+
+								-->
+
+							</div>
+
+							<div class="foot">
+
+								<table>
+									<tr>
+										<td>
+											<span id='ReviewReports.tabs.all'>All</span>
+										</td>
+										<td>
+											<span id='ReviewReports.tabs.input'>入力済</span>
+										</td>
+										<td>
+											<span id='ReviewReports.tabs.signed'>承認済</span>
+										</td>
+										<td>
+											<span id='ReviewReports.tabs.complete'>完了</span>
+										</td>
+									</tr>
+								</table>
+
+							</div>
+
+						</div>
+
+						<div class="mat-review">
+
+							<div class="head">
+								<table>
+									<tr>
+										<td rowspan='2' class='a'>No.</td>
+										<td rowspan='2' class='b'>場所</td>
+										<td rowspan='2' class='c'>棚卸資産<br>の種類 </td>
+										<td rowspan='2' class='d'>品種</td>
+										<td rowspan='2' class='e'>次工程</td>
+										<td rowspan='2' class='f'>品名</td>
+										<td colspan='4' class='g'>正味重量</td>
+										<td rowspan='2' class='h'>単位</td>
+										<td colspan='4' class='i'>フレコン数量</td>
+										<td rowspan='2' class='j'>換数量</td>
+										<td rowspan='2' class='k'>備考</td>
+									</tr>
+									<tr>
+										<td>現場</td>
+										<td>承認１</td>
+										<td>承認２</td>
+										<td>修正</td>
+										<td>現場</td>
+										<td>承認１</td>
+										<td>承認２</td>
+										<td>修正</td>
+									</tr>
+								</table>
+							</div>
+
+							<div class="body">
+								<table id='ReviewReports.table'>
+									<!--
+									<tr>
+										<td class='a'>001</td>
+										<td class='b'>b</td>
+										<td class='c'>c</td>
+										<td class='d'>d</td>
+										<td class='e'>e</td>
+										<td class='f'>f</td>
+										<td class='g'>g</td>
+										<td class='h'>h</td>
+										<td class='i'>i</td>
+										<td class='j'>j</td>
+										<td class='k'>k</td>
+									</tr>
+									-->
+								</table>
+							</div>
+
+						</div>
+
+						<div class="mat-comment">
+
+							<div class='stats'>
+								<table>
+									<tr>
+										<td>担当者</td>
+										<td id='ReviewReports.summary.assigned_to'>担当名</td>
+									</tr>
+									<tr>
+										<td>実施日</td>
+										<td id='ReviewReports.summary.impl_date'>yyyy-mm-dd</td>
+									</tr>
+									<tr>
+										<td>提出時間</td>
+										<td id='ReviewReports.summary.impl_time'>hh:mm:ss</td>
+									</tr>
+									<tr>
+										<td>承認者１</td>
+										<td id='ReviewReports.summary.auth1_name'>承認名１</td>
+									</tr>
+									<tr>
+										<td>承認１　日付</td>
+										<td id='ReviewReports.summary.auth1_date'>yyyy-mm-dd</td>
+									</tr>
+									<tr>
+										<td>承認者２</td>
+										<td id='ReviewReports.summary.auth2_name'>承認名2</td>
+									</tr>
+									<tr>
+										<td>承認２　日付</td>
+										<td id='ReviewReports.summary.auth2_date'>yyyy-mm-dd</td>
+									</tr>
+								</table>
+							</div>
+
+							<div class="auth-widget" id='ReviewReports.option.accept_widget'>
+								<div class='thead'>
+									<table>
+										<tr>
+											<td>承認１</td>
+											<td>承認２</td>
+											<td>財務</td>
+										</tr>
+									</table>
+								</div>
+								<div class='tbody'>
+									<table>
+										<tr>
+											<td>
+												<canvas width='120' height='120' id='auth1'></canvas>
+											</td>
+											<td>
+												<canvas width='120' height='120' id='auth2'></canvas>
+											</td>
+											<td>
+												<canvas width='120' height='120' id='auth3'></canvas>
+											</td>
+										</tr>
+									</table>
+								</div>
+							</div>
+
+							<div class='select-widget disabled' id='ReviewReports.count.cards'>
+
+								<div class='top card' id='ReviewReports.count.reject'>
+									<table>
+										<tr>
+											<td>
+												差<br>戻
+											</td>
+										</tr>
+									</table>
+								</div>
+								<div class='bottom card active' id='ReviewReports.count.accept'>
+									<table>
+										<tr>
+											<td>
+												承<br>認
+											</td>
+										</tr>
+									</table>
+								</div>
+
+							</div>
+
+							<div class="reject-widget hide" id='ReviewReports.option.reject_widget'>
+
+								<div class='comment'>
+									<textarea id='ReviewReports.option.textarea' placeholder="Write a comment"></textarea>
+								</div>
+
+								<div class='msg'>
+									<table>
+										<tr>
+											<td class='label'>Word Count:</td>
+											<td id='ReviewReports.option.word_count'>0</td>
+											<td class='button'>
+												<div id='ReviewReports.option.submit' class='button'>差し戻す</div>
+											</td>
+										</tr>
+									</table>
+								</div>
+
+								<div class='buttons'>
+									<table>
+										<tr>
+											<th>差戻し先</th>
+										</tr>
+										<tr>
+											<td>
+												<label id=''>
+													<input type='radio' name='return-to' value='manager' id='ReviewReports.option.manager_radio'/>
+													<span id='ReviewReports.option.manager_label'>承認者1</span>
+												</label>
+											</td>
+										</tr>
+										<tr>
+											<td>
+												<label>
+													<input type='radio' name='return-to' id='ReviewReports.option.director_radio'/>
+													<span id='ReviewReports.option.director_label'>承認者2</span>
+												</label>
+											</td>
+										</tr>
+									</table>
+								</div>
+
+							</div>
+
+						</div>
+
+					</div>
+
+				</article>
+				
+				<article class='factory' id='Panel.article.status'>
+
+					<div class='mat-header'>
+						<table>
+							<tr>
+								<td class='crumb'>
+									<div class='bread'>
+										<h3>棚卸・ステータス</h3>
+									</div>
+								</td>
+								<td></td>
+								<td class='tool'>
+									<span id='StatusManager.table.refresh'>
+										<i class="fas fa-sync"></i> 
+										Refresh
+									</span>
+								</td>
+							</tr>
+						</table>
+					</div>
+
+					<div class='mat-section'>
+
+						<div class="status-table">
+							
+							<div class='thead'>
+								<table>
+									<tr>
+										<th class='no'>No.</th>
+										<th class='type'>種別１</th>
+										<th class='type'>種別２</th>
+										<th class='location'>ロケーション名</th>
+										<th class='year'>売上年</th>
+										<th class='month'>売上月</th>
+										<th class='indent'>担当者</th>
+										<th class='date'>実施日</th>
+										<th class='datetime'>現場入力</th>
+										<th class='authorizer'>承認者1</th>
+										<th class='datetime'>承認1　時間</th>
+										<th class='authorizer'>承認者2</th>
+										<th class='datetime'>承認2　時間</th>
+										<th class='datetime'>財務確定</th>
+										<th class='action'>Action</th>
+									</tr>
+								</table>
+							</div>
+
+							<div class='tbody'>
+								<table id='StatusManager.table.body'>
+									<!--
+									<tr>
+										<td class='no'>
+											001
+										</td>
+										<td class='location'>
+											浜松
+										</td>
+										<td class='year'>
+											2020年
+										</td>
+										<td class='month'>
+											10月
+										</td>
+										<td>
+											<input type='text' placeholder='担当名を入力してください'/>
+										</td>
+										<td class='date'>
+											yyyy-mm-dd
+										</td>
+										<td class='datetime'>
+											yyyy-mm-dd<br>
+											hh:mm:ss
+										</td>
+										<td>
+											<select>
+												<option>課長選択</option>
+											</select>
+										</td>
+										<td class='datetime'>
+											yyyy-mm-dd<br>
+											hh:mm:ss
+										</td>
+										<td>
+											<select>
+												<option>部長選択</option>
+											</select>
+										</td>
+										<td class='datetime'>
+											yyyy-mm-dd<br>
+											hh:mm:ss
+										</td>
+										<td class='datetime'>
+											yyyy-mm-dd<br>
+											hh:mm:ss
+										</td>
+									</tr>
+									-->
+								</table>
+
+							</div>
+
+							<div class='tfoot'>
+
+								<table>
+									<tr>
+										<td class='label'>
+											棚卸年月
+										</td>
+										<td class='ndate'>
+											
+											<span id='StatusManager.tfoot.date'>
+											</span>
+
+										</td>
+										<td class='label'>
+											ロケーション
+										</td>
+										<td class='count'>
+
+											<span id='StatusManager.tfoot.complete'>
+											</span>
+										</td>
+										<td class='submit'>
+
+											<button id='StatusManager.tfoot.submit' disabled='disabled'>Complete Month</button>
+										</td>
+									</tr>
+								</table>
+
+							</div>
+
+						</div>
+
+					</div>
+
+				</article>
+
+				<article class='factory' id='Panel.article.staff'>
+
+					<div class='mat-header'>
+						<table>
+							<tr>
+								<td class='crumb'>
+									<div class='bread'>
+										<h3>スタッフ管理</h3>
+									</div>
+								</td>
+								<td></td>
+							</tr>
+						</table>
+					</div>
+
+					<div class='mat-section'>
+
+						<div class='add-staff'>
+
+							<h3>
+								スタッフ<span id='StaffManager.form.label'>　追加</span>
+							</h3>
+
+							<form>
+
+								<li class='label'>
+									Staff Position
+								</li>
+
+								<li class='value'>
+									<select id='StaffManager.form.staff_position'>
+										<option value=''>Select Position</option>
+										<option>担当</option>
+										<option>部長</option>
+										<option>課長</option>
+									</select>
+								</li>
+
+								<li class='label'>
+									スタッフ名
+								</li>
+
+								<li class='value'>
+									<input type='text' placeholder='Staff Name' id='StaffManager.form.staff_name'/>
+								</li>
+
+								<li class='label'>
+									スタッフログインID
+								</li>
+
+								<li class='value'>
+									<input type='text' placeholder='Staff Login' id='StaffManager.form.staff_login'/>
+								</li>
+
+								<li class='label'>
+									スタッフメール
+								</li>
+
+								<li class='value'>
+									<input type='text' placeholder='Staff Email' id='StaffManager.form.staff_email'/>
+								</li>
+
+								<li class='label'>
+									スタッフパスワード
+								</li>
+
+								<li class='value'>
+									<input type='text' placeholder='Staff Password' id='StaffManager.form.staff_password'/>
+								</li>
+
+								<li class='label'>
+									スタッフロケーション
+								</li>
+
+							</form>
+
+							<div class='location' id='StaffManager.form.staff_location'>
+								
+								<!--
+								<label>
+									<input type='checkbox'/> Kライン
+								</label>
+
+								<label>
+									<input type='checkbox'/> Hライン
+								</label>
+
+								<label>
+									<input type='checkbox'/> Jライン
+								</label>
+
+								<label>
+									<input type='checkbox'/> Sライン
+								</label>
+								-->
+
+							</div>
+
+							<div class='actions'>
+								<table>
+									<tr>
+										<td>
+											<button class='cancel' id='StaffManager.form.cancel'>Cancel</button>
+										</td>
+										<td class='space'></td>
+										<td>
+											<button class='submit' id='StaffManager.form.submit'>Submit</button>
+										</td>
+									</tr>
+								</table>
+							</div>
+
+						</div>
+
+						<div class='staff-table'>
+
+							<div class='thead'>
+								<table>
+									<tr>
+										<th class='no'>No.</th>
+
+										<th class='sa'>役割</th>
+										<th class='sb'>スタッフ名</th>
+										<th class='sc'>スタッフログイン</th>
+										<th class='sd'>メール</th>
+										<th class='se'>最新ログイン</th>
+										<th class='sf'>ロケーション</th>
+										<th class='lock'>ロック</th>
+
+										<th class='edit'>編集</th>
+										<th class='edit'>削除</th>
+									</tr>
+								</table>
+							</div>
+
+							<div class='tbody'>
+								<table id='StaffManager.table.body'>
+									<!--
+									<tr>
+										<td class='no'>No.</td>
+										<td>Staff Position</td>
+										<td>Staff Login</td>
+										<td>Staff Email</td>
+										<td>Last Active</td>
+										<td class='edit'>Edit</td>
+										<td class='edit'>Remove</td>
+									</tr>
+									-->
+								</table>
+							</div>
+
+							<div class='tfoot'>
+
+							</div>
+
+						</div>
+
+					</div>
+
+				</article>
+
+				<article class='page-001' id='Panel.article.location'>
+
+					<div class='header'>
+						<table>
+							<tr>
+								<td class='title'>
+									<h2>ロケーション管理</h2>
+								</td>
+								<td></td>
+								<td class='download'>
+									<span id='LocationManager.header.add'>
+										<i class="fas fa-plus"></i> ロケーション追加
+									</span>
+								</td>
+							</tr>
+						</table>
+					</div>
+
+					<div class='content'>
+
+						<div class='outline'>
+
+							<div class='thead'>
+
+								<table>
+									<tr>
+										<td class='b0'>ロケーション</td>
+										<td class='b1'>棚卸資産の種類</td>
+										<td class='b2'>品種</td>
+										<td class='b3'>品名</td>
+										<td class='b4'>場所</td>
+										<td class='b5'>マップ</td>
+										<td class='b6'>編集</td>
+										<td class='b6'>削除</td>
+									</tr>
+								</table>
+
+							</div>
+
+							<div class='tbody' id='LocationManager.table.body'>
+
+
+								<!--
+
+								<li>
+									<table>
+										<tr>
+											<td class='b0'>
+												浜松
+											</td>
+											<td class='b1'>
+												<input type='text' placeholder='担当名'/>
+												<input type='text' placeholder='担当メール'/>
+											</td>
+											<td class='b2'>
+												<input type='text' placeholder='課長名'/>
+												<input type='text' placeholder='課長メール'/>
+											</td>
+											<td class='b3'>
+												<input type='text' placeholder='課長名'/>
+												<input type='text' placeholder='課長メール'/>
+											</td>
+											<td class='b4'>
+												<input type='text' placeholder='課長名'/>
+												<input type='text' placeholder='課長メール'/>
+											</td>
+											<td class='b5'>
+												<input type='text' placeholder='通知メール'/>
+												<input type='text' placeholder='現場入力'/>
+											</td>
+											<td class='b6'>
+												<input type='text' placeholder='課長名'/>
+												<input type='text' placeholder='承認時間'/>
+											</td>
+											<td class='b7'>
+												<input type='number' placeholder='場所カウント'/>
+											</td>
+											<td class='b8'>
+												<img src='' width='60' height='60'/>
+											</td>
+											<td class='b9'>
+												<a>編集</a>
+												<a>取消</a>
+												<a>保存</a>
+											</td>
+										</tr>
+									</table>
+								</li>
+
+								-->
+
+							</div>
+
+						</div>
+
+					</div>
+
+					
+				</article>
+
+				<article class='page-002' id='Panel.article.report'>
+
+					<div class='mat-header'>
+						<table>
+							<tr>
+								<td class='crumb'>
+									<div class='bread'>
+										<h3>棚卸表・アーカイブ</h3>
+									</div>
+								</td>
+								<td></td>
+							</tr>
+						</table>
+					</div>
+
+					<div class='mat-section'>
+
+						<div class="status-table">
+							
+							<div class='thead'>
+								<table>
+									<tr>
+										<th class='no'>No.</th>
+										<th class='type'>種別１</th>
+										<th class='type'>種別２</th>
+										<th class='location'>ロケーション名</th>
+										<th class='year'>売上年</th>
+										<th class='month'>売上月</th>
+										<th>担当者名</th>
+										<th class='date'>実施日</th>
+										<th class='datetime'>現場入力</th>
+										<th>承認者1</th>
+										<th class='datetime'>承認1　時間</th>
+										<th>承認者2</th>
+										<th class='datetime'>承認2　時間</th>
+										<th class='datetime'>財務確定</th>
+										<th class='icon'>CSV</th>
+									</tr>
+								</table>
+							</div>
+
+							<div class='tbody'>
+								<table id='DownloadReports.table.body'>
+								</table>
+
+							</div>
+
+							<div class='tfoot'>
+
+							</div>
+
+						</div>
+
+					</div>
+
+				</article>
+
+				<article class='page-002' id='Panel.article.logins'>
+
+					<div class='mat-header'>
+						<table>
+							<tr>
+								<td class='crumb'>
+									<div class='bread'>
+										<h3>ログイン記録</h3>
+									</div>
+								</td>
+								<td></td>
+							</tr>
+						</table>
+					</div>
+
+					<div class='mat-section'>
+
+
+						<div class="status-table">
+							
+							<div class='thead'>
+								<table>
+									<tr>
+										<th class='no'>No.</th>
+										<th class='datetime'>Date</th>
+										<th class='datetime'>Time</th>
+										<th class=''>Staff</th>
+										<th class=''>Login</th>
+										<th class=''>Ip Address</th>
+										<th class='datetime'>Disconnect</th>
+										<th class='datetime'>Logout Time</th>
+										<th class='datetime'>Length</th>
+										<th class='icon'>Result</th>
+									</tr>
+								</table>
+							</div>
+
+							<div class='tbody'>
+								<table id='LoginRecords.table.body'>
+								</table>
+							</div>
+
+							<div class='tfoot'>
+								<table id='LoginRecords.table.foot'>
+								</table>
+							</div>
+
+						</div>
+
+
+					</div>
+
+				</article>
+				
+			</section>
+
+		</main>
+
+		<script type='text/javascript' src='/lib/ScrollWidth.js'></script>
+		<script type='text/javascript' src='/lib/autosize.js'></script>
+		<script type='text/javascript' src='/lib/clipboard.js'></script>
+		<script type='text/javascript' src='/lib/FileSaver.js'></script>
+		<script type='text/javascript' src='/lib/moment-with-locales.js'></script>
+		<script type='text/javascript' src='/lib/moment-timezone-with-data.min.js'></script>
+
+		<script type="text/javascript" src="js/PanelManager.js"></script>
+		<script type="text/javascript" src="js/ProductManager.js"></script>
+		<script type="text/javascript" src="js/LocationManager.js"></script>
+		<script type="text/javascript" src="js/StaffManager.js"></script>
+		<script type="text/javascript" src="js/StatusManager.js"></script>
+		<script type="text/javascript" src="js/AuthManager.js"></script>
+		<script type="text/javascript" src="js/ReviewReports.js"></script>
+		<script type="text/javascript" src="js/DownloadReports.js"></script>
+		<script type="text/javascript" src="js/AggregateManager.js"></script>
+		<script type="text/javascript" src="js/LoginRecords.js"></script>
+		<script type="text/javascript" src="js/WebSocket.js"></script>
+
+	</body>
+
+</html>

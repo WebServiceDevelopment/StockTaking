@@ -1,0 +1,218 @@
+<!--
+
+ MIT License
+ Copyright 2020 Web Service Development Inc.
+
+ Permission is hereby granted, free of charge, to any person obtaining a copy
+ of this software and associated documentation files (the "Software"), to deal
+ in the Software without restriction, including without limitation the rights
+ to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ copies of the Software, and to permit persons to whom the Software is
+ furnished to do so, subject to the following conditions:
+
+ The above copyright notice and this permission notice shall be included in all
+ copies or substantial portions of the Software.
+ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+ SOFTWARE.
+
+ Author: Benjamin Collins (collins.wsd.co.jp)
+
+-->
+
+<!doctype html>
+<html>
+
+	<head>
+
+		<title>棚卸システム | Login</title>
+
+		<meta charset='utf-8'/>
+		<meta name="format-detection" content="telephone=no">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui, viewport-fit=cover">
+
+		<link href="https://fonts.googleapis.com/css2?family=Mukta" rel="stylesheet"> 
+		<link rel='shortcut icon' type='image/png' href='img/Blueprint.png'/>
+		<link rel='stylesheet' type='text/css' href='css/layout.css'/>
+
+	</head>
+
+	<body>
+		
+		<div class='bg'></div>
+
+		<main>
+
+			<div class="form">
+
+				<h1>
+					棚卸システム
+				</h1>
+
+				<div class='content'>
+
+					<!-- START PRELOADER -->
+
+					<div id='LoginManager.preloader' class='load'>
+						
+
+						<div class="lds-dual-ring"></div>
+						<div class="padding"></div>
+
+					</div>
+
+					<!-- END PRELOADER -->
+
+					<!-- START LOGIN PAGE -->
+
+					<div class='page open' id='PageManager.pages.login'>
+				
+						<form>
+
+							<div class='label'>
+								ユーザ名:
+							</div>
+	
+							<div class='input'>
+								<input type='text' id='LoginManager.form.username' placeholder='Company Email'/>
+							</div>
+
+							<div class='label'>
+								パスワード:
+							</div>
+
+							<div class='input'>
+								<input type='password' id='LoginManager.form.password' placeholder='Company Password'/>
+							</div>
+
+							<label>
+								<input type='checkbox' id="LoginManager.form.remember_me"/> ログインしたままにする
+							</label>
+	
+						</form>
+
+						<button class='submit' id='LoginManager.form.submit'>Login</button>
+
+						<div class="forgot">
+							<span id='LoginManager.form.forgot'>Forgot Password?</span>
+						</div>
+
+					</div>
+
+					<!-- END LOGIN PAGE -->
+
+					<!-- START CODE PAGE -->
+
+					<div class='page' id='PageManager.pages.reset'>
+
+						<form>
+
+							<div class='label'>
+								ユーザ名:
+							</div>
+	
+							<div class='input'>
+								<input type='text' id='LoginManager.reset.username' placeholder='Company Email' disabled='disabled'/>
+							</div>
+
+							<div class='label'>
+							コード入力:
+							</div>
+	
+							<div class='input'>
+								<input type='text' id='LoginManager.reset.code' placeholder='One Time Pass'/>
+							</div>
+
+							<label class='center small'>
+								メールに6桁のコードを送信しました。</br>
+								上の欄に入力してください。
+							</label>
+
+						</form>
+
+						<button class='submit' id='LoginManager.reset.submit'>Confirm Code</button>
+
+						<div class="forgot">
+							<span id='LoginManager.reset.return'>Back to Login</span>
+						</div>
+
+					</div>
+
+					<!-- END CODE PAGE -->
+
+					<!-- START RESET PAGE -->
+
+					<div class='page' id='PageManager.pages.update'>
+
+						<form>
+
+							<div class='label'>
+								新しいパスワード:
+							</div>
+	
+							<div class='input'>
+								<input type='password' id='LoginManager.update.password' placeholder='Password' />
+							</div>
+
+							<div class='label'>
+								パスワード再入力:
+							</div>
+	
+							<div class='input'>
+								<input type='password' id='LoginManager.update.confirm' placeholder='Confirm Password'/>
+							</div>
+
+							<div class="strength">
+								<table id='LoginManager.update.strength'>
+									<tr>
+										<td>
+											<div class='block a'></div>
+										</td>
+										<td>
+											<div class='block b'></div>
+										</td>
+										<td>
+											<div class='block c'></div>
+										</td>
+										<td>
+											<div class='block d'></div>
+										</td>
+									</tr>
+								</table>
+								<div class='txt'>
+									Password Strength: 
+									<span id='LoginManager.update.txt'>無効</span>
+								</div>
+							</div>
+
+
+						</form>
+
+						<button class='submit' id='LoginManager.update.submit'>Reset Password</button>
+
+						<div class="forgot">
+							<span id='LoginManager.update.cancel'>Back to Login</span>
+						</div>
+
+					</div>
+
+					<!-- END RESET PAGE -->
+
+				</div>
+
+			</div>
+
+
+		</main>
+
+		<script type="text/javascript" src="js/LoginManager.js"></script>
+
+	</body>
+
+</html>

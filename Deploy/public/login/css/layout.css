@@ -1,0 +1,381 @@
+/**
+
+ MIT License
+ Copyright 2020 Web Service Development Inc.
+
+ Permission is hereby granted, free of charge, to any person obtaining a copy
+ of this software and associated documentation files (the "Software"), to deal
+ in the Software without restriction, including without limitation the rights
+ to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ copies of the Software, and to permit persons to whom the Software is
+ furnished to do so, subject to the following conditions:
+
+ The above copyright notice and this permission notice shall be included in all
+ copies or substantial portions of the Software.
+ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+ SOFTWARE.
+
+ Author: Benjamin Collins (collins.wsd.co.jp)
+
+**/
+
+html {
+
+	padding: 0;
+	margin: 0;
+	height: 100%;
+
+}
+
+body {
+
+	padding: 0;
+	margin: 0;
+	height: 100%;
+	background-color: #10226a;
+
+}
+
+main {
+
+	padding: 0;
+	margin: 0;
+	height: 100%;
+	width: 100%;
+	display: flex;
+	background-color: rgba(255, 255, 255, 0.2);
+	position: absolute;
+	z-index: 5;
+	left: 0;
+	top: 0;
+}
+
+div.bg {
+
+    width: 100%;
+    height: 100%;
+    background-image: url('../img/blueprint_background.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    opacity: 0.2;
+
+}
+
+h1 {
+
+	padding: 30px 0;
+	margin: 0;
+	background-color: #1134a1;
+	text-align: center;
+	letter-spacing: 10px;
+	color: #fff;
+	font-family: 'Mukta', sans-serif;
+	font-size: 30px;
+	background: linear-gradient(335deg, rgba(15,42,153,1) 0%, rgba(26,94,194,1) 63%, rgba(36,140,232,1) 100%); 
+
+}
+
+div.label {
+
+	color: #555;
+	font-size: 22px;
+	font-family: 'Mukta', sans-serif;
+	padding-top: 8px;
+	padding-bottom: 4px;
+	display: block;
+	letter-spacing: 4px;
+
+}
+
+label {
+
+	color: #444;
+	font-family: 'Mukta', sans-serif;
+	font-size: 18px;
+	letter-spacing: 2px;
+
+}
+
+label.center {
+
+	text-align: center;
+
+}
+
+label.center.small {
+
+	font-size: 15px;
+
+}
+
+div.input {
+
+	padding-bottom: 20px;
+
+}
+
+div.input input {
+
+	padding: 10px 0;
+	font-size: 20px;
+	text-indent: 20px;
+	border: 1px solid #ccc;
+	border-radius: 5px;
+	width: calc(100% - 2px);
+
+}
+
+div.input input:focus {
+
+	box-shadow: 0 0 0 .2rem rgba(0,123,255,.25);
+
+}
+div.form form {
+
+	width: 70%;
+	display: block;
+	margin: auto;
+	padding: 30px 0;
+
+}
+
+div.form {
+
+	width: 500px;
+	background-color: #fff;
+	overflow: hidden;
+	display: block;
+	margin: auto;
+	border-radius: 5px;
+	box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+
+}
+
+div.form div.content {
+
+	position: relative;
+	height: 500px;
+
+}
+
+div.form div.load div.padding {
+	
+	width: 100%;
+	height: 200px;
+	display: block;
+
+}
+
+div.form div.load {
+
+	position: absolute;
+	left: 0;
+	top: 0;
+	width: 100%;
+	height: 100%;
+	background-color: rgba(0,0,0,0.1);
+	z-index: 100;
+	display: flex;
+	justify-content: center;
+	align-items: flex-start;
+	pointer-events: none;
+	opacity: 0;
+	transition: opacity 200ms;
+	flex-direction: column;
+
+}
+
+div.form div.load.open {
+
+	pointer-events: all;
+	opacity: 1;
+
+}
+
+div.form div.page {
+
+	position: absolute;
+	left: 0;
+	top: 0;
+	opacity: 0;
+	pointer-events: none;
+	transition: opacity 200ms;
+	width: 100%;
+
+}
+
+div.form div.page.open {
+
+	opacity: 1;
+	pointer-events: all;
+
+}
+
+div.form button.submit {
+
+	background-color: #26a79b;
+	border: 2px solid #1134a1;
+	border: none;
+	border-radius: 4px;
+	box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+	width: 70%;
+	display: block;
+	margin: auto;
+	color: #fff;
+	font-family: 'Mukta', sans-serif;
+	font-size: 25px;
+	padding: 10px 0;
+	background: linear-gradient(335deg, rgba(15,42,153,1) 0%, rgba(26,94,194,1) 63%, rgba(36,140,232,1) 100%); 
+
+}
+
+div.form button.submit:hover {
+
+	cursor: pointer;
+	background-color: #18779f;
+
+}
+
+div.forgot {
+
+	display: block;
+	margin: auto;
+	text-align: center;
+	font-size: 18px;
+	color: #18779f;
+	font-family: 'Mukta', sans-serif;
+	margin-top: 20px;
+	letter-spacing: 1px;
+
+}
+
+div.forgot span:hover {
+
+	cursor: pointer;
+	text-decoration: underline;
+
+}
+
+div.strength {
+
+	width: 100%;
+	padding-top: 10px;
+
+}
+
+div.strength table {
+
+	width: 100%;
+	height: 100%;
+	table-layout: fixed;
+	border-collapse: collapse;
+
+}
+
+div.strength table td div.block {
+
+	width: calc(100% - 4px);
+	display: block;
+	margin: auto;
+	height: 18px;
+	background-color: #dbd9d2;
+	border-radius: 5px;
+
+}
+
+div.strength div.txt {
+	
+	text-indent: 4px;
+	padding-top: 8px;
+	text-align: left;
+	color: #7a7a7a;
+	font-size: 14px;
+
+}
+
+
+.lds-dual-ring {
+  display: block;
+  width: 80px;
+  height: 80px;
+  margin: auto;
+}
+.lds-dual-ring:after {
+  content: " ";
+  display: block;
+  width: 64px;
+  height: 64px;
+  margin: 8px;
+  border-radius: 50%;
+  border: 6px solid #ff4081;
+  border-color: #ff4081 transparent #ff4081 transparent;
+  animation: lds-dual-ring 1.2s linear infinite;
+}
+@keyframes lds-dual-ring {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+div.strength table.weak div.block.a {
+
+	background-color: #c10307;
+
+}
+
+div.strength div.txt span.weak {
+
+	color: #c10307;
+
+}
+
+div.strength table.good div.block.a,
+div.strength table.good div.block.b {
+
+	background-color: #ccc806;
+
+}
+
+div.strength div.txt span.good {
+
+	color: #ccc806;
+
+}
+
+div.strength table.strong div.block.a,
+div.strength table.strong div.block.b,
+div.strength table.strong div.block.c {
+
+	background-color: #17bf0b;
+
+}
+
+div.strength div.txt span.strong {
+
+	color: #17bf0b;
+
+}
+
+div.strength table.very_strong div.block.a,
+div.strength table.very_strong div.block.b,
+div.strength table.very_strong div.block.c,
+div.strength table.very_strong div.block.d {
+
+	background-color: #129b34;
+
+}
+
+div.strength div.txt span.very_strong {
+
+	color: #129b34;
+
+}

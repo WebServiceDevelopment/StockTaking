@@ -1,0 +1,1729 @@
+/**
+
+ MIT License
+ Copyright 2020 Web Service Development Inc.
+
+ Permission is hereby granted, free of charge, to any person obtaining a copy
+ of this software and associated documentation files (the "Software"), to deal
+ in the Software without restriction, including without limitation the rights
+ to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ copies of the Software, and to permit persons to whom the Software is
+ furnished to do so, subject to the following conditions:
+
+ The above copyright notice and this permission notice shall be included in all
+ copies or substantial portions of the Software.
+ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+ SOFTWARE.
+
+ Author: Benjamin Collins (collins.wsd.co.jp)
+
+**/
+
+html {
+
+	padding: 0;
+	margin: 0;
+	height: 100%;
+
+}
+
+body {
+
+	padding: 0;
+	margin: 0;
+	height: 100%;
+	background-color: #f2f2f2;
+
+}
+
+main {
+
+	width: 100%;
+	height: 100%;
+	--header-height: 44px;
+	--nav-width: 80px;
+
+	--staff: 22%;
+
+	--year: 4%;
+	--month: 4%;
+	--person-in-charge: 7%;
+	--date: 6%;
+	--time: 5%;
+	--datetime: 10%;
+	--authorizer: 9%;
+
+	--table-widget-height: 48px;
+	--table-widget-top: 9px;
+
+	--table-widget-a: 40px;
+	--table-widget-b: 68px;
+	--table-widget-c: 6%;
+	--table-widget-d: 6%;
+	--table-widget-e: 11%;
+	--table-widget-f: 80px;
+	--table-widget-g: 20%;
+	--table-widget-h: 52px;
+	--table-widget-i: 20%;
+	--table-widget-j: 5%;
+
+	--float-widget-bottom: 6px;
+}
+
+header {
+
+	width: 100%;
+	height: var(--header-height);
+	background-color: #175599;
+	box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+	position: fixed;
+	left: 0;
+	top: 0;
+	z-index: 100;
+
+}
+
+header div.decor {
+
+	width: 400px;
+	height: 100%;
+	position: absolute;
+	left: 0px;
+	top: 0px;
+	background-color: rgba(255, 255, 255, 0.15);
+
+}
+
+header div.decor:after {
+
+	content: "";
+	display: block;
+	position: absolute;
+	top: 0px;
+	left: 100%;
+	width: 0px;
+	height: 0px;
+	border-style: solid;
+	border-width: var(--header-height) 0 0 60px;
+	border-color: transparent transparent transparent rgba(255, 255, 255, 0.15);
+
+}
+
+header div.contain {
+
+	position: absolute;
+	left: 0;
+	top: 0;
+	width: 100%;
+	height: 100%;
+	z-index: 10;
+
+}
+
+header table {
+
+	width: 100%;
+	height: 100%;
+	border-collapse: collapse;
+	table-layout: fixed;
+
+}
+
+header table td.icon {
+
+	width: 40px;
+	text-align: right;
+
+}
+
+header table td.icon img {
+
+	position: relative;
+	top: 3px;
+	height: 28px;
+
+}
+
+header table td.session {
+
+	width: 140px;
+	text-align: right;
+	padding-right: 10px;
+	color: #fff;
+	font-size: 15px;
+
+}
+
+header table td.exit {
+
+	width: 140px;
+
+}
+
+header table td.exit div.area {
+
+	padding: 4px 10px;
+	padding-left: 50px;
+	color: #fff;
+	width: 40px;
+	display: block;
+	margin: auto;
+	border-radius: 5px;
+
+	background-image: url('/lib/img/exit_to_app-white-24dp.svg');
+	background-size: 28px 28px;
+	background-position: 10px center;
+	background-repeat: no-repeat;
+
+}
+
+header table td.exit div.area:hover {
+
+	cursor: pointer;
+	background-color: rgba(255, 255, 255, 0.4);
+
+}
+
+header table td.person {
+
+	color: #fff;
+	padding-right: 10px;
+	text-align: right;
+	width: 100px;
+
+}
+
+header table td.spacing {
+
+	width: 60px;
+
+}
+
+header table td.tab {
+
+	width: 120px;
+	text-align: center;
+	color: #fff;
+	border-bottom: 4px solid rgba(0,0,0,0);
+	border-top: 4px solid rgba(0,0,0,0);
+	font-size: 15px;
+
+}
+
+header table td.tab span {
+
+	display: block;
+	width: 100%;
+	text-align: center;
+	position: relative;
+	top: -4px;
+}
+
+header table td.tab span:before {
+
+	content: "";
+	display: block;
+	left: 4px;
+	width: calc(100% - 8px);
+	height: 8px;
+	background-color: rgba(255, 255, 255, 0.4);
+	border-radius: 5px;
+	position: absolute;
+	top: 100%;
+
+}
+
+header table td.tab.disabled {
+
+	opacity: 0.6;
+	pointer-events: none;
+
+}
+
+header table td.tab:hover {
+
+	cursor: pointer;
+
+}
+
+header table td.tab span:hover:before {
+	
+	background-color: rgba(255, 255, 255, 0.7);
+
+}
+
+header table td.tab.active span:before {
+	
+	background-color: rgba(255, 255, 255, 1) !important;
+
+}
+
+header table h1 {
+
+	padding: 0;
+	margin: 0;
+	color: #fff;
+	font-size: 18px;
+	text-indent: 10px;
+	font-family: 'NotoSerifJP';
+	font-weight: 400;
+
+}
+
+nav {
+
+	width: var(--nav-width);
+	height: calc(100% - var(--header-height));
+	position: fixed;
+	left: 0;
+	top: var(--header-height);
+	background-color: #5a5a5a;
+
+}
+
+nav ul {
+
+	padding: 0;
+	margin: 0;
+	width: 100%;
+	padding-top: 10px;
+
+}
+
+nav ul li {
+
+	list-style: none;
+	background-color: rgba(255, 255, 255, 0.1);
+	padding: 15px 0;
+	width: calc(100% - 8px);
+	display: block;
+	margin: auto;
+	margin-bottom: 10px;
+	border-radius: 5px;
+
+}
+
+nav ul li.active {
+
+	background-color: rgba(255, 255, 255, 0.3) !important;
+	display: block !important;
+
+}
+
+nav ul li.one-off {
+
+	display: none;
+
+}
+
+nav ul li * {
+
+	pointer-events: none;
+
+}
+
+nav ul li:hover {
+
+	cursor: pointer;
+	background-color: rgba(255, 255, 255, 0.25);
+
+}
+
+nav ul li i {
+
+	display: block;
+	text-align: center;
+	color: #fff;
+	font-size: 32px;
+	margin: auto;
+	width: 100%;
+
+}
+
+nav ul li span {
+
+	display: block;
+	text-align: center;
+	font-size: 15px;
+	color: #fff;
+	padding-top: 5px;
+
+}
+
+section {
+
+	width: calc(100% - var(--nav-width));
+	height: calc(100% - var(--header-height));
+	position: fixed;
+	left: var(--nav-width);
+	top: var(--header-height);
+
+}
+
+section article {
+
+	position: absolute;
+	left: 0;
+	top: 0;
+	width: 100%;
+	height: 100%;
+	z-index: 10;
+	opacity: 0;
+	pointer-events: none;
+	transition: opacity 250ms;
+
+}
+
+section article div.toolbar {
+
+	width: calc(100% - 20px);
+	height: 30px;
+	position: absolute;
+	left: 10px;
+	top: 8px;
+
+}
+
+section article div.toolbar table {
+
+	width: 100%;
+	height: 100%;
+	table-layout: fixed;
+	border-collapse: collapse;
+
+}
+
+section article div.toolbar table h2 {
+
+	padding: 0;
+	margin: 0;
+	font-size: 19px;
+	font-family: "NotoSerifJP";
+	color: #5a5a5a;
+	font-weight: 400;
+	letter-spacing: 2px;
+
+}
+
+section article div.toolbar table td.tab {
+
+	width: 150px;
+	text-align: right;
+
+}
+
+section article div.toolbar table td.tab span {
+
+	display: block;
+	width: 140px;
+	text-align: center;
+	border-radius: 5px;
+	padding: 5px 0;
+	margin-left: 10px;
+	color: #5a5a5a;
+	font-family: "NotoSerifJP";
+	background-color: rgba(51, 204, 204, 0.05);
+
+}
+
+section article div.toolbar table td.tab span:hover {
+
+	cursor: pointer;
+
+}
+
+section article div.toolbar table td.tab span.active {
+	
+	background-color: rgba(51, 204, 204, 0.2) !important;
+
+}
+
+section article.open {
+
+	opacity: 1;
+	pointer-events: all;
+
+}
+
+section article.table div.staff {
+
+	position: absolute;
+	width: var(--staff);
+	height: calc(100% - 60px);
+	right: 10px;
+	top: 50px;
+	box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+	border-top-right-radius: 15px;
+	border-top-left-radius: 15px;
+	border-bottom-right-radius: 8px;
+	border-bottom-left-radius: 8px;
+	background-color: #fff;
+
+}
+
+section article.table div.staff h3 {
+
+	margin: 0;
+	padding: 20px 0;
+	text-align: center;
+	font-weight: 400;
+
+}
+
+section article.table div.staff form {
+
+	min-height: 200px;
+	width: calc(100% - 20%);
+	display: block;
+	margin: auto;
+	padding-bottom: 10px;
+
+}
+
+section article.table div.staff form li.label {
+
+	font-size: 18px;
+	list-style: none;
+
+}
+
+section article.table div.staff form li.value {
+
+	list-style: none;
+	margin: 10px auto;
+
+}
+
+section article.table div.staff form li.value select {
+
+	padding: 10px 0;
+	text-indent: 10px;
+	width: 100%;
+	border: 1px solid #9a9a9a;
+	border-radius: 5px;
+	font-size:16px;
+
+}
+
+section article.table div.staff form li.value input[type='text'] {
+
+	padding: 10px 0;
+	text-indent: 10px;
+	width: 100%;
+	border: 1px solid #9a9a9a;
+	border-radius: 5px;
+
+}
+
+section article.table div.staff div.location {
+
+	height: calc(100% - 620px);
+	overflow-y: auto;
+	width: calc(100% - 20%);
+	display: block;
+	margin: auto;
+	border: 1px solid #9a9a9a;
+	border-radius: 4px;
+
+}
+
+section article.table div.staff div.location label {
+
+	display: block;
+	padding: 6px 0px;
+	font-size: 14px;
+	text-indent: 10px;
+
+}
+
+section article.table div.staff div.actions {
+
+	width: calc(100% - 20%);
+	display: block;
+	margin: auto;
+	height: 40px;
+	margin-top: 20px;
+
+}
+
+section article.table div.staff div.actions table {
+
+	width: 100%;
+	height: 100%;
+	table-layout: fixed;
+	border-collapse: collapse;
+
+}
+
+section article.table div.staff div.actions table button.cancel {
+
+	border: 1px solid rgb(23, 85, 153);
+	border-radius: 10px;
+	width: 100%;
+	padding: 8px 0;
+	color: rgb(23, 85, 153);
+	font-size: 17px;
+	background-color: transparent;
+
+}
+
+section article.table div.staff div.actions table button.submit:hover,
+section article.table div.staff div.actions table button.cancel:hover {
+
+	cursor: pointer;
+	box-shadow: rgba(100, 100, 234, 0.16) 0px 3px 6px, rgba(0, 15, 234, 0.23) 0px 3px 6px;
+
+}
+
+section article.table div.staff div.actions table button.submit {
+
+	border: 1px solid rgb(23, 85, 153);
+	border-radius: 10px;
+	width: 100%;
+	padding: 8px 0;
+	font-size: 17px;
+	background-color: rgb(23, 85, 153);
+	color: #fff;
+
+}
+
+section article.table div.outline {
+
+	width: calc(100% - 20px);
+	height: calc(100% - 60px);
+	background-color: #fff;
+	left: 10px;
+	top: 50px;
+	position: absolute;
+	box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+	border-top-right-radius: 15px;
+	border-top-left-radius: 15px;
+	border-bottom-right-radius: 8px;
+	border-bottom-left-radius: 8px;
+	overflow: hidden;
+
+}
+
+section article.table div.outline.staff {
+
+	width: calc(100% - var(--staff) - 30px);
+
+}
+
+section article.table div.outline div.thead {
+
+	width: 100%;
+	height: 52px;
+	background-color: #5a6872;
+
+}
+
+section article.table div.outline div.thead table {
+
+	width: calc(100% - var(--scroll-width));
+	height: 100%;
+	table-layout: fixed;
+	border-collapse: collapse;
+	color: #fff;
+	font-size: 15px;
+
+}
+
+section article.table div.outline div.thead table th {
+
+	font-weight: 400;
+	border-right: 1px solid #aaa;
+	letter-spacing: 1px;
+
+}
+
+section article.table div.outline div.tbody table tr.edit td {
+
+	background-color: #f9f9e8;
+
+}
+
+section article.table div.outline div.tbody table td span {
+
+	color: #175599;
+
+}
+
+section article.table div.outline div.tbody table td span.bullet {
+
+	color: #4a4a4a;
+	display: block;
+	margin: auto;
+	text-indent: 10px;
+
+}
+
+section article.table div.outline div.tbody table td span.bullet:hover {
+
+	cursor: auto;
+	text-decoration: none;
+
+}
+
+section article.table div.outline div.tbody table td span:hover {
+
+	cursor: pointer;
+	text-decoration: underline;
+
+}
+
+section article.table div.outline div.tbody table td span.disabled {
+
+	pointer-events: none;
+	opacity: 0.3;
+
+}
+
+section article.table div.outline div.thead table th.no,
+section article.table div.outline div.tbody table td.no {
+
+	width: 40px;
+	text-align: center;
+
+}
+
+section article.table div.outline div.thead table th.sa,
+section article.table div.outline div.tbody table td.sa {
+
+	width: 120px;
+	padding-left:3px;
+
+}
+
+section article.table div.outline div.thead table th.sb,
+section article.table div.outline div.tbody table td.sb {
+
+	width: 110px;
+	padding-left:3px;
+
+}
+
+section article.table div.outline div.thead table th.sc,
+section article.table div.outline div.tbody table td.sc {
+
+	padding-left:3px;
+
+}
+
+section article.table div.outline div.thead table th.sd,
+section article.table div.outline div.tbody table td.sd {
+
+	padding-left:3px;
+
+}
+
+section article.table div.outline div.thead table th.se,
+section article.table div.outline div.tbody table td.se {
+
+	width: 110px;
+	text-align: center;
+
+}
+
+section article.table div.outline div.thead table th.sf,
+section article.table div.outline div.tbody table td.sf {
+
+	width: 120px;
+	text-align: center;
+
+}
+
+section article.table div.outline div.thead table th.sg,
+section article.table div.outline div.tbody table td.sg {
+
+	width: 120px;
+
+}
+
+section article.table div.outline div.thead table th.edit,
+section article.table div.outline div.tbody table td.edit {
+
+	width: 90px;
+	text-align: center;
+
+}
+
+section article.table div.outline div.tbody table td.loc {
+
+	text-indent: 10px;
+
+}
+
+section article.table div.outline div.thead table th.year,
+section article.table div.outline div.tbody table td.year {
+
+	width: var(--year);
+	text-align: center;
+
+}
+
+section article.table div.outline div.thead table th.month,
+section article.table div.outline div.tbody table td.month {
+
+	width: var(--month);
+	text-align: center;
+
+}
+
+section article.table div.outline div.thead table th.person-in-charge,
+section article.table div.outline div.tbody table td.person-in-charge {
+
+	width: var(--person-in-charge);
+	text-align: center;
+
+}
+
+section article.table div.outline div.thead table th.date,
+section article.table div.outline div.tbody table td.date {
+
+	width: var(--date);
+	text-align: center;
+
+}
+
+section article.table div.outline div.thead table th.time,
+section article.table div.outline div.tbody table td.time {
+
+	width: var(--time);
+	text-align: center;
+
+}
+
+section article.table div.outline div.thead table th.authorizer,
+section article.table div.outline div.tbody table td.authorizer {
+
+	width: var(--datetime);
+	text-align: center;
+
+}
+
+section article.table div.outline div.thead table th.datetime,
+section article.table div.outline div.tbody table td.datetime {
+
+	width: var(--datetime);
+	text-align: center;
+
+}
+
+section article.table div.outline div.thead table th.display,
+section article.table div.outline div.tbody table td.display {
+
+	width: 80px;
+	text-align: center;
+
+}
+
+section article.table div.outline div.tbody table td.location {
+
+	text-indent: 10px;
+
+}
+
+section article.table div.outline div.tbody {
+
+	height: calc(100% - 82px);
+	border-bottom: 1px solid #ccc;
+	overflow-y: scroll;
+
+}
+
+section article.table div.outline div.tbody table {
+
+	width: 100%;
+	table-layout: fixed;
+	border-collapse: collapse;
+
+}
+
+section article.table div.outline div.tbody table tr.highlight {
+
+	background-color: #ffffe6;
+
+}
+
+section article.table div.outline div.tbody table tr td:last-child {
+
+	border-right: none;
+
+}
+
+section article.table div.outline div.tbody table td a.lock {
+
+	display: block;
+	padding-left: 0;
+	margin: auto;
+	text-align: center;
+
+}
+
+section article.table div.outline div.tbody table td a.lock:hover {
+
+	cursor: pointer;
+	text-decoration: underline;
+
+}
+
+section article.table div.outline div.tbody table td a.lock.okay {
+
+	color: #108c1d;
+
+}
+
+section article.table div.outline div.tbody table td a.lock.ng {
+
+	color: #ba1626;
+
+}
+
+section article.table div.outline div.tbody table td {
+
+	border-right: 1px solid #9a9a9a;
+	border-bottom: 1px solid #9a9a9a;
+	padding-top: 10px;
+	padding-bottom: 10px;
+	font-size: 15px;
+
+}
+
+section article.table div.outline div.tbody table td select {
+
+	width: calc(100% - 10px);
+	display: block;
+	margin: auto;
+	padding: 4px 0;
+	font-size:14px;
+
+}
+
+section article.table div.table-widget {
+
+	position: absolute;
+	left: 10px;
+	top: 50px;;
+	width: calc(100% - 22px);
+	height: calc(100% - 130px - var(--table-widget-height) - var(--table-widget-top) - var(--float-widget-bottom) - 40px);
+	background-color: #fff;
+
+	border-top-right-radius: 15px;
+	border-top-left-radius: 15px;
+	border-bottom-right-radius: 8px;
+	border-bottom-left-radius: 8px;
+	border: 1px solid #7a7a7a;
+	box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+	overflow: hidden;
+
+}
+
+section article.table div.float-widget {
+
+	width: calc(100% - 20px);
+	height: 170px;
+	position: absolute;
+	left: 10px;
+	bottom: var(--float-widget-bottom);
+
+}
+
+section article.table div.table-widget div.thead {
+
+	width: 100%;
+	height: var(--table-widget-height);
+	background-color: #5a6872;
+
+}
+
+section article.table div.table-widget div.thead table {
+
+	width: calc(100% - var(--scroll-width));
+	height: 100%;
+	table-layout: fixed;
+	border-collapse: collapse;
+
+}
+
+section article.table div.table-widget div.thead table th {
+
+	font-size: 14px;
+	color: #fff;
+	border-right: 1px solid #7a7a7a;
+	font-weight: 400;
+
+}
+
+section article.table div.table-widget div.thead table td {
+
+	font-size: 13px;
+	color: #fff;
+	border-top: 1px solid #7a7a7a;
+	border-right: 1px solid #7a7a7a;
+	font-weight: 400;
+	text-align: center;
+
+}
+
+section article.table div.table-widget div.tbody table td.a,
+section article.table div.table-widget div.thead table th.a {
+	
+	text-align: center;
+	width:var( --table-widget-a);
+
+}
+
+section article.table div.table-widget div.tbody table td.b,
+section article.table div.table-widget div.thead table th.b {
+
+	width:var( --table-widget-b);
+
+}
+
+section article.table div.table-widget div.tbody table td.c,
+section article.table div.table-widget div.thead table th.c {
+
+	width:var( --table-widget-c);
+
+}
+
+section article.table div.table-widget div.tbody table td.d,
+section article.table div.table-widget div.thead table th.d {
+
+	width:var( --table-widget-d);
+
+}
+
+section article.table div.table-widget div.tbody table td.e,
+section article.table div.table-widget div.thead table th.e {
+
+	width:var( --table-widget-e);
+
+}
+
+section article.table div.table-widget div.tbody table td.f input[type='text'] {
+
+	width: calc(100% - 8px);
+	display: block;
+	margin: auto;
+	padding: 4px 0;
+
+}
+
+section article.table div.table-widget div.tbody table td.f,
+section article.table div.table-widget div.thead table th.f {
+
+	width:var( --table-widget-f);
+
+}
+
+section article.table div.table-widget div.tbody table td.g,
+section article.table div.table-widget div.thead table th.g {
+
+
+	width:var( --table-widget-g);
+
+}
+
+section article.table div.table-widget div.tbody table td.h,
+section article.table div.table-widget div.thead table th.h {
+
+	width:var( --table-widget-h);
+
+}
+
+section article.table div.table-widget div.tbody table td.i,
+section article.table div.table-widget div.thead table th.i {
+
+	width:var( --table-widget-i);
+
+}
+
+section article.table div.table-widget div.tbody table td.j,
+section article.table div.table-widget div.thead table th.j {
+
+	width:var( --table-widget-j);
+
+}
+
+section article.table div.table-widget div.tbody table td.k,
+section article.table div.table-widget div.thead table th.k {
+
+	width:var( --table-widget-k);
+
+}
+
+section article.table div.table-widget div.tbody table td.j input[type='text'] {
+
+	width: calc(100% - 8px);
+	display: block;
+	margin: auto;
+	padding: 4px 0;
+	text-indent: 4px;
+
+}
+
+section article.table div.table-widget div.tbody table td.k input[type='text'] {
+
+	width: calc(100% - 8px);
+	display: block;
+	margin: auto;
+	padding: 4px 0;
+	text-indent: 4px;
+	
+}
+
+section article.table div.table-widget div.tbody {
+
+	height: calc(100% - 92px);
+	overflow-y: scroll;
+
+}
+
+section article.table div.table-widget div.tbody table {
+
+	width: 100%;
+	table-layout: fixed;
+	border-collapse: collapse;
+
+}
+
+section article.table div.table-widget div.tbody table.fill {
+
+	height: 100%;
+
+}
+
+section article.table div.table-widget div.tbody table td {
+
+	border-right: 1px solid #9a9a9a;
+	padding-top: 8px;
+	padding-bottom: 8px;
+	font-size: 14px;
+	border-bottom: 1px solid #9a9a9a;
+
+}
+
+section article.table div.table-widget div.tbody table tr:last-child td {
+
+	border-bottom: none;
+
+}
+
+section article.table div.table-widget div.tfoot {
+
+	border-top: 1px solid #9a9a9a;
+	height: 39px;
+
+}
+
+section article.table div.table-widget div.tfoot table {
+
+	width: 100%;
+	height: 100%;
+	table-layout: fixed;
+	border-collapse: collapse;
+
+}
+
+section article.table div.table-widget div.tfoot table td.radio {
+
+	width: 180px;
+
+}
+
+section article.table div.table-widget div.tfoot table td.radio span {
+
+	color: #175599;
+	display: block;
+	width: 90%;
+	padding: 4px 0;
+	border-radius: 5px;
+	margin: auto;
+	text-align: center;
+	background-color: rgba(88, 149, 196, 0.08);
+	font-size: 15px;
+
+}
+
+section article.table div.table-widget div.tfoot table td.radio span:hover {
+
+	cursor: pointer;
+	background-color: rgba(88, 149, 196, 0.13);
+
+}
+
+section article.table div.table-widget div.tfoot table td.radio span.active {
+
+	background-color: rgba(88, 149, 196, 0.18) !important;
+
+}
+
+section article.table div.table-widget div.tbody table td select {
+
+	width: calc(100% - 8px);
+	display: block;
+	margin: auto;
+	padding: 4px 0;
+
+}
+
+section article.table div.table-widget div.tfoot table td.button {
+	
+	width: 132px;
+
+}
+
+section article.table div.table-widget div.tfoot table td.button span {
+
+	color: #175599;
+	display: block;
+	width: 90%;
+	padding: 4px 0;
+	border-radius: 5px;
+	margin: auto;
+	text-align: center;
+	font-size: 15px;
+
+}
+
+section article.table div.table-widget div.tfoot table td.button div {
+
+	color: #4a4a4a;
+	display: block;
+	width: 90%;
+	padding: 4px 0;
+	border-radius: 5px;
+	margin: auto;
+	text-align: center;
+	font-size: 15px;
+	background-color: rgba(0,0,0,0.07);
+	text-indent: 10px;
+	position: relative;
+
+}
+
+section article.table div.table-widget div.tfoot table td.button div.disabled {
+
+	background-color: transparent !important;
+	opacity: 0.4;
+	pointer-events: none;
+
+}
+
+section article.table div.table-widget div.tfoot table td.button div:hover {
+
+	cursor: pointer;
+	background-color: rgba(0,0,0,0.15);
+
+}
+
+section article.table div.table-widget div.tfoot table td.button div:before {
+
+	content: "";
+	display: block;
+	position: absolute;
+	width: 24px;
+	height: 24px;
+	left: 5px;
+	top: 3px;
+	background-image: url('/lib/img/content-save.png');
+	background-position: center;
+	background-size: 90%;
+	background-repeat: no-repeat;
+
+}
+
+section article.table div.table-widget div.tfoot table td.button span.disabled {
+
+	opacity: 0.5;
+	pointer-events: none;
+
+}
+
+section article.table div.table-widget div.tfoot table td.button span:hover {
+
+	cursor: pointer;
+	background-color: rgba(88, 149, 196, 0.13);
+
+}
+
+section article.table div.table-widget div.tbody table td select.units:disabled {
+
+	opacity: 1.0;
+	appearance: none;
+	border: 1px solid #ddd;
+	background-color: #eee;
+
+}
+
+section article.table div.table-widget div.tbody table td select:disabled {
+
+	opacity: 0.5;
+
+}
+
+section article.table div.table-widget div.tbody table.locked td select:disabled {
+
+	opacity: 1;
+	border: 1px solid #ddd;
+	background-color: transparent;
+	color: #000;
+	-moz-appearance: none;
+	-webkit-appearance: none;
+	appearance: none;
+
+}
+
+section article.table div.table-widget div.tbody table.locked td input:disabled {
+
+	opacity: 1;
+	border: 1px solid #ddd;
+	background-color: transparent;
+	color: #000;
+
+	-moz-appearance: none;
+	-webkit-appearance: none;
+	appearance: none;
+
+}
+
+section article.table div.table-widget div.tbody table.locked td select.placeholder {
+
+	color: #fff;
+
+}
+
+section article.table div.table-widget div.tbody table td select.placeholder {
+
+	/* color: #ccc; */
+
+}
+
+section article.table div.table-widget div.tbody table td div.flex {
+
+	width: 100%;
+	display: flex;
+	flex-wrap: nowrap;
+	justify-content: space-between;
+	align-items: center;
+
+}
+
+section article.table div.table-widget div.tbody table td div.flex input[type='text'] {
+
+	width: calc(24% - 15px);
+	display: block;
+	margin: auto;
+	padding: 4px 0;
+	text-align: right;
+	padding-right: 5px;
+
+}
+
+section article.table div.table-widget div.tbody table td div.flex input[type='number'] {
+
+	width: calc(30% - 15px);
+	display: block;
+	margin: auto;
+	padding: 4px 0;
+	text-align: right;
+	padding-right: 5px;
+
+}
+
+section article.table div.map {
+
+	position: fixed;
+	left: calc(var(--nav-width) + 10px);
+	//top: calc(100% - 180px);
+	bottom: var(--float-widget-bottom);
+	max-width: 400px;
+	max-height: calc(170px - 2px);
+	background-color: #fff;
+	z-index: 100;
+
+	border-top-right-radius: 8px;
+	border-top-left-radius: 8px;
+	border-bottom-right-radius: 8px;
+	border-bottom-left-radius: 8px;
+	border: 1px solid #7a7a7a;
+	box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+	
+	transition: max-width 200ms, max-height 200ms;
+	width: calc(100% - 22px);
+	height: calc(100% - 60px);
+
+}
+
+section article.table div.map.zoom {
+
+	max-width: calc(100% - 22px - var(--nav-width));
+	max-height: calc(100% - 60px);
+
+}
+
+section article.table div.magnify {
+
+	position: absolute;
+	top: 4px;
+	right: 4px;
+	width: 32px;
+	height: 32px;
+	border-radius: 5px;
+	background-image: url('/lib/img/magnify-plus-outline.png');
+	background-position: center;
+	background-repeat: no-repeat;
+	background-size: 80%;
+	opacity: 0.7;
+
+}
+
+section article.table div.map.zoom div.magnify {
+	
+	background-image: url('/lib/img/magnify-minus-outline.png');
+
+}
+
+section article.table div.magnify:hover {
+
+	cursor: pointer;
+	background-color: rgba(0,0,0,0.2);
+
+}
+
+section article.table div.map div.flex {
+
+	width: 100%;
+	height: 100%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+
+}
+
+section article.table div.map div.flex img {
+
+	max-width: calc(100% - 20px);
+	max-height: calc(100% - 20px);
+	width: auto;
+	height: auto;
+
+}
+
+section article.table div.float-widget div.info  {
+
+	position: absolute;
+	right: 410px;
+	top: 0px;
+	width: 320px;
+	height: calc(100% - 2px);
+	background-color: #fff;
+
+	border-top-right-radius: 8px;
+	border-top-left-radius: 8px;
+	border-bottom-right-radius: 8px;
+	border-bottom-left-radius: 8px;
+	border: 1px solid #7a7a7a;
+	box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+
+}
+
+section article.table div.float-widget div.info table {
+
+	width: 100%;
+	height: 100%;
+	table-layout: fixed;
+	border-collapse: collapse;
+
+}
+
+section article.table div.float-widget div.controls {
+
+	width: calc(100% - 1150px);
+	height: 100%;
+	position: absolute;
+	left: 410px;
+	top: 0px;
+
+}
+
+section article.table div.float-widget div.controls div.notes {
+
+	width: 400px;
+	height: calc(100% - 22px);
+	border: 1px solid #9a9a9a;
+	padding: 10px 0;
+	border-radius: 8px;
+	background-color: #fafccc;
+	box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+
+}
+
+section article.table div.float-widget div.controls div.notes.hide {
+
+	display: none;
+
+}
+
+section article.table div.float-widget div.controls div.notes textarea {
+
+	width: calc(100% - 22px);
+	height: calc(100% - 2px);
+	border: 1px solid transparent;
+	padding: 0;
+	display: block;
+	margin: auto;
+	background-color: transparent;
+	resize: none;
+	font-size: 14px;
+
+}
+
+section article.table div.float-widget div.controls table {
+
+	width: 100%;
+	height: 100%;
+	table-layout: fixed;
+	border-collapse: collapse;
+	font-size: 14px;
+
+}
+
+section article.table div.float-widget div.controls table td.toggle {
+
+	width: 90px;
+
+}
+
+section article.table div.float-widget div.controls table td.toggle span {
+
+	display: block;
+	margin: auto;
+	padding: 5px 0;
+	width: calc(100% - 10px);
+	border: 2px dashed #175599;
+	color: #175599;
+	text-align: center;
+	border-radius: 15px;
+	background-color: #fff;
+
+}
+
+section article.table div.float-widget div.controls table td.toggle span:hover {
+
+	cursor: pointer;
+	background-color: #edf2f4;
+
+}
+
+section article.table div.float-widget div.controls div.save {
+
+	position: absolute;
+	top: calc(100% + 10px);
+	right: 0;
+	height: 60px;
+	width: 60px;
+
+	background-image: url('/lib/img/content-save.png');
+	background-size: 90%;
+	background-repeat: no-repeat;
+	background-position: center;
+	opacity: 0.6;
+
+}
+
+section article.table div.float-widget div.controls div.save:hover {
+
+	cursor: pointer;
+
+}
+
+section article.table div.float-widget div.controls div.save:before {
+
+	content: "";
+	display: block;
+	position: absolute;
+	left: 0;
+	top: 0;
+	border-radius: 100%;
+	width: 100%;
+	height: 100%;
+	background-color: rgba(0,0,0,0.3);
+	transform: scale(0,0);
+	transition: transform 200ms;
+
+}
+
+section article.table div.float-widget div.controls div.save:hover:before {
+
+	transform: scale(1, 1);
+
+}
+
+section article.table div.float-widget div.controls table td.toggle span.active {
+
+	border: 2px solid #175599;
+
+}
+
+section article.table div.float-widget div.controls table td.button {
+
+	width: 90px;
+
+}
+
+section article.table div.float-widget div.controls table td.button span {
+
+	display: block;
+	margin: auto;
+	color: #175599;
+	width: calc(100% - 10px);
+	border-radius: 8px;
+	text-align: center;
+	padding: 5px 0;
+
+}
+
+section article.table div.float-widget div.controls table td.button span.disabled {
+
+	opacity: 0.5;
+	pointer-events: none;
+
+}
+
+section article.table div.float-widget div.controls table td.button span:hover {
+
+	cursor: pointer;
+	background-color: rgba(104, 199, 249, 0.15);
+
+}
+
+section article.table div.float-widget div.info table td {
+
+	font-size: 14px;
+	border-bottom: 1px dashed #9a9a9a;
+
+}
+
+section article.table div.float-widget div.info table tr:last-child td {
+
+	border-bottom: none;
+
+}
+
+section article.table div.float-widget div.info table td.label {
+
+	width: 130px;
+	text-indent: 10px;
+	border-right: 1px dashed #9a9a9a;
+
+}
+
+section article.table div.float-widget div.info table td.value {
+
+	text-align: right;
+	padding-right: 10px;
+
+}
+
+section article.table div.float-widget div.stamp {
+
+	position: absolute;
+	right: 0px;
+	top: 0px;
+	width: 400px;
+	height: calc(100% - 2px);
+	background-color: #fff;
+
+	border-top-right-radius: 8px;
+	border-top-left-radius: 8px;
+	border-bottom-right-radius: 8px;
+	border-bottom-left-radius: 8px;
+	border: 1px solid #7a7a7a;
+	box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+	overflow: hidden;
+
+}
+
+section article.table div.float-widget div.stamp div.head {
+
+	height: 40px;
+	border-bottom: 1px solid #7a7a7a;
+	background-color: rgba(0,0,0,0.1);
+
+}
+
+section article.table div.float-widget div.stamp div.head table {
+
+	width: 100%;
+	height: 100%;
+	table-layout: fixed;
+	border-collapse: collapse;
+
+}
+
+section article.table div.float-widget div.stamp div.head table td {
+
+	text-align: center;
+	border-right: 1px solid #9a9a9a;
+
+}
+
+section article.table div.float-widget div.stamp div.head table tr td:last-child {
+
+	border-right: none;
+
+}
+
+section article.table div.float-widget div.stamp div.body {
+
+	height: calc(100% - 40px);
+
+}
+
+section article.table div.float-widget div.stamp div.body table {
+
+	width: 100%;
+	height: 100%;
+	table-layout: fixed;
+	border-collapse: collapse;
+
+}
+
+section article.table div.float-widget div.stamp div.body table td {
+
+	border-right: 1px solid #9a9a9a;
+
+}
+
+section article.table div.float-widget div.stamp div.body table td canvas {
+
+	display: block;
+	margin: auto;
+
+	user-select: none; /* supported by Chrome and Opera */
+   -webkit-user-select: none; /* Safari */
+   -khtml-user-select: none; /* Konqueror HTML */
+   -moz-user-select: none; /* Firefox */
+   -ms-user-select: none; /* Internet Explorer/Edge */
+
+}
+
+section article.table div.float-widget div.stamp div.body table td canvas.active {
+
+	cursor: pointer;
+
+}
+
+section article.table div.float-widget div.stamp div.body table td:last-child {
+
+	border-right: none;
+
+}

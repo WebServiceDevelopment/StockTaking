@@ -1,0 +1,1008 @@
+/**
+
+ MIT License
+ Copyright 2020 Web Service Development Inc.
+
+ Permission is hereby granted, free of charge, to any person obtaining a copy
+ of this software and associated documentation files (the "Software"), to deal
+ in the Software without restriction, including without limitation the rights
+ to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ copies of the Software, and to permit persons to whom the Software is
+ furnished to do so, subject to the following conditions:
+
+ The above copyright notice and this permission notice shall be included in all
+ copies or substantial portions of the Software.
+ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+ SOFTWARE.
+
+ Author: Benjamin Collins (collins.wsd.co.jp)
+
+**/
+
+html {
+
+	padding: 0;
+	margin: 0;
+	height: 100%;
+
+}
+
+body {
+
+	padding: 0;
+	margin: 0;
+	height: 100%;
+
+}
+
+main {
+
+	padding: 0;
+	margin: 0;
+	width: 100%;
+	height: 100%;
+
+	--header-height: 50px;
+	--footer-height: 260px;
+	--map-width: 300px;
+	--submit-width: 300px;
+	--info-width: 300px;
+	--thead-height: 44px;
+	--keypad-width: 320px;
+
+}
+
+header {
+
+	height: var(--header-height);
+	width: 100%;
+	background-color: rgb(23, 85, 153);
+	position: fixed;
+	left: 0;
+	top: 0;
+	box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
+	z-index: 100;
+
+}
+
+header div.contain {
+
+	position: absolute;
+	z-index: 10;
+	width: 100%;
+	height: 100%;
+	left: 0;
+	top: 0;
+
+}
+
+header table {
+
+	width: 100%;
+	height: 100%;
+	table-layout: fixed;
+	border-collapse: collapse;
+
+}
+
+header table td.icon {
+	
+	width: 40px;
+	text-align: right;
+
+}
+
+header table td.icon img {
+
+    position: relative;
+    top: 3px;
+    height: 28px;
+
+}
+
+header table td.exit {
+
+	width: 140px;
+
+}
+
+header table td.tab {
+
+	width: 120px;
+
+}
+
+header table td.tab span {
+
+	display: block;
+	width: 100%;
+	text-align: center;
+	position: relative;
+	top: -4px;
+	color: #fff;
+
+}
+
+header table td.tab span:before {
+
+	content: "";
+	display: block;
+	left: 4px;
+	width: calc(100% - 8px);
+	height: 8px;
+	background-color: rgba(255, 255, 255, 0.4);
+	border-radius: 5px;
+	position: absolute;
+	top: 100%;
+
+}
+
+header table td.tab:hover{
+
+	cursor: pointer;
+
+}
+
+header table td.tab:hover span:before {
+	
+	background-color: rgba(255, 255, 255, 0.6);
+
+}
+
+header table td.tab.active span:before {
+
+	background-color: rgba(255, 255, 255, 1.0) !important;
+
+}
+
+header table td.exit div.area {
+
+	padding: 4px 10px 4px 50px;
+	color: rgb(255, 255, 255);
+	width: 40px;
+	display: block;
+	margin: auto;
+	border-radius: 5px;
+	background-image: url("/lib/img/exit_to_app-white-24dp.svg");
+	background-size: 28px 28px;
+	background-position: 10px center;
+	background-repeat: no-repeat;
+
+}
+
+header table td.exit div.area:hover {
+
+	cursor: pointer;
+	background-color: rgba(255, 255, 255, 0.4);
+
+}
+
+header table h1 {
+
+	padding: 0;
+	margin: 0;
+	font-size: 17px;
+	color: #fff;
+	text-indent: 4px;
+	font-weight: 400;
+	font-family: "NotoSerifJP";
+
+}
+
+header div.decor {
+
+    width: 240px;
+    height: 100%;
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    background-color: rgba(255, 255, 255, 0.15);
+
+}
+
+header div.decor:after {
+
+    content: "";
+    display: block;
+    position: absolute;
+    top: 0px;
+    left: 100%;
+    width: 0px;
+    height: 0px;
+    border-style: solid;
+    border-width: var(--header-height) 0 0 60px;
+    border-color: transparent transparent transparent rgba(255, 255, 255, 0.15);
+
+}
+
+section {
+
+	position: fixed;
+	left : 4px;
+	top: calc(var(--header-height) + 8px);
+	width: calc(100% - 10px);
+	height: calc(100% - var(--header-height) - var(--footer-height) - 24px);
+	
+}
+
+section div.table-widget {
+
+	height: calc(100% - 50px);
+	width: calc(100% - 2px);
+	border-top-left-radius: 12px;
+	border-top-right-radius: 12px;
+	border-bottom-left-radius: 5px;
+	border-bottom-right-radius: 5px;
+	box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
+	background-color: #fff;
+	border: 1px solid #ccc;
+	overflow: hidden;
+
+}
+
+section div.table-widget div.thead {
+
+	height: calc(var(--thead-height) - 1px);
+	border-bottom: 1px solid #ccc;
+	background-color: rgb(90, 104, 114);
+
+}
+
+section div.table-widget div.tbody {
+
+	height: calc(100% - var(--thead-height));
+	overflow-y: scroll;
+
+}
+
+section div.table-widget div.tbody.lock {
+
+	overflow: hidden;
+
+}
+
+section div.table-widget div.tbody table {
+
+	width: 100%;
+	table-layout: fixed;
+	border-collapse: collapse;
+
+}
+
+section div.table-widget div.tbody table td {
+
+	border-right: 1px solid #bababa;
+	border-bottom: 1px solid #bababa;
+	padding-top: 8px;
+	padding-bottom: 8px;
+	font-size: 14px;
+
+}
+
+section div.table-widget div.thead table {
+
+	width: calc(100% - var(--scroll-width));
+	color: #fff;
+	font-size: 13px;
+	table-layout: fixed;
+	border-collapse: collapse;
+	height: 100%;
+
+}
+
+section div.table-widget div.thead table th {
+
+	border-right: 1px solid rgb(122, 122, 122);
+
+}
+
+section div.table-widget div.tbody table td select {
+
+	width: calc(100% - 2px);
+	display: block;
+	margin: auto;
+	padding: 2px 0;
+	border: 1px solid #ccc;
+	border-radius: 4px;
+
+}
+
+section div.table-widget div.tbody table td div.rel {
+
+	position: relative;
+	border: 1px solid #ccc;
+	border-radius: 4px;
+	width: calc(100% - 4px);
+	display: block;
+	margin: auto;
+
+}
+
+section div.table-widget div.tbody table td div.rel div.center {
+
+	width: 2px;
+	height: 100%;
+	pointer-events: none;
+	position: absolute;
+	left: calc(50% - 1px);
+	top: 0;
+
+}
+
+section div.table-widget div.tbody table td div.rel input[type='text'] {
+
+	width: calc(100% - 4px);
+	padding: 4px 0;
+	border: none;
+	background-color: transparent;
+	text-indent: 4px;
+	padding-right: 4px;
+	text-align: right;
+	pointer-events: none;
+
+}
+
+section div.table-widget div.tbody table td input[type='text'].note {
+
+	width: 100%;
+	padding: 4px 0;
+	border: none;
+	background-color: transparent;
+	text-indent: 4px;
+	width: calc(100% - 4px);
+	border: 1px solid #ccc;
+	border-radius: 4px;
+	display: block;
+	margin: auto;
+
+}
+
+section div.table-widget div.tbody table td.a {
+	
+	text-align: center;
+}
+
+section div.table-widget div.thead table th.a,
+section div.table-widget div.tbody table td.a {
+
+	width: 24px;
+
+}
+
+section div.table-widget div.thead table th.b,
+section div.table-widget div.tbody table td.b {
+
+	width: 60px;
+
+}
+
+section div.table-widget div.thead table th.c,
+section div.table-widget div.tbody table td.c {
+
+	width: 90px;
+
+}
+
+section div.table-widget div.thead table th.d,
+section div.table-widget div.tbody table td.d {
+
+	width: 90px;
+
+}
+
+section div.table-widget div.thead table th.f,
+section div.table-widget div.tbody table td.f {
+
+	width: 70px;
+
+}
+
+section div.table-widget div.thead table th.g,
+section div.table-widget div.tbody table td.g {
+
+	width: 60px;
+
+}
+
+section div.table-widget div.thead table th.h,
+section div.table-widget div.tbody table td.h {
+
+	width: 70px;
+
+}
+
+section div.button-widget {
+
+	width: 100%;
+	height: 50px;
+
+}
+
+section div.button-widget table {
+
+	margin-top: 4px;
+	width: 100%;
+	height: 100%;
+	table-layout: fixed;
+	border-collapse: collapse;
+
+}
+
+section div.button-widget table td.mat-btn {
+
+	width: 150px;
+	text-align: right;
+
+}
+
+section div.button-widget table td.save-btn {
+
+	width: 100px;
+	text-align: right;
+
+}
+
+section div.button-widget table td.save-btn div.save {
+
+	border: 2px solid #4960a6;
+	background-color: rgba(216, 227, 232, 0.7);
+	color: #0d2d4f;
+	padding: 8px 20px;
+	border-radius: 5px;
+	font-size: 15px;
+	text-align: center;
+	opacity: 0.2;
+	display: none;
+
+	
+}
+
+section div.button-widget table td.mat-btn button {
+
+	border: none;
+	background-color: rgba(216, 227, 232, 0.7);
+	color: #0d2d4f;
+	padding: 8px 24px;
+	border-radius: 5px;
+	font-size: 15px;
+	transition: box-shadow 0.3s cubic-bezier(.25,.8,.25,1)
+
+}
+
+section div.button-widget table td.mat-btn button:hover {
+
+	cursor: pointer;
+	box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
+
+}
+
+section div.button-widget table td.mat-btn button:disabled {
+
+	opacity: 0.5;
+	pointer-events: none;
+
+}
+
+footer {
+
+	position: fixed;
+	left: 4px;
+	bottom: 8px;
+	height: var(--footer-height);
+	width: calc(100% - 8px);
+	opacity: 0.5;
+
+}
+
+div.map-widget {
+
+	position: fixed;
+	bottom: 8px;
+	z-index: 20;
+	left: 4px;
+
+	max-height: calc(var(--footer-height) - 2px);
+	max-width: calc(100% - var(--submit-width) - 16px);
+	
+	height: calc(100% - var(--header-height) - 18px);
+	width: calc(100% - 8px);
+
+	border: 1px solid #ccc;
+	border-radius: 5px;
+	box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
+	background-color: #fff;
+
+	transition: max-height 250ms, max-width 250ms;
+
+}
+
+div.map-widget.zoom {
+	
+	max-height: calc(100% - var(--header-height) - 18px);
+	max-width: calc(100% - 8px);
+
+}
+
+div.map-widget div.flex {
+
+	width: calc(100% - 50px);
+	height: 100%;
+	margin-left: 10px;
+	background-size: contain;
+	background-position: center;
+	background-repeat: no-repeat;
+
+}
+
+div.map-widget.zoom div.toggle {
+
+	background-image: url('/lib/img/magnify-minus-outline.png');
+
+}
+
+div.map-widget.zoom div.flex {
+
+	width: calc(100% - 20px);
+
+}
+
+div.map-widget div.toggle {
+
+	width: 34px;
+	height: 34px;
+	position: absolute;
+	top: 4px;
+	right: 4px;
+	display: block;
+	opacity: 0.6;
+
+	background-image: url('/lib/img/magnify-plus-outline.png');
+	background-position: center;
+	background-size: 80%;
+	background-repeat: no-repeat;
+
+}
+
+div.submit-widget {
+
+	position: fixed;
+	bottom: 8px;
+	z-index: 5;
+	right: 4px;
+	height: calc(var(--footer-height));
+	width: var(--submit-width);
+
+	-ms-user-select:none;
+	-moz-user-select:none;
+	-webkit-user-select:none;
+	-webkit-touch-callout: none;
+	-khtml-user-select: none;
+	user-select:none;
+
+}
+
+div.submit-widget.up {
+
+	z-index: 50;
+
+}
+
+div.submit-widget.down {
+
+	z-index: 10;
+
+}
+
+
+div.submit-widget div.slide {
+
+	width: calc(100% - 2px);
+	height: 54px;
+	border: 1px solid #ccc;
+	border-radius: 14px;
+	position: absolute;
+	left: 0;
+	bottom: 0;
+	background-color: #bbb8b8;
+	box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
+	line-height: 54px;
+	text-align: center;
+	font-size: 18px;
+	letter-spacing: 4px;
+	text-indent: 60px;
+	transition: opacity 250ms;
+
+}
+
+div.submit-widget div.options {
+
+	z-index: 90;
+	width: 100%;
+	height: 54px;
+	transition: transform 250ms, opacity 250ms;
+	left: 0;
+	bottom: 0;
+	position: absolute;
+	transform: translateY(0);
+	opacity: 1;
+	transition: transform 250ms, opacity 250ms;
+
+}
+
+div.submit-widget div.options.hide {
+
+	transform: translateY(10px);
+	opacity: 0;
+	pointer-events: none;
+
+}
+
+div.submit-widget div.options table {
+
+	width: 100%;
+	height: 100%;
+	table-layout: fixed;
+	border-collapse: collapse;
+
+}
+
+div.submit-widget div.options table td.space {
+
+	width: 50px;
+
+}
+
+div.submit-widget div.options table button {
+
+	width: calc(100% - 2px);
+	border: 2px solid #175599;
+	border-radius: 20px;
+	padding: 13px 0;
+	font-weight: bold;
+
+}
+
+div.submit-widget div.options table button:hover {
+
+	cursor: pointer;
+
+}
+
+div.submit-widget div.options table button.yes {
+
+	color: #fff;
+	background-color: #175599;
+
+}
+
+div.submit-widget div.slide.hide {
+
+	opacity: 0;
+	pointer-events: none;
+
+}
+
+div.submit-widget div.slide div.thumb {
+
+	border-radius: 12px;
+	border: 1px solid #ccc;
+	background-color: #e2e2e2;
+	width: 80px;
+	height: 48px;
+	left: 2px;
+	top: 2px;
+	position: absolute;
+	background-image: url('/lib/img/arrow_1.png');
+	background-size: 45%;
+	background-position: center;
+	background-repeat: no-repeat;
+	transition: transform 250ms;
+
+}
+
+div.submit-widget div.slide div.thumb.lite {
+
+	background-color: #8a8a8a;
+
+}
+
+div.submit-widget div.slide div.thumb:hover {
+
+	cursor: pointer;
+
+}
+
+div.submit-widget div.prompt {
+
+	width: calc(100% - 4px);
+	height: calc(100% - 64px);
+	border: 2px solid #175599;
+	border-radius: 8px;
+	position: absolute;
+	left: 0;
+	top: 0;
+	background-color: #fff;
+	box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
+	overflow: hidden;
+	transition: opacity: 250ms;
+	z-index: 90;
+	color: #175599;
+	font-size: 16px;
+	line-height: 22px;
+	transform: translateY(0px);
+	transition: transform 250ms, opacity 250ms;
+
+}
+
+div.submit-widget div.prompt.hide {
+
+	transform: translateY(10px);
+	opacity: 0;
+	pointer-events: none;
+
+}
+
+div.submit-widget div.prompt li {
+
+	list-style: none;
+	width: calc(100% - 20px);
+	display: block;
+	margin: auto;
+
+}
+
+div.submit-widget div.prompt li table {
+
+	width: 100%;
+	table-layout: fixed;
+	border-collapse: collapse;
+
+}
+
+div.submit-widget div.prompt li table td.label {
+
+	width: 90px;
+
+}
+
+div.submit-widget div.prompt li table td.value {
+
+	text-align: right;
+
+}
+
+div.submit-widget div.prompt p {
+
+	width: calc(100% - 20px);
+	display: block;
+	margin: auto;
+	padding: 10px 0;
+
+}
+
+div.submit-widget div.info {
+
+	width: calc(100% - 2px);
+	height: calc(100% - 64px);
+	border: 1px solid #ccc;
+	border-radius: 8px;
+	position: absolute;
+	left: 0;
+	top: 0;
+	background-color: #fff;
+	box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
+	overflow: hidden;
+	transition: opacity: 250ms;
+
+}
+
+div.submit-widget div.info.down {
+
+	z-index: 10;
+
+}
+
+div.submit-widget div.info.hide {
+
+	opacity: 0;
+	pointer-events: none;
+
+}
+
+div.submit-widget div.info table {
+
+	width: 100%;
+	height: 100%;
+	table-layout: fixed;
+	border-collapse: collapse;
+	font-size: 15px;
+
+}
+
+div.submit-widget div.info table td.label {
+
+	width: 44%;
+	border-right: 1px solid #bababa;
+	background-color: #f2f2f2;
+	text-indent: 8px;
+	border-bottom: 1px solid #bababa;
+}
+
+div.submit-widget div.info table td.value {
+
+	text-align: right;
+	padding-right: 8px;
+	border-bottom: 1px solid #bababa;
+
+}
+
+div.submit-widget div.info table tr:last-child td.label,
+div.submit-widget div.info table tr:last-child td.value {
+
+	border-bottom: none;
+
+}
+
+div.keypad {
+
+	position: fixed;
+	width: calc(var(--keypad-width) - 2px);
+	border: 1px solid #ccc;
+	border-radius: 4px;
+	min-height: 90px;
+	background-color: #e2e2e2;
+	z-index: 90;
+	pointer-events: all;
+	box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
+	
+	opacity: 0;
+	pointer-events: none;
+	transform: translateY(-10px);
+	transition: opacity 250ms, transform 250ms;
+
+}
+
+div.keypad.show {
+	
+	opacity: 1;
+	pointer-events: all;
+	transform: translateY(0px);
+
+}
+
+div.rel div.keypad {
+
+	display: block;
+
+}
+
+div.keypad {
+
+}
+
+div.keypad.right {
+
+
+}
+
+div.keypad.right:after,
+div.keypad.right:before {
+
+	left: calc(75% - 25px);
+
+}
+
+div.keypad:after {
+
+	content: "";
+	width: 0;
+	height: 0;
+	border-style: solid;
+	border-width: 0 15px 20px 15px;
+	border-color: transparent transparent #e2e2e2;
+	display: block;
+	left: calc(50% - 15px);
+	bottom: 100%;
+	position: absolute;
+	
+}
+
+div.keypad:before {
+
+	content: "";
+	width: 0;
+	height: 0;
+	border-style: solid;
+	border-width: 0 15px 20px 15px;
+	border-color: transparent transparent #ccc;
+	display: block;
+	left: calc(50% - 15px);
+	bottom: calc(100% + 1px);
+	position: absolute;
+	
+}
+
+div.keypad div.padding {
+
+	width: calc(100% - 20px);
+	padding: 10px;
+
+}
+
+div.keypad div.padding table {
+
+	width: 100%;
+	table-layout: fixed;
+	border-collase: collapse;
+
+
+}
+
+div.keypad div.padding td {
+
+	padding : 1px !important;
+	border: none !important;
+
+}
+
+div.keypad div.padding td button {
+
+	background-color: #333;
+	color: #fff;
+	width: calc(100% - 2px);
+	border: none;
+	display: block;
+	margin: auto;
+	padding: 15px 0;
+	border-radius: 4px;
+
+}
+
+div.keypad div.padding td button.hide {
+
+	display: none;
+
+}
+
+div.keypad div.padding td button.enter {
+
+	padding: 40px 0;
+	font-weight: bold;
+
+}
+
+div.keypad div.padding td.action {
+
+	width: 120px;
+
+}
+
+div.keypad div.padding td button:hover {
+
+	cursor: pointer;
+	transform: scale(1.05, 1.05);
+
+}
+
+div.shade {
+
+	position: fixed;
+	left: 0;
+	top: 0;
+	z-index: 30;
+	width: 100%;
+	height: 100%;
+	background-color: rgba(0,0,0,0.15);
+
+}
+
+div.shade.hide {
+
+	display: none;
+
+}

@@ -1,0 +1,3083 @@
+/**
+
+ MIT License
+ Copyright 2020 Web Service Development Inc.
+
+ Permission is hereby granted, free of charge, to any person obtaining a copy
+ of this software and associated documentation files (the "Software"), to deal
+ in the Software without restriction, including without limitation the rights
+ to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ copies of the Software, and to permit persons to whom the Software is
+ furnished to do so, subject to the following conditions:
+
+ The above copyright notice and this permission notice shall be included in all
+ copies or substantial portions of the Software.
+ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+ SOFTWARE.
+
+ Author: Benjamin Collins (collins@wsd.co.jp)
+
+**/
+
+
+html {
+
+	height: 100%;
+	padding: 0;
+	margin : 0;
+	background-color: #f2f2f2;
+
+}
+
+body {
+
+	height: 100%;
+	padding: 0;
+	margin: 0;
+	overflow: hidden;
+
+	--header-height: 44px;
+	--nav-width: 220px;
+
+	--staff:22%;
+
+	--mat-section-type:120px;
+	--mat-section-year:50px;
+	--mat-section-month:50px;
+	--mat-section-indent:100px;
+	--mat-section-authorizer:160px;
+	--mat-section-datetime:110px;
+	--mat-section-padding-top:10px;
+	--mat-section-padding-bottom:10px;
+
+	--mat-review-b: 5%;
+	--mat-review-c: 5%;
+	--mat-review-d: 5%;
+	--mat-review-e: 5%;
+	--mat-review-f: 16%;
+	--mat-review-g: 21%;
+	--mat-review-h: 5%;
+	--mat-review-i: 21%;
+	--mat-review-j: 5%;
+
+	--staff-table-edit: 7%;
+	--staff-table-edit_2: 14%;
+}
+
+header {
+
+	position: fixed;
+	left: 0;
+	top: 0;
+	width: 100%;
+	height: var(--header-height);
+	z-index: 100;
+	box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+	background-color: rgb(23, 85, 153);
+
+}
+
+header div.decor {
+
+	width: 400px;
+	height: 100%;
+	position: absolute;
+	left: 0;
+	top: 0;
+	background-color: rgba(255, 255, 255, 0.15);
+
+}
+
+header div.decor:after {
+
+	content: "";
+	display: block;
+	position: absolute;
+	top: 0;
+	left: 100%;
+	width: 0;
+	height: 0;
+	border-style: solid;
+	border-width: var(--header-height) 0 0 60px;
+	border-color: transparent transparent transparent rgba(255, 255, 255, 0.15);
+
+}
+
+header div.fill {
+
+	width: 100%;
+	height: 100%;
+	position :absolute;
+	left: 0;
+	top: 0;
+	z-index: 105;
+
+}
+
+header table {
+	
+	width: 100%;
+	height: 100%;
+	table-layout: fixed;
+	border-collapse: collapse;
+
+}
+
+header table td.icon {
+
+	width: 40px;
+	text-align: right;
+
+}
+
+header table td.icon:hover {
+
+	cursor: pointer;
+
+}
+
+header table td.crumbs {
+
+	color: #fff;
+	font-family: 'Montserrat', sans-serif;
+	font-size: 15px;
+
+}
+
+header table td.title {
+
+	width: 200px;
+
+}
+
+header table td.lang {
+
+	text-align: right;
+	color: #fff;
+	font-family: 'Montserrat', sans-serif;
+	font-size: 15px;
+	padding-right: 10px;
+
+}
+
+header table td.exit {
+
+	width: 120px;
+
+}
+
+header table td.exit div.area {
+
+	padding: 4px 10px 4px 50px;
+	color: rgb(255, 255, 255);
+	width: 40px;
+	display: block;
+	margin: auto;
+	border-radius: 5px;
+	background-image: url("/lib/img/exit_to_app-white-24dp.svg");
+	background-size: 28px 28px;
+	background-position: 10px center;
+	background-repeat: no-repeat;
+
+}
+
+header table td.exit div.area:hover {
+
+	cursor: pointer;
+	background-color: rgba(255, 255, 255, 0.4);
+
+}
+
+header table td.icon img {
+
+	position: relative;
+	top: 3px;
+	height: 28px;
+
+
+}
+
+header table h1 {
+
+	padding: 0;
+	margin: 0;
+	font-size: 18px;
+	color: #fff;
+	font-family: 'Montserrat', sans-serif;
+	letter-spacing: 5px;
+	text-indent: 14px;
+	font-weight: 400;
+
+}
+
+nav {
+
+	position: fixed;
+	left: 0;
+	top: var(--header-height);
+	z-index: 90;
+	background-color: #333642;
+	height: calc(100% - var(--header-height));
+	width: var(--nav-width);
+	/* box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23); */
+
+}
+
+nav ul {
+
+	padding: 0px 0;
+	margin: 0;
+
+}
+
+nav ul li {
+
+	list-style: none;
+	padding: 5px 0;
+	display: block;
+	margin: auto;
+	color: #fff;
+	position: relative;
+
+}
+
+nav ul li:before {
+
+	content: "";
+	margin: auto;
+	width: 0;
+	height: 0;
+	border-style: solid;
+	border-width: 8px 14px 8px 0;
+	border-color: transparent #e2e1e0 transparent;
+	position: absolute;
+	right: 0;
+	top: 14px;
+	display: none;
+
+}
+
+nav h3 {
+
+	color: #fff;
+	font-size: 16px;
+	margin: 0;
+	text-transform: uppercase;
+	padding: 15px 0;
+	letter-spacing: 2px;
+	text-indent: 20px;
+
+}
+
+nav ul li a {
+
+	display: block;
+	margin: auto;
+	font-family: 'Montserrat', sans-serif;
+	width: calc(100% - 20px);
+	margin-left: 10px;
+	padding: 8px 0;
+	border-radius: 5px;
+	text-indent: 40px;
+	font-size: 14px;
+	position: relative;
+
+}
+
+nav ul li a img {
+
+	position: absolute;
+	left: 10px;
+	height: 4px;
+	width: 22px;
+	height: 22px;
+
+}
+
+nav ul li.active:before {
+
+	display: block;
+
+}
+
+nav ul li.active {
+
+	background-color: #175599;
+
+}
+
+nav ul li.active a {
+
+	background-color: rgba(255, 255, 255, 0.0) !important;
+
+}
+
+nav ul li:hover {
+
+	cursor: pointer;
+	color: #00b9eb;
+
+}
+
+nav ul li:hover a {
+
+	background-color: rgba(255, 255, 255, 0.1);
+
+}
+
+section {
+
+	position: fixed;
+	left: var(--nav-width);
+	top: var(--header-height);
+	width: calc(100% - var(--nav-width));
+	height: calc(100% - var(--header-height));
+	background-color: #e2e1e0;
+
+}
+
+section article {
+
+	position: absolute;
+	left: 0;
+	top: 0;
+	width: 100%;
+	height: 100%;
+	opacity: 0;
+	pointer-events: none;
+	transform: translateY(10px);
+	transition opacity 250ms, transform 250ms;
+	overflow-y: auto;
+
+}
+
+section article.active {
+
+	opacity: 1;
+	transform: translateY(0px);
+	pointer-events: all;
+
+
+}
+
+section article div.header {
+
+	width: calc(100% - 20px);
+	padding-top: 10px;
+	height: 70px;
+	position: relative;
+	display: block;
+	margin: auto;
+
+}
+
+section article div.content {
+
+	width: 100%;
+	height: calc(100% - 80px);
+
+}
+
+section article div.content div.outline {
+
+	width: calc(100% - 20px);
+	height: calc(100% - 10px);
+	background-color: #fff;
+	display: block;
+	margin: auto;
+	overflow: hidden;
+
+	border-top-left-radius: 10px;
+	border-top-right-radius: 10px;
+	border-bottom-left-radius: 4px;
+	border-bottom-right-radius: 4px;
+	box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+
+}
+
+section article div.content div.outline div.thead {
+
+	width: 100%;
+	height: 54px;
+	border-bottom: 1px solid #bababa;
+	background-color: #f2f2f2;
+
+}
+
+section article div.content div.outline div.thead table {
+
+	width: calc(100% - var(--scroll-width));
+	height: 100%;
+	table-layout: fixed;
+	border-collapse: collapse;
+
+}
+
+section article div.content div.outline div.thead table td {
+
+	border-right: 1px solid #9a9a9a;
+	font-size: 14px;
+	text-align: center;
+
+}
+
+section article div.content div.outline div.tbody {
+
+	width: 100%;
+	height: calc(100% - 55px);
+	overflow-y: scroll;
+
+}
+
+section article div.content div.outline div.tbody li {
+
+	list-style: none;
+	border-bottom: 1px solid #9a9a9a;
+	width: 100%;
+	display: block;
+
+}
+
+section article div.content div.outline div.tbody li table {
+
+	width: 100%;
+	height: 100%;
+	table-layout: fixed;
+	border-collapse: collapse;
+
+}
+
+section article div.content div.outline div.tbody li table td {
+
+	border-right: 1px solid #9a9a9a;
+	font-size: 14px;
+
+}
+
+section article div.content div.outline div.tbody li table td input {
+
+	width: calc(100% - 24px);
+	padding: 0;
+	display: block;
+	margin: auto;
+
+}
+
+section article div.content div.outline table td.b0 {
+
+	width: 120px;
+
+}
+
+section article div.content div.outline table td.b4 {
+
+	width: 80px;
+	text-align: center;
+
+}
+
+section article div.content div.outline table td.b5 {
+
+	width: 150px;
+	text-align: center;
+
+}
+
+section article div.content div.outline table td.b6 {
+
+	width: 80px;
+
+}
+
+section article div.content div.outline table td.b6 span {
+
+	display: block;
+	margin: auto;
+	color: #133459;
+	text-align: center;
+
+}
+
+section article div.content div.outline table td.b6 span:hover {
+
+	cursor: pointer;
+	text-decoration: underline;
+
+}
+
+section article div.content div.outline table td.a0 {
+
+	width: 100px;
+
+}
+
+section article div.content div.outline table td.a9 {
+
+	width: 100px;
+
+}
+
+section article div.content div.outline table td.a9 button {
+
+	border-radius: 4px;
+	text-align: center;
+	border: 1px solid #999;
+	display: block;
+	margin: auto;
+	width: 80px;
+	padding: 4px 0;
+
+}
+
+section article div.content div.outline table td.a9 button:hover {
+
+	cursor: pointer;
+
+}
+
+section article div.header table {
+
+	width: 100%;
+	height: 100%;
+	table-layout: fixed;
+	border-collapse: collapse;
+	font-size: 15px;
+
+}
+
+section article div.header table td.title {
+
+	width: 200px;
+
+}
+
+section article div.header table td.angle {
+
+	width: 40px;
+	text-align: center;
+
+}
+
+section article div.header table td.display {
+	
+	width: 100px;
+	text-align: center;
+
+}
+
+section article div.header table td.label {
+
+	width: 50px;
+	text-align: center;
+
+}
+
+section article div.header table td.value {
+
+	width: 120px;
+
+}
+
+section article div.header table td.edit {
+
+	width: 120px;
+	text-align: center;
+	color: #1763a9;
+
+}
+
+section article div.header table td.download span:hover,
+section article div.header table td.edit span:hover {
+
+	cursor: pointer;
+	text-decoration: underline;
+
+}
+
+section article div.header table td.spacer {
+
+	width: 20px;
+
+}
+
+section article div.header table td.download {
+
+	width: 160px;
+	color: #1763a9;
+	text-align: right;
+
+}
+
+section article div.header table td.value input[type='text'] {
+
+	width: calc(100% - 18px);
+	display: block;
+	margin: auto;
+	padding: 4px 0;
+
+}
+
+section article div.header h2 {
+
+	padding: 0;
+	margin: 0;
+	font-size: 22px;
+	letter-spacing: 2px;
+	font-weight: 400;
+
+}
+
+section article div.header div.notice {
+
+	position: absolute;
+	right: 10px;
+	top: 0;
+	text-align: right;
+	color: #fff;
+	line-height: 60px;
+	color: #fff;
+
+}
+
+section article ul.reports {
+
+	padding: 0;
+	margin: 0 auto;
+	width: calc(100% - 20px);
+
+}
+
+section article ul.reports li {
+
+	list-style: none;
+	background-color: #fff;
+	border-radius: 5px;
+	box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+	height: 110px;
+	display: block;
+	margin: auto;
+
+}
+
+section article ul.reports li table {
+
+	width: 100%;
+	height: 100%;
+	table-layout: fixed;
+	border-collapse: collapse;
+
+}
+
+section article ul.reports li table td {
+
+	vertical-align: top;
+
+}
+
+div.modal-container {
+
+	position: fixed;
+	z-index: 50;
+	left: 0;
+	top: 0;
+	background-color: rgba(0,0,0,0.3);
+	width: 100%;
+	height: 100%;
+	opacity: 0;
+	pointer-events: none;
+	transition: opacity 300ms;
+
+}
+
+div.modal-container.open {
+
+	opacity: 1;
+	pointer-events: all;
+
+}
+
+div.modal-container div.modal {
+
+	width: 360px;
+	padding: 10px 30px;
+	background-color: #fff;
+	border-radius: 5px;
+	box-shaodw: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+	display: block;
+	margin: auto;
+	min-height: 300px;
+	transition: transform 300ms;
+
+}
+
+div.modal-container.open div.modal {
+
+	transform: translateY(80px);
+
+
+}
+
+div.modal-container div.modal h3 {
+
+	padding: 10px 0;
+	margin: 0;
+	text-align: center;
+	font-size: 20px;
+	font-weight: 400;
+	color: #133459;
+
+}
+
+div.modal-container div.modal li.label {
+
+	list-style: none;
+	padding: 8px 0;
+	font-size: 18px;
+
+}
+
+div.modal-container div.modal li.label span {
+
+	font-size: 14px;
+	color: #7a7a7a;
+
+}
+
+div.modal-container div.modal li.input {
+
+	list-style: none;
+
+}
+
+div.modal-container div.modal li.input input[type='text'],
+div.modal-container div.modal li.input input[type='number'] {
+
+	width: calc(100% - 10px);
+	padding: 4px 0;
+	text-indent: 10px;
+	border: 1px solid #9a9a9a;
+	border-radius: 4px;
+
+}
+
+div.modal-container div.modal li.input textarea {
+
+	width: calc(100% - 30px);
+	padding: 10px;
+	border: 1px solid #9a9a9a;
+	border-radius: 4px;
+	resize: none;
+	height: 30px;
+	font-size: 14px;
+
+}
+
+div.modal-container div.modal div.footer {
+
+	padding-top: 30px;
+	height: 40px;
+
+}
+
+div.modal-container div.modal div.footer table {
+
+	width: 100%;
+	height: 100%;
+	table-layout: fixed;
+	border-collapse: collapse;
+
+}
+
+div.modal-container div.modal div.footer table button {
+
+	width: 90%;
+	display: block;
+	margin: auto;
+	padding: 8px 0;
+	border-radius: 5px;
+
+}
+
+div.modal-container div.modal div.footer table button.cancel {
+
+	color: #133459;
+	border: 1px solid #133459;
+	background-color: transparent;
+
+}
+
+div.modal-container div.modal div.footer table button.cancel:hover {
+
+	cursor: pointer;
+	background-color: rgba(19, 52, 89, 0.3);
+
+}
+
+div.modal-container div.modal div.footer table button.accept {
+
+	color: #fff;
+	background-color: #133459;
+	border: 1px solid #133459;
+
+}
+
+div.modal-container div.modal div.footer table button.accept:hover {
+
+	cursor: pointer;
+	background-color: #1a4575;
+
+}
+
+section article {
+
+	--toolbar-height: 70px;
+
+}
+
+section article div.mat-header {
+
+	width: calc(100% - 20px);
+	height: calc(var(--toolbar-height) - 10px);
+	padding: 5px 10px;
+
+}
+
+section article div.mat-header table {
+
+	width: 100%;
+	height: 100%;
+	table-layout: fixed;
+	border-collapse: collapse;
+
+}
+
+section article div.mat-header table h3 {
+
+	padding-left: 10px;
+
+}
+
+section article div.mat-header table td.tool {
+
+	width: 180px;
+	padding-right: 8px;
+	text-align: right;
+
+}
+
+section article div.mat-header table td.tool span {
+
+	width: 140px;
+	text-align: center;
+	display: inline-block;
+	background-color: rgba(0,0,0,0.1);
+	border-radius: 8px;
+	padding: 10px 0;
+	position: relative;
+
+}
+
+section article div.mat-header table td.tool label span {
+
+	text-indent: 16px;
+	letter-spacing: 2px;
+
+}
+
+section article div.mat-header table td.tool span input[type='radio'] {
+
+	position: absolute;
+	left: 15px;
+
+}
+
+section article div.mat-header table td.tool span:hover {
+
+	cursor: pointer;
+	background-color: rgba(0,0,0,0.2);
+
+}
+
+section article div.mat-header table td.crumb {
+
+	width: 300px;
+
+}
+
+section article div.mat-header table td.add div.outline {
+	
+	width: 100%;
+	padding: 10px 0;
+	background-color: #fff;
+	text-indent: 80px;
+	overflow: hidden;
+	border-radius: 8px;
+	position: relative;
+	line-height: 30px;
+	box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
+
+}
+
+section article div.mat-header table td.add div.outline div.icon {
+
+	position: absolute;
+	height: 44px;
+	width: 44px;
+	position: absolute;
+	left: 20px;
+	top: 5px;
+	border-radius: 8px;
+	transition: background-color 200ms;
+
+	background-position: center;
+	background-size: 80%;
+	background-repeat: no-repeat;
+
+}
+
+section article div.mat-header table td.add div.outline:hover {
+
+	cursor: pointer;
+
+}
+
+section article div.mat-header table td.add div.outline:hover div.icon {
+
+	background-color: #3a6ea8;
+
+}
+
+section article div.mat-header table td.add div.outline div.icon.add {
+
+	background-image: url('/lib/img/plus-b.png');
+
+}
+
+section article div.mat-header table td.add div.outline:hover div.icon.add {
+
+	background-image: url('/lib/img/plus-w.png');
+
+}
+
+section article div.mat-header table td.add div.outline div.icon.refresh {
+
+	background-image: url('/lib/img/refresh-b.png');
+
+}
+
+section article div.mat-header table td.add div.outline:hover div.icon.refresh {
+
+	background-image: url('/lib/img/refresh-w.png');
+
+}
+
+section article div.mat-header table td.add div.outline div.icon.download {
+
+	background-image: url('/lib/img/download.png');
+
+}
+
+section article div.mat-header table td.add div.outline:hover div.icon.download {
+
+	background-image: url('/lib/img/download-w.png');
+
+}
+
+section article div.mat-header table td.add div.outline:before {
+
+	content: "";
+	display: block;
+	left: 0;
+	top: 0;
+	position: absolute;
+	width: 8px;
+	height: 100%;
+	background-color: #175599;
+
+}
+
+section article div.mat-header table td.add div.outline.status:before {
+
+	background-color: rgb(17, 149, 87);
+
+}
+
+section article div.mat-header table td.add {
+
+	width: 200px;
+
+}
+
+section article div.mat-header table td.crumb div.bread {
+	
+	width: 100%;
+	padding: 10px 0;
+	background-color: #fff;
+	text-indent: 40px;
+	overflow: hidden;
+	border-radius: 8px;
+	position: relative;
+	box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
+
+}
+
+section article div.mat-header table td.crumb div.bread:before {
+
+	content: "";
+	display: block;
+	left: 0;
+	top: 0;
+	position: absolute;
+	width: 8px;
+	height: 100%;
+	background-color: #3a6ea8;
+
+}
+
+section article div.mat-header table td.crumb div.bread.status:before {
+
+	background-color: #11663e;
+
+}
+
+section article div.mat-header table td.add div.outline.review:before,
+section article div.mat-header table td.crumb div.bread.review:before {
+
+	background-color: rgb(98, 8, 132);
+
+}
+
+section article div.mat-header table td.add div.outline.product:before,
+section article div.mat-header table td.crumb div.bread.product:before {
+
+	background-color: #60055d;
+
+}
+
+section article div.mat-header table td.add div.outline.aggregate:before,
+section article div.mat-header table td.crumb div.bread.aggregate:before {
+
+	background-color: #025e5e;
+
+}
+
+section article div.mat-header table td.add div.outline.location:before,
+section article div.mat-header table td.crumb div.bread.location:before {
+
+	background-color: #072d7f;
+
+}
+
+section article div.mat-header table td.add div.outline.dl:before,
+section article div.mat-header table td.crumb div.bread.dl:before {
+
+	background-color: #6b6908;
+
+}
+
+section article div.mat-header table td.crumb div.bread h3 {
+
+	padding: 0;
+	margin: 0;
+	font-size: 20px;
+	font-weight: 400;
+	line-height: 30px;
+
+}
+
+section article div.mat-section {
+
+	width: 100%;
+	height: calc(100% - var(--toolbar-height));
+	position: relative;
+
+}
+
+section article div.mat-section div.add-staff {
+
+	width: var(--staff);
+	height: calc(100% - 15px);
+	position: absolute;
+	top: 5px;
+	right: 10px;
+	background-color: #fff;
+	border-radius: 8px;
+	box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
+
+}
+
+section article div.mat-section div.add-staff.product {
+
+	height: auto;
+	padding-bottom: 40px;
+
+}
+
+section article div.mat-section div.add-staff h3 {
+
+	margin: 0;
+	padding: 20px 0;
+	text-align: center;
+	font-weight: 400;
+
+}
+
+section article div.mat-section div.add-staff form {
+
+	display: block;
+	min-height: 200px;
+	width: calc(100% - 80px);
+	display: block;
+	margin: auto;
+	padding-bottom: 10px;
+
+}
+
+section article div.mat-section div.add-staff form li.label {
+
+	font-size: 18px;
+	list-style: none;
+
+}
+
+section article div.mat-section div.staff-table {
+
+	width: calc(100% - var(--staff) - 30px);
+	height: calc(100% - 15px);
+	top: 5px;
+	left: 10px;
+	position: absolute;
+	background-color: #fff;
+	box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
+
+	border-top-right-radius: 15px;
+	border-top-left-radius: 15px;
+	border-bottom-right-radius: 8px;
+	border-bottom-left-radius: 8px;
+	overflow: hidden;
+
+}
+
+section article div.mat-section div.staff-table.split {
+
+	background-color: transparent;
+	box-shadow: none;
+	overflow: visible;
+
+}
+
+section article div.mat-section div.staff-table div.page {
+
+	position: absolute;
+	top: 0;
+	height: 100%;
+	width: calc(50% - 5px);
+	background-color: #fff;
+
+	box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
+	border-top-right-radius: 15px;
+	border-top-left-radius: 15px;
+	border-bottom-right-radius: 8px;
+	border-bottom-left-radius: 8px;
+	overflow: hidden;
+
+}
+
+section article div.mat-section div.staff-table div.page.left {
+
+	left: 0;
+
+}
+
+section article div.mat-section div.staff-table div.page.right {
+
+	right: 0;
+
+}
+
+section article div.mat-section div.staff-table div.thead {
+
+	width: 100%;
+	border-bottom: 1px solid #dadada;
+	height: 51px;
+	display: block;
+	margin: auto;
+	background-color: #5a6872;
+
+}
+
+section article div.mat-section div.staff-table div.thead table {
+
+	width: calc(100% - var(--scroll-width));
+	height: 100%;
+	table-layout: fixed;
+	border-collapse: collapse;
+	font-size: 15px;
+
+}
+
+section article div.mat-section div.staff-table div.thead table th {
+	
+	font-size: 15px;
+	letter-spacing: 2px;
+	color: #fff;
+	border-right: 1px solid rgba(255, 255, 255, 0.4);
+
+}
+
+section article div.mat-section div.staff-table div.tbody table td.type,
+section article div.mat-section div.staff-table div.thead table th.type {
+
+	width: 120px;
+
+}
+
+section article div.mat-section div.staff-table div.tbody table td.var,
+section article div.mat-section div.staff-table div.thead table th.var {
+
+	width: 120px;
+
+}
+
+section article div.mat-section div.staff-table div.tbody table td.next,
+section article div.mat-section div.staff-table div.thead table th.next {
+
+	width: 120px;
+
+}
+
+section article div.mat-section div.staff-table div.tbody table td.disabled {
+
+	background-color: rgba(0,0,0,0.05);
+
+}
+
+section article div.mat-section div.staff-table div.tbody table td.unit,
+section article div.mat-section div.staff-table div.thead table th.unit {
+
+	width: 80px;
+	text-align: center;
+
+}
+
+section article div.mat-section div.staff-table div.tbody table td.lock,
+section article div.mat-section div.staff-table div.thead table th.lock {
+
+	width: 120px;
+
+}
+
+section article div.mat-section div.staff-table div.tbody table td.la,
+section article div.mat-section div.staff-table div.thead table th.la {
+
+	width: 120px;
+
+}
+
+section article div.mat-section div.staff-table div.tbody table td.lb,
+section article div.mat-section div.staff-table div.thead table th.lb {
+
+	width: 10%;
+
+}
+
+section article div.mat-section div.staff-table div.tbody table td.lc,
+section article div.mat-section div.staff-table div.thead table th.lc {
+
+	width: 35%;
+
+}
+
+section article div.mat-section div.staff-table div.tbody table td.sa,
+section article div.mat-section div.staff-table div.thead table th.sa {
+
+	width: 70px;
+
+}
+
+section article div.mat-section div.staff-table div.tbody table td.sb,
+section article div.mat-section div.staff-table div.thead table th.sb {
+
+	width: 11%;
+
+}
+
+section article div.mat-section div.staff-table div.tbody table td.sc,
+section article div.mat-section div.staff-table div.thead table th.sc {
+
+	width: 190px;
+
+}
+
+section article div.mat-section div.staff-table div.tbody table td.se,
+section article div.mat-section div.staff-table div.thead table th.se {
+
+	width: 11%;
+	text-align: center;
+
+}
+
+section article div.mat-section div.staff-table div.tbody table td.sf,
+section article div.mat-section div.staff-table div.thead table th.sf {
+
+	width: 10%;
+
+}
+
+section article div.mat-section div.staff-table div.tbody table td.sf span {
+	
+	display: block;
+	margin: auto;
+
+}
+
+section article div.mat-section div.staff-table div.tbody table td.lc img {
+
+	height: 220px;
+	max-width: 100%;
+	display: block;
+	margin: auto;
+	border: 1px solid #e2e2e2;
+	border-radius: 4px;
+	padding: 4px;
+
+}
+
+section article div.mat-section div.staff-table div.tbody table td.ld pre {
+
+	text-indent: 0px;
+	height: 220px;
+	width: calc(100% - 20px);
+	display: block;
+	margin: auto;
+	border: 1px solid #e2e2e2;
+	border-radius: 4px;
+	padding: 4px;
+	font-size: 14px;
+	overflow-y: auto;
+
+}
+
+section article div.mat-section div.staff-table div.tbody {
+
+	width: 100%;
+	height: calc(100% - 94px);
+	overflow-y: scroll;
+	display: block;
+	margin: auto;
+
+}
+
+section article div.mat-section div.staff-table div.tfoot {
+
+	width: 100%;
+	border-top: 1px solid #dadada;
+	height: 41px;
+	display: block;
+	margin: auto;
+
+}
+
+section article div.mat-section div.staff-table div.tfoot table {
+
+	width: 100%;
+	height: 100%;
+	table-layout: fixed;
+	border-collapse: collapse;
+	font-size: 14px;
+	color: #555;
+
+}
+
+section article div.mat-section div.staff-table div.tfoot table span.btn {
+
+	color: #477cc6;
+	text-transform: uppercase;
+
+}
+
+section article div.mat-section div.staff-table div.tfoot table span.btn:hover {
+
+	cursor: pointer;
+	text-decoration: underline;
+
+}
+
+section article div.mat-section div.staff-table div.tfoot table span.btn:focus {
+
+	font-weight: bold;
+
+}
+
+section article div.mat-section div.staff-table div.tfoot table td.sel_a {
+
+	width: 120px;
+	text-indent: 4px;
+
+}
+
+section article div.mat-section div.staff-table div.tfoot table td.sel_b {
+
+	width: 120px;
+
+}
+
+section article div.mat-section div.staff-table div.tfoot table td.sel_c {
+
+	text-align: left;
+	text-indent: 20px;
+
+}
+
+section article div.mat-section div.staff-table div.tfoot table td.sel_d {
+
+	text-align: right;
+	padding-right: 10px;
+	width: 150px;
+
+}
+
+section article div.mat-section div.staff-table div.tfoot table td.sel_e {
+
+	text-align: right;
+	padding-right: 10px;
+	width: 210px;
+
+}
+
+section article div.mat-section div.staff-table div.tbody table {
+
+	width: 100%;
+	table-layout: fixed;
+	border-collapse: collapse;
+
+}
+
+section article div.mat-section div.staff-table div.tbody table tr.edit {
+
+	background-color: #f3f4d2 !important;
+
+}
+
+section article div.mat-section div.staff-table div.tbody table tr:nth-child(even).selected {
+
+	background-color: #e8f0f4;
+
+}
+
+section article div.mat-section div.staff-table div.tbody table tr:nth-child(odd).selected {
+
+	background-color: #edf7fc;
+
+}
+
+section article div.mat-section div.staff-table div.tbody table td {
+
+
+	padding-top: var(--mat-section-padding-top);
+	padding-bottom: var(--mat-section-padding-bottom);
+	font-size: 14px;
+	color: #333;
+	border-bottom: 1px solid #ccc;
+	border-right: 1px solid #ccc;
+
+}
+
+section article div.mat-section div.staff-table div.tbody table td a {
+
+	display: inline-block;
+	padding-left: 4px;
+
+}
+
+section article div.mat-section div.staff-table div.tbody table td a.lock {
+	
+	display: block;
+	padding-left: 0;
+	margin: auto;
+	text-align: center;
+
+}
+
+section article div.mat-section div.staff-table div.tbody table td a.lock.okay {
+
+	color: #108c1d;
+
+}
+
+section article div.mat-section div.staff-table div.tbody table td a.lock.ng {
+
+	color: #ba1626;
+
+}
+
+section article div.mat-section div.staff-table div.tbody table td a.lock:hover {
+
+	cursor: pointer;
+	text-decoration: underline;
+
+}
+
+section article div.mat-section div.staff-table div.tbody table td span {
+
+	color: #175599;
+
+}
+
+section article div.mat-section div.staff-table div.tbody table td span:hover {
+
+	cursor: pointer;
+	text-decoration: underline;
+
+}
+
+section article div.mat-section div.staff-table th.no,
+section article div.mat-section div.staff-table td.no {
+
+	width: 50px;
+	text-align: center;
+	text-indent: 0;
+
+}
+
+section article div.mat-section div.staff-table th.edit,
+section article div.mat-section div.staff-table td.edit {
+
+	width: var(--staff-table-edit);
+	text-align: center;
+	text-indent: 0;
+
+}
+
+section article div.mat-section div.staff-table th.edit_2,
+section article div.mat-section div.staff-table td.edit_2 {
+
+	width: var(--staff-table-edit_2);
+	text-align: center;
+	text-indent: 0;
+
+}
+
+section article div.mat-section div.staff-table td.edit span {
+
+	color: #175599;
+
+}
+
+section article div.mat-section div.staff-table td.edit span:hover {
+
+	cursor: pointer;
+	text-decoration: underline;
+
+}
+
+section article div.mat-section div.staff-table div.tbody tr:nth-child(odd) {
+
+	/* background-color: rgba(0,0,0,0.05); */
+
+}
+
+section article div.mat-section div.staff-table td {
+
+	text-indent: 3px;
+
+}
+
+section article div.mat-section div.add-staff form li.value {
+
+	list-style: none;
+	margin: 10px auto;
+
+}
+
+section article div.mat-section div.add-staff form li.value div.drop-area {
+
+	width: calc(100% - 2px);
+	height: 100px;
+	border: 1px solid #9a9a9a;
+	border-radius: 8px;
+	background-color: rgb(248, 250, 251);
+	position: relative;
+	overflow: hidden;
+
+}
+
+section article div.mat-section div.add-staff form li.value div.drop-area * {
+
+	pointer-events: none;
+
+}
+
+section article div.mat-section div.add-staff form li.value div.drop-area:hover {
+
+	cursor: pointer;
+
+}
+
+
+section article div.mat-section div.add-staff form li.value div.drop-area.hover div.cover {
+
+	transform: scale(0.98, 0.9);
+
+}
+
+section article div.mat-section div.add-staff form li.value div.drop-area:hover div.cover {
+
+	transform: scale(0.98, 0.9);
+
+}
+
+section article div.mat-section div.add-staff form li.value div.drop-area.open img,
+section article div.mat-section div.add-staff form li.value div.drop-area.open div.msg,
+section article div.mat-section div.add-staff form li.value div.drop-area.open div.dash {
+
+	display: none;
+
+}
+
+section article div.mat-section div.add-staff form li.value div.drop-area img {
+
+	position: absolute;
+	width: 40px;
+	height: 40px;
+	left: 10px;
+	top: calc(50% - 20px);
+
+}
+
+section article div.mat-section div.add-staff form li.value div.drop-area div.msg {
+
+	position: absolute;
+	display: flex;
+	color: #5c86e8;
+	width: 100%;
+	height: 100%;
+	text-align: center;
+	align-items: center;
+	justify-content: center;
+	text-indent: 30px;
+	font-size: 12px;
+
+}
+
+section article div.mat-section div.add-staff form li.value div.drop-area div.preview {
+
+	position: absolute;
+	left: 4px;
+	top: 4px;
+	width: calc(100% - 10px);
+	height: calc(100% - 10px);
+	background-image: url('/lib/img/placeholder-image10.jpg');
+	background-size: contain;
+	background-position: center;
+	background-repeat: no-repeat;
+	display: none;
+
+}
+
+section article div.mat-section div.add-staff form li.value div.drop-area.open div.preview {
+
+	display: block;
+
+}
+
+section article div.mat-section div.add-staff form li.value div.drop-area div.cover {
+
+	position: absolute;
+	left: 0;
+	right: 0;
+	width: 100%;
+	height: 100%;
+	background-color: rgba(168, 191, 244, 0.2);
+	z-index: 10;
+	transform: scale(0, 0);
+	transition: transform 200ms;
+	border-radius: 10px;
+
+}
+
+section article div.mat-section div.add-staff form li.value div.drop-area.over div.cover {
+
+	transform: scale(0.98, 0.95);
+
+}
+
+section article div.mat-section div.add-staff form li.value div.drop-area div.dash {
+
+	position: absolute;
+	left: 10px;
+	top: 10px;
+	border: 2px dashed #5c86e8;
+	width: calc(100% - 24px);
+	height: calc(100% - 24px);
+	border-radius: 5px;
+
+}
+
+section article div.mat-section div.add-staff form li.value div.drop-area div.msg {
+
+}
+
+section article div.mat-section div.add-staff form li.value div.drop-area input[type='file'] {
+
+	display: none;
+
+}
+
+
+section article div.mat-section div.add-staff div.json-area {
+
+	height: calc(100% - 500px);
+	width: calc(100% - 80px);
+	display: block;
+	margin: auto;
+
+}
+
+section article div.mat-section div.add-staff div.json-area textarea {
+
+	width: calc(100% - 10px);
+	height: calc(100% - 10px);
+	border: 1px solid #9a9a9a;
+	border-radius: 8px;
+	background-color: rgb(248, 250, 251);
+	padding: 4px;
+	font-size: 14px;
+	resize: none;
+
+}
+
+section article div.mat-section div.add-staff form li.value input[type='text'] {
+
+	padding: 10px 0;
+	text-indent: 10px;
+	width: 100%;
+	border: 1px solid #9a9a9a;
+	border-radius: 5px;
+
+}
+
+section article div.mat-section div.add-staff form li.value select {
+
+	padding: 10px 0;
+	text-indent: 4px;
+	width: 100%;
+	border: 1px solid #9a9a9a;
+	border-radius: 5px;
+
+}
+
+section article div.mat-section div.add-staff div.location {
+
+	height: calc(100% - 610px);
+	overflow-y: auto;
+	width: calc(100% - 80px);
+	display: block;
+	margin: auto;
+	border: 1px solid #ccc;
+	border-radius: 4px;
+
+}
+
+section article div.mat-section div.add-staff div.location label {
+
+	display: block;
+	padding: 6px 0;
+	font-size: 15px;
+	text-indent: 10px;
+
+}
+
+section article div.mat-section div.add-staff div.actions {
+
+	width: calc(100% - 80px);
+	display: block;
+	margin: auto;
+	height: 40px;
+	padding-top: 20px;
+
+}
+
+section article div.mat-section div.add-staff div.actions table {
+
+	width: 100%;
+	height: 100%;
+	table-layout: fixed;
+	border-collapse: collapse;
+
+}
+
+section article div.mat-section div.add-staff div.actions table td.space {
+
+	width: 20%;
+
+}
+
+section article div.mat-section div.add-staff div.actions table button.cancel {
+
+	border: 1px solid #175599;
+	border-radius: 10px;
+	width: 100%;
+	padding: 8px 0;
+	color: #175599;
+	font-size: 17px;
+	background-color: transparent;
+
+}
+
+section article div.mat-section div.add-staff div.actions table button.submit {
+
+	border: 1px solid #175599;
+	border-radius: 10px;
+	width: 100%;
+	padding: 8px 0;
+	color: #fff;
+	font-size: 17px;
+	background-color: #175599;
+
+}
+
+section article div.mat-section div.add-staff div.actions table button.submit:disabled {
+
+	pointer-events: none;
+	opacity: 0.5;
+
+}
+
+section article div.mat-section div.add-staff div.actions table button.cancel:hover,
+section article div.mat-section div.add-staff div.actions table button.submit:hover {
+
+	cursor: pointer;
+	box-shadow: rgba(100, 100, 234, 0.16) 0px 3px 6px, rgba(0, 15, 234, 0.23) 0px 3px 6px
+
+}
+
+section article div.mat-section div.status-table {
+
+	width: calc(100% - 20px);
+	height: calc(100% - 15px);
+	top: 5px;
+	left: 10px;
+	position: absolute;
+	background-color: #fff;
+	box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
+	border-radius: 15px 15px 8px 8px;
+	overflow: hidden;
+
+}
+
+section article div.mat-section div.status-table div.thead {
+
+	width: 100%;
+	border-bottom: 1px solid rgb(218, 218, 218);
+	height: 51px;
+	display: block;
+	margin: auto;
+	background-color: #5a6872;
+
+}
+
+section article div.mat-section div.status-table div.thead table {
+
+	width: calc(100% - var(--scroll-width));
+	height: 100%;
+	table-layout: fixed;
+	border-collapse: collapse;
+	font-size: 15px;
+	color: #fff;
+
+}
+
+section article div.mat-section div.status-table div.thead table th {
+
+	border-right: 1px solid #ccc;
+
+}
+
+section article div.mat-section div.status-table div.tbody {
+
+	width: 100%;
+	height: calc(100% - 104px);
+	overflow-y: scroll;
+	display: block;
+	margin: auto;
+
+}
+
+section article div.mat-section div.status-table div.tbody table {
+
+	width: 100%;
+	table-layout: fixed;
+	border-collapse: collapse;
+
+}
+
+section article div.mat-section div.status-table div.tbody table tr:nth-child(odd) {
+
+	background-color: rgba(0, 0, 0, 0.05);
+
+}
+
+section article div.mat-section div.status-table div.tbody table td {
+
+	padding-top: var(--mat-section-padding-top);
+	padding-bottom: var(--mat-section-padding-bottom);
+	font-size: 14px;
+	color: rgb(51, 51, 51);
+	border-bottom: 1px solid rgb(204, 204, 204);
+	border-right: 1px solid #9a9a9a;
+
+}
+
+section article div.mat-section div.status-table div.tbody table td.indent {
+
+	text-indent: 4px;
+
+}
+
+section article div.mat-section div.status-table div.tfoot {
+
+	width: 100%;
+	border-top: 1px solid rgb(218, 218, 218);
+	height: 50px;
+	display: block;
+	margin: auto;
+
+}
+
+section article div.mat-section div.status-table div.tfoot table {
+
+	width: 100%;
+	height: 100%;
+	table-layout: fixed;
+	border-collapse: collapse;
+
+}
+
+section article div.mat-section div.status-table div.tfoot table td.num span {
+
+	color: #175599;
+	padding: 4px;
+	border-radius: 100%;
+	display: block;
+	width: 30px;
+	height: 30px;
+	text-align: center;
+	line-height: 30px;
+	margin: auto;
+
+}
+
+section article div.mat-section div.status-table div.tfoot table td.word span {
+
+	color: #175599;
+	padding: 6px 8px;
+	border-radius: 5px;
+
+}
+
+section article div.mat-section div.status-table div.tfoot table td.num span.active {
+
+	background-color: rgba(190, 240, 247, 0.3);
+
+}
+
+section article div.mat-section div.status-table div.tfoot table td.num span:hover,
+section article div.mat-section div.status-table div.tfoot table td.word span:hover {
+
+	cursor: pointer;
+	background-color: rgba(190, 240, 247, 0.3);
+
+}
+
+section article div.mat-section div.status-table div.tfoot table td.word {
+
+	width: 80px;
+
+}
+
+section article div.mat-section div.status-table div.tfoot table td {
+
+	text-align: center;
+
+}
+
+section article div.mat-section div.status-table div.tfoot table td.label {
+
+	text-indent: 8px;
+	font-size: 15px;
+	color: #3a3a3a;
+	width: 110px;
+
+}
+
+section article div.mat-section div.status-table div.tfoot table td.ndate {
+
+	font-size: 15px;
+	color: #484848;
+	text-align: left;
+
+}
+
+section article div.mat-section div.status-table div.tfoot table td.count {
+
+	width: 90px;
+	text-align: center;
+	font-size: 15px;
+	color: #484848;
+
+}
+
+section article div.mat-section div.status-table div.tfoot table td.submit {
+
+	width: 160px;
+
+}
+
+section article div.mat-section div.status-table div.tfoot table td.submit button {
+
+	color: #fff;
+	background-color: #175599;
+	width: calc(100% - 10px);
+	display: block;
+	margin: auto;
+	padding: 7px 0;
+	border: none;
+	border-radius: 5px;
+	font-weight: bold;
+	font-size: 15px;
+
+}
+
+section article div.mat-section div.status-table div.tfoot table td.submit button:hover {
+
+	cursor: pointer;
+
+}
+
+section article div.mat-section div.status-table div.tfoot table td.submit button:disabled {
+	
+	font-weight: normal;
+	background-color: #e8f6fc;
+	color: #757777;
+	pointer-events: none;
+	opacity: 0.7;
+
+}
+
+section article div.mat-section div.status-table table th.no,
+section article div.mat-section div.status-table table td.no {
+
+	text-align: center;
+	width: 50px;
+
+}
+
+section article div.mat-section div.status-table table th.type,
+section article div.mat-section div.status-table table td.type {
+
+	text-align: center;
+	width: var(--mat-section-type);
+
+}
+
+section article div.mat-section div.status-table table th.year,
+section article div.mat-section div.status-table table td.year {
+
+	text-align: center;
+	width: var(--mat-section-year);
+
+}
+
+section article div.mat-section div.status-table table th.month,
+section article div.mat-section div.status-table table td.month {
+
+	text-align: center;
+	width: var(--mat-section-month);
+
+}
+
+section article div.mat-section div.status-table table th.action {
+
+	width: 163px;
+
+}
+
+section article div.mat-section div.status-table table td.action {
+
+	width: 80px;
+	text-align: center;
+
+}
+
+section article div.mat-section div.status-table table td.action span {
+
+	color: #175599;
+
+}
+
+section article div.mat-section div.status-table table td.action span.disabled {
+
+	opacity: 0.4;
+	pointer-events: none;
+
+}
+
+section article div.mat-section div.status-table table td.action span.hide {
+
+	display: none;
+
+}
+
+section article div.mat-section div.status-table table td.action span:hover {
+
+	cursor: pointer;
+	text-decoration: underline;
+
+}
+
+section article div.mat-section div.status-table table th.date,
+section article div.mat-section div.status-table table td.date {
+
+	text-align: center;
+	width: 100px;
+
+}
+
+section article div.mat-section div.status-table table td.location {
+
+	text-indent: 10px;
+
+}
+
+section article div.mat-section div.status-table table th.indent,
+
+	text-align: center;
+
+}
+
+section article div.mat-section div.status-table table td.indent,
+
+	text-indent: 4px;
+
+}
+
+section article div.mat-section div.status-table table th.indent,
+section article div.mat-section div.status-table table td.indent {
+
+	width: var(--mat-section-indent);
+
+}
+
+section article div.mat-section div.status-table table th.authorizer,
+section article div.mat-section div.status-table table td.authorizer {
+
+	text-align: center;
+	width: var(--mat-section-authorizer);
+
+}
+
+section article div.mat-section div.status-table table th.datetime,
+section article div.mat-section div.status-table table td.datetime {
+
+	text-align: center;
+	width: var(--mat-section-datetime);
+
+}
+
+section article div.mat-section div.status-table table th.icon,
+section article div.mat-section div.status-table table td.icon {
+
+	text-align: center;
+	width: 80px;
+
+}
+
+section article div.mat-section div.status-table table td.icon span {
+
+	display: block;
+	margin: auto;
+	width: 36px;
+	height: 36px;
+	border: 1px solid #333;
+	border-radius: 100%;
+
+	background-image: url('/lib/img/download.png');
+	background-size: 70%;
+	background-position: center;
+	background-repeat: no-repeat;
+
+}
+
+section article div.mat-section div.status-table table td.icon span:hover {
+
+	cursor: pointer;
+	background-color: rgba(0,0,0,0.1);
+
+}
+
+section article div.mat-section div.status-table table td select {
+
+	width: calc(100% - 20px);
+	border: 1px solid #9a9a9a;
+	border-radius: 5px;
+	display: block;
+	margin: auto;
+	padding: 9px 0;
+
+}
+
+section article div.mat-section div.status-table table td select:disabled {
+
+	appearance: none;
+	border: 1px solid transparent;
+	background-color: transparent;
+
+}
+
+section article div.mat-section div.status-table table td input[type='text'] {
+
+	width: calc(100% - 20px);
+	border: 1px solid #9a9a9a;
+	border-radius: 5px;
+	display: block;
+	margin: auto;
+	padding: 9px 0;
+	text-indent: 10px;
+
+}
+
+section article div.mat-section div.mat-hopper {
+
+	position: absolute;
+	left: 10px;
+	top: 5px;
+	height: calc(100% - 15px);
+	background-color: #fff;
+	border-radius: 15px 15px 8px 8px;
+	width: calc(300px - 2px);
+	box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
+	overflow: hidden;
+	border: 1px solid #a8a8a8;
+	background-color: #ccc;
+
+}
+
+section article div.mat-section div.mat-review {
+
+	position: absolute;
+	left: 320px;
+	top: 5px;
+	height: calc(100% - 225px);
+	background-color: #fff;
+	border-radius: 15px 15px 4px 4px;
+	width: calc(100% - 330px);
+	box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
+	overflow: hidden;
+
+}
+
+section article div.mat-section div.mat-comment {
+
+	position: absolute;
+	left: 320px;
+	bottom: 10px;
+	height: 200px;
+	width: calc(100% - 330px);
+
+}
+
+section article div.mat-section div.mat-hopper div.head {
+
+	width: 100%;
+	height: calc(50px - 1px);
+	border-bottom: 1px solid #a8a8a8;
+	background-color: #5a6872;
+	position: relative;
+
+}
+
+section article div.mat-section div.mat-hopper div.head div.btn {
+
+	position: absolute;
+	left: 8px;
+	top: 8px;
+	width: 34px;
+	height: 34px;
+	border-radius: 5px;
+	
+	opacity: 0.8;
+	background-image: url('/lib/img/refresh-w.png');
+	background-position: center;
+	background-size: 70%;
+	background-repeat: no-repeat;
+
+}
+
+section article div.mat-section div.mat-hopper div.head div.cnt {
+
+	position: absolute;
+	right: 8px;
+	top: 8px;
+	height: 34px;
+	border-radius: 5px;
+	color: #fff;
+	text-align: right;
+	font-size: 14px;
+	line-height: 34px;
+	
+}
+
+section article div.mat-section div.mat-hopper div.head div.btn:hover {
+
+	cursor: pointer;
+	background-color: rgba(255, 255, 255, 0.2);
+
+}
+
+section article div.mat-section div.mat-hopper div.head table {
+
+	width: 100%;
+	height: 100%;
+	table-layout: fixed;
+	border-collapse: collapse;
+	
+	font-size: 15px;
+	color: #fff;
+	text-indent: 10px;
+
+}
+
+section article div.mat-section div.mat-hopper div.body {
+
+	height: calc(100% - 95px);
+	overflow-y: scroll;
+	background-color: #fff;
+
+}
+
+section article div.mat-section div.mat-hopper div.body li {
+
+	list-style: none;
+	min-height: 90px;
+	border-bottom: 1px dashed #9a9a9a;
+
+}
+
+section article div.mat-section div.mat-hopper div.body li.active {
+
+	background-color: #e3f6fc !important;
+
+}
+
+section article div.mat-section div.mat-hopper div.body li:hover {
+
+	cursor: pointer;
+	background-color: #e8f0f2;
+
+}
+
+section article div.mat-section div.mat-hopper div.body li table {
+
+	width: 100%;
+	table-layout: fixed;
+	border-collapse: collapse;
+	font-size: 14px;
+
+}
+
+section article div.mat-section div.mat-hopper div.body li table tr td {
+
+	padding-top: 4px;
+	padding-bottom: 4px;
+
+}
+
+section article div.mat-section div.mat-hopper div.body li table tr td:first-child {
+
+	text-indent: 10px;
+	width: 140px;
+
+}
+
+section article div.mat-section div.mat-hopper div.body li table tr td:last-child {
+
+	text-align: right;
+	padding-right: 10px;
+
+}
+
+section article div.mat-section div.mat-hopper div.foot {
+
+	width: 100%;
+	height: calc(45px - 1px);
+	border-top: 1px solid #a8a8a8;
+	background-color: #5a6872;
+
+}
+
+section article div.mat-section div.mat-hopper div.foot table {
+
+	width: 100%;
+	height: 100%;
+	table-layout: fixed;
+	border-collapse: collapse;
+
+}
+
+section article div.mat-section div.mat-hopper div.foot table span {
+
+	color: #fff;
+	font-size: 14px;
+	text-align: center;
+	width: calc(100% - 10px);
+	display: block;
+	margin: auto;
+	background-color: rgba(255, 255, 255, 0.1);
+	border-radius: 5px;
+	padding: 4px 0;
+
+}
+
+section article div.mat-section div.mat-hopper div.foot table span:hover {
+
+	cursor: pointer;
+	background-color: rgba(255, 255, 255, 0.2);
+
+}
+
+section article div.mat-section div.mat-hopper div.foot table span.active {
+
+	background-color: rgba(255, 255, 255, 0.35);
+
+}
+
+section article div.mat-section div.mat-review div.head {
+
+	height: 50px;
+	width: 100%;
+	background-color: #5a6872;
+
+}
+
+section article div.mat-section div.mat-review div.head table {
+
+	width: calc(100% - var(--scroll-width));
+	height: 100%;
+	table-layout: fixed;
+	border-collapse: collapse;
+	color: #fff;
+
+}
+
+section article div.mat-section div.mat-review div.head table td {
+
+	border-right: 1px solid #9a9a9a;
+	border-bottom: 1px solid #9a9a9a;
+	font-size: 14px;
+	text-align: center;
+
+}
+
+section article div.mat-section div.mat-review div.body {
+
+	height: calc(100% - 50px);
+	width: 100%;
+	overflow-y: scroll;
+
+}
+
+section article div.mat-section div.mat-review div.body table {
+
+	width: 100%;
+	table-layout: fixed;
+	border-collapse: collapse;
+
+}
+
+section article div.mat-section div.mat-review div.body table.fill {
+
+	height: 100%;
+
+}
+
+section article div.mat-section div.mat-review div.body table tr:nth-child(even) td {
+
+	background-color: #f8f8f8;
+
+}
+
+section article div.mat-section div.mat-review div.body table td {
+	
+	font-size: 15px;
+	padding-top: 8px;
+	padding-bottom: 8px;
+	border-right: 1px solid #9a9a9a;
+	border-bottom: 1px solid #9a9a9a;
+
+}
+
+section article div.mat-section div.mat-review div.body table tr:last-child td {
+
+	border-bottom: none;
+
+}
+
+section article div.mat-section div.mat-review div.head table td.a,
+section article div.mat-section div.mat-review div.body table td.a {
+
+	width: 50px;
+	text-align: center;
+
+}
+
+section article div.mat-section div.mat-review div.head table td.b,
+section article div.mat-section div.mat-review div.body table td.b {
+
+	width: var(--mat-review-b);
+	text-align: center;
+
+}
+
+section article div.mat-section div.mat-review div.head table td.c,
+section article div.mat-section div.mat-review div.body table td.c {
+
+	width: var(--mat-review-c);
+	text-align: center;
+
+}
+
+section article div.mat-section div.mat-review div.head table td.d,
+section article div.mat-section div.mat-review div.body table td.d {
+
+	width: var(--mat-review-d);
+	text-align: center;
+
+}
+
+section article div.mat-section div.mat-review div.head table td.e,
+section article div.mat-section div.mat-review div.body table td.e {
+
+	width: var(--mat-review-e);
+	text-align: center;
+
+}
+
+section article div.mat-section div.mat-review div.head table td.f,
+section article div.mat-section div.mat-review div.body table td.f {
+
+	width: var(--mat-review-f);
+
+}
+
+section article div.mat-section div.mat-review div.head table td.f {
+	
+	text-align: center;
+
+}
+
+section article div.mat-section div.mat-review div.body table td.f {
+	
+	text-indent: 10px;
+
+}
+
+section article div.mat-section div.mat-review div.head table td.g,
+section article div.mat-section div.mat-review div.body table td.g {
+
+	width: var(--mat-review-g);
+	text-align: center;
+
+}
+
+section article div.mat-section div.mat-review div.head table td.h,
+section article div.mat-section div.mat-review div.body table td.h {
+
+	width: var(--mat-review-h);
+	text-align: center;
+
+}
+
+section article div.mat-section div.mat-review div.head table td.i,
+section article div.mat-section div.mat-review div.body table td.i {
+
+	width: var(--mat-review-i);
+	text-align: center;
+
+}
+
+section article div.mat-section div.mat-review div.head table td.j,
+section article div.mat-section div.mat-review div.body table td.j {
+
+	width: var(--mat-review-j);
+	text-align: center;
+
+}
+
+section article div.mat-section div.mat-review div.head table td.k {
+
+	text-align: center;
+
+}
+
+section article div.mat-section div.mat-review div.body table td.k {
+	
+	text-indent: 10px;
+
+}
+
+section article div.mat-section div.mat-review div.body table td div.flex {
+
+	width: 100%;
+	display: flex;
+	justify-content: space-between;
+
+}
+
+section article div.mat-section div.mat-review div.body table td div.flex input {
+
+	display: block;
+	margin: auto;
+	border: 1px solid #dadada;
+	border-radius: 3px;
+	width: calc(25% - 10px);
+	padding: 4px 0;
+	text-align: center;
+	background-color: transparent;
+
+}
+
+section article div.mat-section div.mat-review div.body table td div.flex input:disabled {
+
+	background-color: rgba(0,0,0,0.03);
+
+}
+
+section article div.mat-section div.mat-review div.body table.filled {
+
+	height: 100%;
+
+}
+
+section article div.mat-section div.mat-review div.foot {
+
+	border-top: 1px solid #a9a9a9;
+	height: 39px;
+	width: 100%;
+
+}
+
+section article div.mat-section div.mat-review div.foot table {
+
+	width: 100%;
+	height: 100%;
+	table-layout: fixed;
+	border-collapse: collapse;
+	font-size: 14px;
+
+}
+
+section article div.mat-section div.mat-review div.foot table td.label {
+
+	text-indent: 10px;
+	color: #8a8a8a;
+
+}
+
+section article div.mat-section div.mat-review div.foot table td.scroll {
+
+	width: 40px;
+
+}
+
+section article div.mat-section div.mat-review div.foot table td.radio {
+
+	text-align: right;
+	width: 240px;
+
+}
+
+section article div.mat-section div.mat-review div.foot table td.radio label {
+
+	width: 180px;
+	display: block;
+	margin: auto;
+	color: #175599;
+	border: 1px solid #175599;
+	border-radius: 8px;
+	text-align: center;
+	padding: 2px 0;
+
+}
+
+section article div.mat-section div.mat-review div.foot table td.radio label:hover {
+
+	cursor: pointer;
+	background-color: rgba(210, 239, 238, 0.8);
+
+}
+
+section article div.mat-section div.mat-review div.foot table td.radio label.selected {
+
+	background-color: rgba(210, 239, 238, 0.8);
+
+}
+
+section article div.mat-section div.mat-review div.foot table td.radio label input[type='radio'] {
+
+	margin-right: 12px;
+	position: relative;
+	top: 1px;
+
+}
+
+section article div.mat-section div.mat-comment div.stats {
+
+	width: 270px;
+	height: calc(100% - 10px);
+	left: 0;
+	top: 0;
+	position: absolute;
+	background-color: #fff;
+	border-radius: 8px;
+	box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
+	padding: 5px 10px;
+
+}
+
+section article div.mat-section div.mat-comment div.stats table {
+
+	width: 100%;
+	height: 100%;
+	table-layout: fixed;
+	border-collapse: collapse;
+	font-size: 14px;
+
+}
+
+section article div.mat-section div.mat-comment div.stats table tr:nth-child(odd) {
+
+	background-color: #f2f2f2;
+
+}
+
+section article div.mat-section div.mat-comment div.stats table tr td:first-child {
+
+	text-indent: 5px;
+
+}
+
+section article div.mat-section div.mat-comment div.stats table tr td:last-child {
+
+	text-align: right;
+	padding-right: 4px;
+
+}
+
+section article div.mat-section div.mat-comment div.approve {
+
+	width: calc(50% - 102px);
+	height: calc(100% - 2px);
+	position: absolute;
+	right: 0;
+	top: 0;
+	background-color: rgba(0,0,0,0.1);
+	border: 1px solid #9a9a9a;
+
+}
+
+section article div.mat-section div.mat-comment div.reject {
+
+	width: calc(50% - 102px);
+	height: calc(100% - 2px);
+	position: absolute;
+	left: 200px;
+	top: 0;
+	background-color: rgba(0,0,0,0.1);
+	border: 1px solid #9a9a9a;
+
+}
+
+section article div.mat-section div.mat-comment div.auth-widget {
+
+	width: calc(500px - 2px);
+	height: calc(100% - 2px);
+	background-color: #fff;
+	border-radius: 15px 15px 8px 8px;
+	box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
+	z-index: 10;
+	position: absolute;
+	top: 0;
+	right: 0;
+	border: 1px solid #a9a9a9;
+	overflow: hidden;
+
+}
+
+section article div.mat-section div.mat-comment div.reject-widget {
+
+	width: calc(500px - 2px);
+	height: calc(100% - 2px);
+	background-color: #fff;
+	border-radius: 15px 15px 8px 8px;
+	box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
+	z-index: 20;
+	position: absolute;
+	top: 0;
+	right: 0px;
+	border: 1px solid #a9a9a9;
+
+}
+
+section article div.mat-section div.mat-comment div.select-widget {
+
+	position: absolute;
+	z-index: 10;
+	right: 510px;
+	width: 40px;
+	top: 0;
+	height: 100%;
+
+}
+
+section article div.mat-section div.mat-comment div.select-widget.disabled {
+
+	opacity: 0.3;
+	pointer-events: none;
+
+}
+
+section article div.mat-section div.mat-comment div.reject-widget.hide {
+
+	display: none;
+
+}
+
+section article div.mat-section div.mat-comment div.select-widget div.card {
+
+	width: calc(100% - 4px);
+	border: 2px solid #175599;
+	border-radius: 15px;
+	height: calc(50% - 8px);
+	position: absolute;
+	left: 0;
+	color: #175599;
+
+}
+
+section article div.mat-section div.mat-comment div.select-widget div.card.active {
+
+	color: #fff;
+	background-color: #175599;
+	pointer-events: none;
+
+}
+
+section article div.mat-section div.mat-comment div.select-widget div.card:hover {
+
+	cursor: pointer;
+	background-color: rgba(0,0,0,0.05);
+
+}
+
+section article div.mat-section div.mat-comment div.select-widget div.card table {
+
+	width: 100%;
+	height: 100%;
+	table-layout: fixed;
+	border-collapse: collapse;
+	font-size: 16px;
+	text-align: center;
+
+}
+
+section article div.mat-section div.mat-comment div.select-widget div.card.bottom {
+
+	bottom: 0;
+
+}
+
+section article div.mat-section div.mat-comment div.auth-widget.disabled,
+section article div.mat-section div.mat-comment div.reject-widget.disabled {
+
+	opacity: 0.4;
+	pointer-events: none;
+
+}
+
+section article div.mat-section div.mat-comment div.auth-widget div.thead {
+
+	height: 40px;
+	background-color: #5a6872;
+	color: #fff;
+
+}
+
+section article div.mat-section div.mat-comment div.auth-widget div.tbody {
+
+	height: calc(100% - 40px);
+
+}
+
+section article div.mat-section div.mat-comment div.auth-widget div.thead table,
+section article div.mat-section div.mat-comment div.auth-widget div.tbody table {
+
+	width: 100%;
+	height: 100%;
+	table-layout: fixed;
+	border-collapse: collapse;
+	text-align: center;
+	font-size: 15px;
+
+}
+
+section article div.mat-section div.mat-comment div.auth-widget div.thead table td {
+
+	border-right: 1px solid #9a9a9a;
+	border-bottom: 1px solid #9a9a9a;
+
+}
+
+section article div.mat-section div.mat-comment div.auth-widget div.tbody table td {
+
+	border-right: 1px solid #9a9a9a;
+
+}
+
+section article div.mat-section div.mat-comment div.auth-widget div.thead table tr td:last-child,
+section article div.mat-section div.mat-comment div.auth-widget div.tbody table tr td:last-child {
+
+	border-right: none;
+
+}
+
+section article div.mat-section div.mat-comment div.auth-widget div.tbody table td canvas {
+
+	display: block;
+	margin: auto;
+
+}
+
+section article div.mat-section div.mat-comment div.auth-widget div.tbody table td canvas.active:hover {
+
+	cursor: pointer;
+
+}
+
+section article div.mat-section div.mat-comment div.reject-widget div.comment {
+
+	position: absolute;
+	left: 10px;
+	top: 10px;
+	width: calc(100% - 140px);
+	border: 1px solid #bababa;
+	height: calc(100% - 60px);
+	border-radius: 8px;
+	background-color: #f2f2f2;
+
+}
+
+section article div.mat-section div.mat-comment div.reject-widget div.comment textarea {
+
+	width: calc(100% - 10px);
+	height: calc(100% - 10px);
+	padding: 5px;
+	border: none;
+	background-color: transparent;
+	resize: none;
+	font-size: 15px;
+
+}
+
+section article div.mat-section div.mat-comment div.reject-widget div.msg {
+
+	position: absolute;
+	left: 10px;
+	bottom: 10px;
+	width: calc(100% - 20px);
+	height: 34px;
+
+}
+
+section article div.mat-section div.mat-comment div.reject-widget div.msg table {
+
+	width: 100%;
+	height: 100%;
+	table-layout: fixed;
+	border-collapse: collapse;
+	font-size: 14px;
+
+}
+
+section article div.mat-section div.mat-comment div.reject-widget div.msg table td.label {
+
+	width: 90px;
+
+}
+
+section article div.mat-section div.mat-comment div.reject-widget div.msg table td.button {
+
+	width: 110px;
+
+}
+
+
+section article div.mat-section div.mat-comment div.reject-widget div.buttons {
+
+	position: absolute;
+	right: 10px;
+	top: 10px;
+	height: calc(100% - 60px);
+	width: 110px;
+
+}
+
+section article div.mat-section div.mat-comment div.reject-widget div.msg table td.button div.button {
+
+	display: block;
+	width: calc(100% - 2px);
+	border: 1px solid #175599;
+	border-radius: 8px;
+	color: #175599;
+	text-align: center;
+	padding: 4px 0;
+	display: block;
+	margin: auto;
+	
+}
+
+
+section article div.mat-section div.mat-comment div.reject-widget div.msg table td.button div.button.disabled {
+	
+	opacity: 0.5;
+	pointer-events: none;
+
+}
+
+section article div.mat-section div.mat-comment div.reject-widget div.msg table td.button div.button:hover {
+
+	cursor: pointer;
+	background-color: rgba(210, 239, 238, 0.8);
+
+}
+
+section article div.mat-section div.mat-comment div.reject-widget div.buttons table {
+
+	width: 100%;
+	table-layout: fixed;
+	border-collapse: collapse;
+	font-size: 15px;
+
+}
+
+section article div.mat-section div.mat-comment div.reject-widget div.buttons table td {
+
+	padding-top: 8px;
+	padding-bottom: 8px;
+
+}

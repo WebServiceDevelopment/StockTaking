@@ -1,0 +1,259 @@
+<!--
+
+ MIT License
+ Copyright 2020 Web Service Development Inc.
+
+ Permission is hereby granted, free of charge, to any person obtaining a copy
+ of this software and associated documentation files (the "Software"), to deal
+ in the Software without restriction, including without limitation the rights
+ to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ copies of the Software, and to permit persons to whom the Software is
+ furnished to do so, subject to the following conditions:
+
+ The above copyright notice and this permission notice shall be included in all
+ copies or substantial portions of the Software.
+ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+ SOFTWARE.
+
+ Author: Benjamin Collins (collins.wsd.co.jp)
+
+-->
+
+<!doctype html>
+<html>
+
+	<head>
+
+		<title>棚卸システム | Setup</title>
+		
+		<meta charset='utf-8'/>
+		<meta name='viewport' content='initial-scale=1.0, user-scalable=no' />
+
+		<link href='https://fonts.googleapis.com/css2?family=Mukta' rel='stylesheet'>
+		<link rel='shortcut icon' type='image/png' href='/lib/img/Blueprint.png'/>
+		<link rel='stylesheet' type'text/css' href='css/layout.css'/>
+		<link href="/lib/Font-Awesome/css/all.css" rel="stylesheet">
+
+	</head>
+
+	<body>
+		
+		<div class='bg'></div>
+		<div class='clr'></div>
+
+		<div class='padding'></div>
+
+		<main>
+
+			<h1>
+				<i class="fas fa-clipboard-list"></i> StockTaking
+			</h1>
+			
+			<!--
+			<h3 class='none'>Database:</h3>
+
+			<div class='area'>
+				
+				<table>
+					<tr>
+						<td class='label'>
+							Database Format:
+						</td>
+						<td>
+							<select id='SetupManager.database.format'>
+								<option>SQLite</option>
+							</select>
+						</td>
+						<td class='button'></td>
+					</tr>
+				</table>
+				<table>
+					<tr>
+						<td class='indent right'>
+							Hostname:
+						</td>
+						<td>
+							<input type='text' id='SetupManager.database.hostname'/>
+						</td>
+						<td class='button'></td>
+					</tr>
+					<tr>
+						<td class='indent right'>
+							Username:
+						</td>
+						<td>
+							<input type='text' id='SetupManager.database.username'/>
+						</td>
+						<td class='button'></td>
+					</tr>
+					<tr>
+						<td class='indent right'>
+							Password:
+						</td>
+						<td>
+							<input type='text' id='SetupManager.database.password'/>
+						</td>
+						<td class='button'></td>
+					</tr>
+					<tr>
+						<td class='indent right'>
+							Port:
+						</td>
+						<td>
+							<input type='text' id='SetupManager.database.port'/>
+						</td>
+						<td class='button'></td>
+					</tr>
+					<tr>
+						<td class='indent right'>
+							Database Name:
+						</td>
+						<td>
+							<input type='text' id='SetupManager.database.name'/>
+						</td>
+						<td class='button'></td>
+					</tr>
+				</table>
+
+			</div>
+			-->
+			
+			<h3>Admin User:</h3>
+			
+			<div class='area'>
+				
+				<table>
+					<tr>
+						<td class='label'>
+							Admin Login Id:
+						</td>
+						<td>
+							<input type='text' id='SetupManager.admin.login_id' placeholder='takana_tarou'/>
+						</td>
+						<td class='button'></td>
+					</tr>
+					<tr>
+						<td class='label'>
+							Admin Email:
+						</td>
+						<td>
+							<input type='text' id='SetupManager.admin.email' placeholder='t.tanaka@my_company.com'/>
+						</td>
+						<td class='button'></td>
+					</tr>
+					<tr>
+						<td class='label'>
+							Admin Display Name:
+						</td>
+						<td>
+							<input type='text' id='SetupManager.admin.display' placeholder='田中　太郎'/>
+						</td>
+						<td class='button'>
+						</td>
+					</tr>
+					<tr>
+						<td class='label'>
+							Admin Password:
+						</td>
+						<td>
+							<input type='text' id='SetupManager.admin.password' placeholder='8文字以上のパスワード'/>
+						</td>
+						<td class='button'>
+							<button class='generate' id='SetupManager.admin.generate'>Generate</button>
+						</td>
+					</tr>
+					<tr>
+						<td class='label'>
+						</td>
+						<td>
+							Password Strength: 
+							<span id='SetupManager.admin.strength'>Weak</span>
+						</td>
+						<td class='button'>
+						</td>
+					</tr>
+					<tr>
+						<td class='label'>
+						</td>
+						<td>
+							<label class='disabled' id='SetupManager.admin.label'>
+								<input type='checkbox' id='SetupManager.admin.checkbox'/>
+								Confirm Weak Password
+							</label>
+						</td>
+						<td class='button'>
+						</td>
+					</tr>
+				</table>
+
+			</div>
+
+			<h3>Email Settings:</h3>
+
+			<div class='area'>
+				
+				<table>
+					<tr>
+						<td class='label'>
+							Email Format:
+						</td>
+						<td>
+							<select id='SetupManager.email.format'>
+								<option value='gmail'>Gmail</option>
+							</select>
+						</td>
+						<td class='button'></td>
+					</tr>
+				</table>
+				<table>
+					<tr>
+						<td class='indent right'>
+							Username:
+						</td>
+						<td>
+							<input type='text' id='SetupManager.email.username' placeholder='no-reply@my_company.com'/>
+						</td>
+						<td class='button'></td>
+					</tr>
+					<tr>
+						<td class='indent right'>
+							Password:
+						</td>
+						<td>
+							<input type='text' id='SetupManager.email.password' placeholder='no-replyパスワード'/>
+						</td>
+						<td class='button'></td>
+					</tr>
+					<tr>
+						<td class='indent right'>
+						</td>
+						<td class='note'>
+							※ For Gmail you will need to 
+							<a href='https://support.google.com/accounts/answer/6010255?hl=en'>
+							enable less secure apps</a>
+						</td>
+						<td class='button'></td>
+					</tr>
+				</table>
+
+			</div>
+
+			<button class='submit' id='SetupManager.submit'>
+				Get Started!
+			</button>
+
+		</main>
+		
+		<div class='padding'></div>
+
+		<script type='text/javascript' src='js/SetupManager.js'></script>
+
+	</body>
+
+
+</html>
