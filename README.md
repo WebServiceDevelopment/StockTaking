@@ -2,7 +2,7 @@
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
-![Stock Taking](https://raw.githubusercontent.com/WebServiceDevelopment/StockTaking/main/Assets/stocktaking_banner.png?token=ABIEFQEOMYC6AKRDPVYAPPLAV33UK)
+![Stock Taking](https://github.com/WebServiceDevelopment/StockTaking/blob/main/Assets/stocktaking_banner.png?raw=true)
 
 This is a repository for the Web Service Development application
 'Stock Taking'. The application is a three teir application with
