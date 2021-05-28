@@ -132,11 +132,8 @@ const DataManager = (function () {
 
 	function api_updateWeight() {
 
-		console.log("UPDATE THE WEIGHT!!!");
-
 		let tab = document.getElementById('TabManager.a');
 		if(!tab.classList.contains('active')) {
-			console.log("Abort mission!!!");
 			return;
 		}
 
@@ -152,7 +149,6 @@ const DataManager = (function () {
 			let elem = document.getElementById(id);
 
 			if(!elem) {
-				console.log("Could not find element for %s", id);
 				continue;
 			}
 
@@ -166,8 +162,6 @@ const DataManager = (function () {
 		}
 
 		document.getElementById('total_weight').textContent = count.toLocaleString();
-
-		console.log("Update the weight!!");
 
 	}
 
@@ -186,8 +180,6 @@ const DataManager = (function () {
 			url = '/client/session/logout';
 			break;
 		}
-
-		console.log("LOGOUT CLICK!!");
 
 		const ajax = new XMLHttpRequest();
 		ajax.open("POST", url);
@@ -320,12 +312,10 @@ const DataManager = (function () {
 		let NextProcessAll = Inventory.getNextProcessAll();
 		let next_process = NextProcessAll[this.DOM.location.textContent];
 		if (next_process == undefined) {
-			//console.log(this.DOM.location.textContent);
 			next_process = null;
 		}
 
 		Inventory.setNextProcess(next_process);
-		//console.log(_core.getNextProcess());
 		Inventory.resetColumnNameWithNextProcess();
 
 		this.MEM.inventory.forEach(data => {
@@ -397,8 +387,6 @@ const DataManager = (function () {
 
 	function api_loadStockReport() {
 
-		console.log("LOAD STOCK REPORT!!!!");
-
 		const params = {
 			location_uuid: this.MEM.location.location_uuid
 		};
@@ -424,7 +412,6 @@ const DataManager = (function () {
 		ajax.onload = () => {
 
 			this.MEM.stock = ajax.response.msg;
-			console.log(this.MEM.stock);
 			this.API.dataToTableForStock();
 			this.API.renderStockSummary();
 
@@ -441,10 +428,6 @@ const DataManager = (function () {
 	 */
 
 	function api_updateInventoryReport() {
-
-		console.log("LOAD INVENTORY REPORT!!!!!");
-		
-		console.log(this.MEM);
 
 		localStorage.setItem('inventory', JSON.stringify(this.MEM.inventory));
 		localStorage.setItem('stock', JSON.stringify(this.MEM.stock));
@@ -487,8 +470,6 @@ const DataManager = (function () {
 
 	function api_updateStockReport() {
 
-		console.log("AM I BEING CALLED!!!???");
-
 		const params = {
 			status_uuid: this.MEM.inventory.status_uuid,
 			on_site_stock: this.MEM.stock.report
@@ -523,8 +504,6 @@ const DataManager = (function () {
 	 */
 	function api_tableToDataForInventory() {
 
-		console.log("Inventory to data!!!");
-
 		//let tpage = document.getElementById('tpage');
 		let tpage1 = _core.getTpage1();
 		if (!tpage1) {
@@ -555,7 +534,6 @@ const DataManager = (function () {
 
 		}
 		
-		console.log(data);
 		this.MEM.inventory = data;
 		return data;
 
@@ -566,8 +544,6 @@ const DataManager = (function () {
 	 */
 
 	function api_tableToDataForStock() {
-
-		console.log("Stock data to table");
 
 		//let tpage = document.getElementById('tpage');
 		let tpage2 = _core.getTpage2();
@@ -599,7 +575,6 @@ const DataManager = (function () {
 
 		}
 		
-		console.log(data);
 		this.MEM.stock = data;
 		return data;
 
@@ -656,8 +631,6 @@ const DataManager = (function () {
 	 */
 	function api_submitInventoryReport() {
 
-		console.log("Inventory submit da report!!!");
-
 		this.API.tableToDataForInventory();
 
 		const params = {
@@ -684,7 +657,6 @@ const DataManager = (function () {
 
 		ajax.onload = () => {
 
-			console.log("Inventory," + ajax.response);
 			this.DOM.conf.classList.add('close');
 
 		}
@@ -695,8 +667,6 @@ const DataManager = (function () {
 	 * Stock
 	 */
 	function api_submitStockReport() {
-
-		console.log("Stock submit da report!!!");
 
 		this.API.tableToDataForStock();
 
@@ -725,7 +695,6 @@ const DataManager = (function () {
 
 		ajax.onload = () => {
 
-			console.log("Stock," + ajax.response);
 			//this.DOM.conf.classList.add('close');
 
 		}
