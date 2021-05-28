@@ -277,7 +277,7 @@ main.paper header table td.logout div.oval {
 	color: #fff;
 	text-indent: 10px;
 
-	background-image: url('/lib/img/exit_to_app-white-24dp.svg');
+	background-image: url('../lib/img/exit_to_app-white-24dp.svg');
 	background-repeat: no-repeat;
 	background-position: 90% center;
 	background-size: 25px 25px;
@@ -974,7 +974,7 @@ main.paper footer div.map {
 	border: 1px solid #e2e2e2;
 	border-radius: 4px;
 
-	background-image: url('/lib/img/factory_map.png');
+	background-image: url('../lib/img/factory_map.png');
 	background-size: contain;
 	background-position: center;
 	background-repeat: no-repeat;
@@ -1192,7 +1192,7 @@ div.map-widget div.expand {
 	top: -7px;
 	width: 40px;
 	height: 40px;
-	background-image: url('/lib/img/open_in_new-black-24dp.svg');
+	background-image: url('../lib/img/open_in_new-black-24dp.svg');
 	background-size: 80%;
 	background-position: center;
 	background-repeat: no-repeat;

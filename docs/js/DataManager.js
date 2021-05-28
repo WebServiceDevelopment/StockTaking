@@ -55,13 +55,15 @@ const REPORT = {
 	},
 	managers : [
 		{
-			staff_name : 'Jim',
+			staff_name : 'Manager',
 			staff_position : '部長',
-		},
+		}
+		/*,
 		{
 			staff_name : 'Bob',
 			staff_position : '課長',
 		}
+		*/
 	]
 };
 
