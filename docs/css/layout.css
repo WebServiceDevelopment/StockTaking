@@ -1169,7 +1169,7 @@ div.map-widget {
 	background-color: #fff;
 	bottom: 10px;
 
-	background-image: url('/lib/img/factory_map.png');
+	background-image: url('../lib/img/factory_map.png');
 	background-size: contain;
 	background-position: center;
 	background-repeat: no-repeat;
