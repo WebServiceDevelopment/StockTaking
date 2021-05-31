@@ -221,6 +221,8 @@ use the application. The list of videos will be updated as needed or implemented
 - [ ] Download Report as CSV
 - [ ] Finalize Monthly Reports
 
+The text version of these videos is available in this project's [Wiki](https://github.com/WebServiceDevelopment/StockTaking/wiki).
+
 ## License
 
 MIT License
