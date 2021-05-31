@@ -207,6 +207,8 @@ needs to power down or reboot.
 
 The walkthrough is a series of videos that describes how to setup and
 use the application. The list of videos will be updated as needed or implemented.
+The text version of these videos is available in this project's 
+[Wiki](https://github.com/WebServiceDevelopment/StockTaking/wiki).
 
 - [ ] Setup a Test Environment
 - [ ] Setup a Deployment
@@ -220,8 +222,6 @@ use the application. The list of videos will be updated as needed or implemented
 - [ ] Review and Confirm Report
 - [ ] Download Report as CSV
 - [ ] Finalize Monthly Reports
-
-The text version of these videos is available in this project's [Wiki](https://github.com/WebServiceDevelopment/StockTaking/wiki).
 
 ## License
 
