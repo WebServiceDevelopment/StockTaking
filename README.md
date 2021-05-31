@@ -47,7 +47,7 @@ interface that does not interact with the backend server. That way
 anyone who wants to quickly test and get a feel for the application
 can view this single page to see if they want to continue to install
 a full version of the application. A live version of this sample
-is available here: [https://webservicedevelopment.github.io/StockTaking/](https://webservicedevelopment.github.io/StockTaking/).
+is available [here](https://webservicedevelopment.github.io/StockTaking/).
 
 The **Deploy** folder contains the all of the source code for
 running and deploying the full version of the application. Information
