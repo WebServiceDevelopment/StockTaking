@@ -62,7 +62,9 @@ Repository's Wiki.
 
 ## Preview
 
-<img src='https://github.com/WebServiceDevelopment/StockTaking/blob/main/Screenshots/tablet_preview.jpg?raw=true' style='display: block; margin: auto; max-width: 70%;'/>
+<p align="center">
+<img src='https://github.com/WebServiceDevelopment/StockTaking/blob/main/Screenshots/tablet_preview.jpg?raw=true' style='display: block; margin: auto; max-width: 50%;'/>
+</p>
 
 ## Installation
 
