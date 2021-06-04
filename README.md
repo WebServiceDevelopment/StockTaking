@@ -60,6 +60,10 @@ The **Screenshots** folder contains preview images to show the layout of
 the application, and also includes images that are referenced in this
 Repository's Wiki. 
 
+## Preview
+
+![Stock Taking](https://github.com/WebServiceDevelopment/StockTaking/blob/main/Screenshots/tablet_preview.jpg?raw=true)
+
 ## Installation
 
 The Stock Taking application has been designed to be as simple
