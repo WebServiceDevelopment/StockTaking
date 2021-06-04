@@ -27,6 +27,14 @@ the reports can be finalized. Once the reports are finalized
 they are archived and can be downloaded as CSV files such that
 they can be openned and edited with Excel. 
 
+<p align="center">
+<img src='https://github.com/WebServiceDevelopment/StockTaking/blob/main/Screenshots/tablet_preview.jpg?raw=true' width='500px'/>
+</p>
+
+A preview of the Grunt portion of the application is shown above. The manager and 
+admin portions of the application are more standard admin-style consoles built
+for desktop / notebook computers with resolutions of FullHD or greater.
+
 ## Repository Structure
 
 This repository contains three folders, **Assets**, **docs**, 
@@ -59,12 +67,6 @@ included in this repository's wiki.
 The **Screenshots** folder contains preview images to show the layout of
 the application, and also includes images that are referenced in this
 Repository's Wiki. 
-
-## Preview
-
-<p align="center">
-<img src='https://github.com/WebServiceDevelopment/StockTaking/blob/main/Screenshots/tablet_preview.jpg?raw=true' width='500px'/>
-</p>
 
 ## Installation
 
