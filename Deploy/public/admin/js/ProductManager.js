@@ -402,15 +402,19 @@ const ProductManager = (function() {
 	
 			// Update the row
 			
+			console.log(this.MEM.isEdit);
+
 			this.MEM.isEdit.data.product_type = this.DOM.form.type.value;
 			this.MEM.isEdit.data.product_variety = this.DOM.form.variety.value;
 			this.MEM.isEdit.data.product_name = this.DOM.form.name.value;
 			this.MEM.isEdit.data.next_process = this.DOM.form.next_process.value;
+			this.MEM.isEdit.data.unit = this.DOM.form.unit.value;
 
 			this.MEM.isEdit.cells[2].textContent = this.MEM.isEdit.data.product_type;
 			this.MEM.isEdit.cells[3].textContent = this.MEM.isEdit.data.product_variety;
 			this.MEM.isEdit.cells[4].textContent = this.MEM.isEdit.data.product_name;
 			this.MEM.isEdit.cells[5].textContent = this.MEM.isEdit.data.next_process;
+			this.MEM.isEdit.cells[8].textContent = this.MEM.isEdit.data.unit;
 
 			// Clear the form
 
@@ -472,6 +476,7 @@ const ProductManager = (function() {
 		this.DOM.form.variety.value = userData.data.product_variety;
 		this.DOM.form.name.value = userData.data.product_name;
 		this.DOM.form.next_process.value = userData.data.next_process;
+		this.DOM.form.unit.value = userData.data.unit;
 		
 		this.EVT.handleSelectChange();
 
@@ -598,9 +603,13 @@ const ProductManager = (function() {
 
 	function evt_handleFormSubmitClick() {
 
+		console.log(this.MEM);
+
 		if(this.MEM.isEdit) {
+			console.log("Doing the edit, update product");
 			this.API.updateProduct();
 		} else {
+			console.log("Not an edit, creating product");
 			this.API.createProduct();
 		}
 
