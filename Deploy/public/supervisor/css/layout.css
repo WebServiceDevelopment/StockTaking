@@ -156,6 +156,7 @@ header table td.session {
 	padding-right: 10px;
 	color: #fff;
 	font-size: 15px;
+	white-space: nowrap;
 
 }
 
