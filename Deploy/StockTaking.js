@@ -893,7 +893,7 @@ app.post('/session/login', async function(req, res) {
 
 	// Handle Error: Password does not match
 
-	if(!bool && false) {
+	if(!bool) {
 
 		sql = `
 			SELECT
@@ -4390,7 +4390,7 @@ app.post('/admin/api/v1/downloadReport', async function(req, res) {
 
 	res.json({
 		err : 0,
-		msg : JSON.parse(report.managers_report)
+		msg : JSON.parse(report.finance_report)
 	});
 
 });
