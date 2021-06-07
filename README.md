@@ -148,7 +148,10 @@ server {
 	listen       [::]:80;
 	server_name  stock.wsd.sh;
 	root         /usr/share/nginx/html;
-
+	
+	access_log   /var/log/nginx/stock.wsd.sh.access.log;
+	error_log   /var/log/nginx/stock.wsd.sh.error.log;
+	
 	location ^~ /.well-known/acme-challenge/ {
 		default_type "text/plain";
 	}
@@ -161,15 +164,15 @@ server {
 		proxy_redirect off;
 	}
 
-    location ~ ws$ {
-        proxy_set_header X-Real-IP $remote_addr;
-        proxy_set_header HOST $http_host;
-        proxy_set_header X-NginX-Proxy true;
-        proxy_pass http://127.0.0.1:4000;
-        proxy_set_header Connection "upgrade";
-        proxy_set_header Upgrade $http_upgrade;
-        proxy_http_version 1.1;
-    }
+	location ~ ws$ {
+		proxy_set_header X-Real-IP $remote_addr;
+		proxy_set_header HOST $http_host;
+		proxy_set_header X-NginX-Proxy true;
+		proxy_pass http://127.0.0.1:4000;
+		proxy_set_header Connection "upgrade";
+		proxy_set_header Upgrade $http_upgrade;
+		proxy_http_version 1.1;
+	}
 
 }
 
