@@ -654,7 +654,7 @@ app.get("*", async function(req, res) {
 	let full_path = path + leaf;
 	fs.readFile(full_path, function(err, buffer) {
 		if(err) {
-			return res.end('404: File not Found', 404);
+			return res.status(404).end('404: File not Found');
 		}
 
 		let type = mimetype.lookup(leaf); 
